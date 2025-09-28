@@ -10,11 +10,15 @@ public class LaneControl : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (currentLanes == 0) lane.transform.Translate(3 * distance * Vector2.left);
-        currentLanes++;
-        lane.transform.Translate(distance*Vector2.right);
-        if(currentLanes < numLanes){
-            Instantiate(lane);
+        while (currentLanes < numLanes)
+        {
+            if (currentLanes == 0) lane.transform.Translate(3 * distance * Vector2.left);
+            currentLanes++;
+            lane.transform.Translate(distance * Vector2.right);
+            if (currentLanes < numLanes)
+            {
+                Instantiate(lane);
+            }
         }
     }
 }
