@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PointCounter : MonoBehaviour
 {
-    private float points;
-    public float pointsPerSecond;
+    [SerializeField] private float points;
+    [SerializeField] private float pointsPerSecond;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,8 +13,22 @@ public class PointCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //For now just increase by a set amount per unit of time
-        points += pointsPerSecond * Time.deltaTime;
+        //Increase by a set amount per unit of time
+        AddPoints(pointsPerSecond * Time.deltaTime);
+    }
+
+    void AddPoints(float add)
+    {
+        points += add;
+    }
+
+    void SetPoints(float set)
+    {
+        points = set;
+    }
+    float GetPoints()
+    {
+        return points;
     }
     
 }
