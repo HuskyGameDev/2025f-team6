@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class LaneControl : MonoBehaviour
@@ -6,61 +5,20 @@ public class LaneControl : MonoBehaviour
     public int distance;
     public GameObject lane;
     static private int numLanes = 5;
-    static private GameObject[] lanes;
+    static private int currentLanes = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        lanes = lane.GetComponents<GameObject>();
-    }
-
-    /**
-     * getLane 
-     * Input number of lane you would like to get and it returns it
-     * Returns null if out of bounds
-     */
-    /*public GameObject getLane(int num)
-    {
-        try
+        while (currentLanes < numLanes)
         {
-            return lanes[num];
-        }
-        catch (Exception e)
-        {
-            debu
-            return null;
+            if (currentLanes == 0) lane.transform.Translate(3 * distance * Vector2.left);
+            currentLanes++;
+            lane.transform.Translate(distance * Vector2.right);
+            if (currentLanes < numLanes)
+            {
+                Instantiate(lane);
+            }
         }
     }
-    /**
-     * getLaneLeft
-     * Input number of lane you would like to get and it returns the lane to the left
-     * Returns null if out of bounds
-     */
-    /*public GameObject getLaneLeft(int num)
-    {
-        try
-        {
-            return lanes[num-1];
-        }
-        catch (Exception e)
-        {
-            return null;
-        }
-    }
-    /**
-     * getLaneRight
-     * Input number of lane you would like to get and it returns the lane to the left
-     * Returns null if out of bounds
-     */
-    /*public GameObject getLaneRightt(int num)
-    {
-        try
-        {
-            return lanes[num+1];
-        }
-        catch (Exception e)
-        {
-            return null;
-        }
-    }//*/
 }
