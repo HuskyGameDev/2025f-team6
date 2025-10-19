@@ -113,8 +113,7 @@ public class PlayerControl : MonoBehaviour
         Vector3 targetPosition = playerPositions[currentPosition];
 
         // Safe Lerp calculation
-        float lerpValue = Mathf.Clamp01(interpolator);
-        float newX = Mathf.Lerp(oldPosition.x, targetPosition.x, lerpValue);
+        float newX = Mathf.Lerp(oldPosition.x, targetPosition.x, interpolator);
 
         // Ensure we don't get NaN values
         if (float.IsNaN(newX))
@@ -290,5 +289,10 @@ public class PlayerControl : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void RestartMotion()
+    {
+        StartMovementToPosition(currentPosition);
     }
 }

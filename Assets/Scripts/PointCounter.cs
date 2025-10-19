@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PointCounter : MonoBehaviour
@@ -17,18 +18,18 @@ public class PointCounter : MonoBehaviour
         AddPoints(pointsPerSecond * Time.deltaTime);
     }
 
-    void AddPoints(float add)
+    public void AddPoints(float add)
     {
         points += add;
     }
 
-    void SetPoints(float set)
+    public void SetPoints(float set)
     {
         points = set;
     }
-    float GetPoints()
+    public int GetPoints()
     {
-        return points;
+        return (int) Mathf.Floor(points);
     }
     
 }

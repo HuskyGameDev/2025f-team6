@@ -13,6 +13,7 @@ public class PlayerCollision : MonoBehaviour
     [SerializeField] private SpriteRenderer playerSprite;
     [SerializeField] private Color damageColor = Color.red;
     [SerializeField] private float flashDuration = 0.3f;
+    [SerializeField] private PlayerControl pc;
 
     private AudioSource audioSource;
     private Color originalColor;
@@ -21,6 +22,7 @@ public class PlayerCollision : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        pc = GetComponent<PlayerControl>();
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
@@ -94,7 +96,7 @@ public class PlayerCollision : MonoBehaviour
         }
 
         // Return to the position where the player was when hit, NOT the original spawn position
-        transform.position = shakeStartPosition;
+        pc.RestartMotion();
     }
 
     private IEnumerator PlayerFlash()
