@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Drawing;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float speed = 2f;
     [SerializeField] private float speedCurve = 0.5f; // Needs to be >0 and <2
     [SerializeField] private float yPos = -3.5f;
+    [SerializeField] private GameObject gameRunner;
 
     [Header("Player Positions")]
     [SerializeField]
@@ -21,7 +23,7 @@ public class PlayerControl : MonoBehaviour
     [Header("Hit Effect Settings")]
     [SerializeField] private float blinkDuration = 1f;
     [SerializeField] private float blinkInterval = 0.1f;
-    [SerializeField] private Color hitColor = Color.red;
+    [SerializeField] private UnityEngine.Color hitColor = UnityEngine.Color.red;
     [SerializeField] private ParticleSystem hitParticles;
     [SerializeField] private AudioClip hitSound;
 
@@ -34,8 +36,11 @@ public class PlayerControl : MonoBehaviour
     // Rendering components
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
-    private Color originalColor;
+    private UnityEngine.Color originalColor;
     private bool isBlinking = false;
+
+    //Behavior that Stores the point system
+    private PointCounter points;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,6 +52,9 @@ public class PlayerControl : MonoBehaviour
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
+
+        //Get the central point counter
+        points = gameRunner.GetComponent<PointCounter>();
 
         // Store original color
         if (spriteRenderer != null)
@@ -163,6 +171,10 @@ public class PlayerControl : MonoBehaviour
         {
             OnHit();
         }
+        if (other.CompareTag("Coin"))
+        {
+            points.AddPoints(50);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -170,6 +182,10 @@ public class PlayerControl : MonoBehaviour
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             OnHit();
+        }
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            points.AddPoints(50);
         }
     }
 
@@ -269,7 +285,7 @@ public class PlayerControl : MonoBehaviour
     {
         if (playerPositions != null)
         {
-            Gizmos.color = Color.blue;
+            Gizmos.color = UnityEngine.Color.blue;
             foreach (Vector3 pos in playerPositions)
             {
                 Gizmos.DrawWireCube(pos, new Vector3(0.5f, 1f, 0.5f));
@@ -278,13 +294,13 @@ public class PlayerControl : MonoBehaviour
             // Highlight current target position
             if (currentPosition >= 0 && currentPosition < playerPositions.Length)
             {
-                Gizmos.color = Color.green;
+                Gizmos.color = UnityEngine.Color.green;
                 Gizmos.DrawWireCube(playerPositions[currentPosition], new Vector3(0.7f, 1.2f, 0.7f));
 
                 // Draw line from player to target if moving
                 if (isMoving)
                 {
-                    Gizmos.color = Color.yellow;
+                    Gizmos.color = UnityEngine.Color.yellow;
                     Gizmos.DrawLine(transform.position, playerPositions[currentPosition]);
                 }
             }

@@ -13,14 +13,14 @@ public class ObstacleController : MonoBehaviour
     [SerializeField] private bool destroyWhenInvisible = true;
 
     private Camera mainCamera;
-    private float speed;
+    [SerializeField] private float speed;
     private ObstacleSpawner spawner;
     private GameObject originalPrefab;
     private bool isActive = false;
 
     void Update()
     {
-        if (!isActive) return;
+        if (!gameObject.activeSelf) return;
 
         // Move obstacle downward
         transform.Translate(Vector3.down * speed * Time.deltaTime);

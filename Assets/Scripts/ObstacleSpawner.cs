@@ -6,6 +6,7 @@ public class ObstacleSpawner : MonoBehaviour
 {
     [Header("Spawn Settings")]
     [SerializeField] private List<GameObject> obstaclePrefabs;
+    [SerializeField] private List<GameObject> coinPrefabs;
     [SerializeField] private float minSpawnInterval = 1f;
     [SerializeField] private float maxSpawnInterval = 5f;
     [SerializeField] private bool spawnOnStart = true;
@@ -26,6 +27,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private Coroutine spawnCoroutine;
     private Dictionary<GameObject, Queue<GameObject>> obstaclePools;
+    private Dictionary<GameObject, Queue<GameObject>> coinPools;
 
     void Start()
     {
@@ -58,6 +60,25 @@ public class ObstacleSpawner : MonoBehaviour
                 }
 
                 obstaclePools[prefab] = objectQueue;
+            }
+        }
+
+        coinPools = new Dictionary<GameObject, Queue<GameObject>>();
+
+        foreach (GameObject prefab in coinPrefabs)
+        {
+            if (prefab != null)
+            {
+                Queue<GameObject> objectQueue = new Queue<GameObject>();
+
+                for (int i = 0; i < poolSize; i++)
+                {
+                    GameObject coin = CreateObstacleInstance(prefab);
+                    coin.SetActive(false);
+                    objectQueue.Enqueue(coin);
+                }
+
+                coinPools[prefab] = objectQueue;
             }
         }
     }
@@ -103,6 +124,7 @@ public class ObstacleSpawner : MonoBehaviour
             float spawnDelay = Random.Range(minSpawnInterval, maxSpawnInterval);
             yield return new WaitForSeconds(spawnDelay);
             SpawnRandomObstacle();
+            SpawnRandomCoin();
         }
     }
 
@@ -127,6 +149,29 @@ public class ObstacleSpawner : MonoBehaviour
         Vector3 spawnPosition = GetRandomSpawnPosition();
 
         SpawnObstacle(obstaclePrefab, spawnPosition);
+    }
+
+    private void SpawnRandomCoin()
+    {
+        if (coinPrefabs == null || coinPrefabs.Count == 0)
+        {
+            Debug.LogWarning("No obstacle prefabs assigned to the spawner!");
+            return;
+        }
+
+        int randomIndex = Random.Range(0, coinPrefabs.Count);
+        GameObject coinPrefab = coinPrefabs[randomIndex];
+
+        if (coinPrefab == null)
+        {
+            Debug.LogWarning("One of the obstacle prefabs is null!");
+            return;
+        }
+
+        // Get random spawn position from the fixed positions array
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+
+        SpawnCoin(coinPrefab, spawnPosition);
     }
 
     private Vector3 GetRandomSpawnPosition()
@@ -175,6 +220,43 @@ public class ObstacleSpawner : MonoBehaviour
             obstacleInstance = CreateObstacleInstance(obstaclePrefab);
             obstacleInstance.transform.position = position;
             obstacleInstance.SetActive(true);
+        }
+    }
+
+    private void SpawnCoin(GameObject coinPrefab, Vector3 position)
+    {
+        GameObject coinInstance;
+
+        if (useObjectPooling && coinPools != null && coinPools.ContainsKey(coinPrefab))
+        {
+            Queue<GameObject> pool = coinPools[coinPrefab];
+
+            if (pool.Count > 0)
+            {
+                coinInstance = pool.Dequeue();
+            }
+            else
+            {
+                // Create new instance if pool is empty
+                coinInstance = CreateObstacleInstance(coinPrefab);
+            }
+
+            coinInstance.transform.position = position;
+            coinInstance.SetActive(true);
+
+            // Initialize the obstacle
+            ObstacleController controller = coinInstance.GetComponent<ObstacleController>();
+            if (controller != null)
+            {
+                controller.Initialize();
+            }
+        }
+        else
+        {
+            // Non-pooled spawning (creates new instance each time)
+            coinInstance = CreateObstacleInstance(coinPrefab);
+            coinInstance.transform.position = position;
+            coinInstance.SetActive(true);
         }
     }
 

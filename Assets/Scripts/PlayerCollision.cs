@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerCollision : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class PlayerCollision : MonoBehaviour
     [SerializeField] private Color damageColor = Color.red;
     [SerializeField] private float flashDuration = 0.3f;
     [SerializeField] private PlayerControl pc;
+    [SerializeField] private int lives = 3;
+    [SerializeField] private string endScene;
 
     private AudioSource audioSource;
     private Color originalColor;
@@ -52,6 +55,15 @@ public class PlayerCollision : MonoBehaviour
 
     public void HandleCollision(GameObject obstacle)
     {
+        //Reduce Lives by 1
+        lives--;
+        if(lives == 0)
+        {
+            SceneManager.LoadScene(endScene);
+            //Pause the game (put all speeds to 0)
+            //Pop up end screen
+        }
+
         // Store current position for screen shake (where player actually is when hit)
         shakeStartPosition = transform.position;
 
