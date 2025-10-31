@@ -9,6 +9,7 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI scoreDisplay;
     private PointCounter scoreScript;
     private int score;
+    private static int finalScore = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,6 +23,17 @@ public class UIController : MonoBehaviour
     void Update()
     {
         score = scoreScript.GetPoints();
+        finalScore = score;
         scoreDisplay.SetText("Score: " + score);
+    }
+
+    public static void setFinalScore(int fscore)
+    {
+        finalScore = fscore;
+    }
+
+    public static int getFinalScore()
+    {
+        return finalScore;
     }
 }

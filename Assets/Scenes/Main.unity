@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 401844527}
   m_Layer: 5
   m_Name: HeartC
-  m_TagString: Untagged
+  m_TagString: Hearts
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -420,7 +420,7 @@ GameObject:
   - component: {fileID: 469891831}
   m_Layer: 5
   m_Name: HeartA
-  m_TagString: Untagged
+  m_TagString: Hearts
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -743,9 +743,6 @@ MonoBehaviour:
   pc: {fileID: 0}
   lives: 3
   endScene: GameOverMenu
-  heartA: {fileID: 0}
-  heartB: {fileID: 0}
-  heartC: {fileID: 0}
 --- !u!50 &536157196
 Rigidbody2D:
   serializedVersion: 5
@@ -1642,7 +1639,7 @@ GameObject:
   - component: {fileID: 1330773793}
   m_Layer: 5
   m_Name: HeartB
-  m_TagString: Untagged
+  m_TagString: Hearts
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

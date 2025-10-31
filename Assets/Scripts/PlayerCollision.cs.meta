@@ -1,2 +1,18 @@
 fileFormatVersion: 2
 guid: 6e2f2b93e0a091b409e0819f35c255a8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - collisionParticle: {instanceID: 0}
+  - collisionSound: {instanceID: 0}
+  - playerSprite: {instanceID: 0}
+  - pc: {instanceID: 0}
+  - heartA: {fileID: -2253911629886400664, guid: cd8acf7d0d544c4419ca491c37046f9d, type: 3}
+  - heartB: {instanceID: 0}
+  - heartC: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

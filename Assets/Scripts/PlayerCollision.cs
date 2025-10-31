@@ -20,10 +20,10 @@ public class PlayerCollision : MonoBehaviour
     [SerializeField] private int lives = 3;
     [SerializeField] private string endScene;
 
-    //[Header("UI Hearts")]
-    //[SerializeField] private Image heartA;
-    //[SerializeField] private Image heartB;
-    //[SerializeField] private Image heartC;
+
+    private GameObject heartA; // left-most
+    private GameObject heartB;
+    private GameObject heartC;
 
     private AudioSource audioSource;
     private Color originalColor;
@@ -41,6 +41,18 @@ public class PlayerCollision : MonoBehaviour
         if (playerSprite != null)
         {
             originalColor = playerSprite.color;
+        }
+
+        // find the hearts
+        GameObject[] heartArr = GameObject.FindGameObjectsWithTag("Hearts");
+        foreach (GameObject heart in heartArr)
+        {
+            if (heart.name == "HeartA")
+                heartA = heart;
+            else if (heart.name == "HeartB")
+                heartB = heart;
+            else if (heart.name == "HeartC")
+                heartC = heart;
         }
     }
 
@@ -66,6 +78,7 @@ public class PlayerCollision : MonoBehaviour
         lives--;
         if(lives == 0)
         {
+            UIController.setFinalScore(UIController.getFinalScore());
             SceneManager.LoadScene(endScene);
             //Pause the game (put all speeds to 0)
             //Pop up end screen
@@ -132,26 +145,52 @@ public class PlayerCollision : MonoBehaviour
     {
         Debug.Log("Player hit by obstacle! " + lives + " lives remain.");
 
-        // Hide hearts according to lives remaining
-        //if (lives == 2 && heartC != null)
-        //{
-        //    heartC.SetActive(false);
-        //}
-        //else if (lives == 1 && heartB != null)
-        //{
-        //    heartB.SetActive(false);
-        //}
-        //else if (lives == 0)
-        //{
-        //    if (heartA != null)
-        //    {
-        //        heartA.SetActive(false);
-        //    }
-        //}
+        hideHearts(lives);
     }
 
     public int getLivesRemaining()
     {
         return lives;
+    }
+
+    public void hideHearts(int lives)
+    {
+        if (heartA == null || heartB == null || heartC == null)
+        {
+            Debug.LogWarning("Heart sprite(s) not found.");
+            return;
+        }
+
+        // Hide based on remaining lives (called from PlayerCollision)
+        if (lives == 2) // first hit
+        {
+            heartC.SetActive(false);
+        }
+        if (lives == 1) // second hit
+        {
+            heartB.SetActive(false);
+        }
+        if (lives <= 0) // perish
+        {
+            heartA.SetActive(false);
+        }
+
+            // Ensure the others are also hidden if lives <= 0
+            //if (heartB != null) heartB.SetActive(false);
+            //if (heartC != null) heartC.SetActive(false);
+    }
+
+    public void showAllHearts()
+    {
+        if (heartA == null || heartB == null || heartC == null)
+        {
+            Debug.LogWarning("Heart sprite(s) not found.");
+            return;
+        }
+
+        // Show all hearts
+        if (heartA != null) heartA.SetActive(true);
+        if (heartB != null) heartB.SetActive(true);
+        if (heartC != null) heartC.SetActive(true);
     }
 }
