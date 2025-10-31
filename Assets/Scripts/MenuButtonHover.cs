@@ -12,10 +12,11 @@ public class MenuButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExit
     void Awake()
     {
         myButton = GetComponent<Button>();
-        if (icon.name != "RawImageA")
-        {
-            icon.enabled = false;
-        }
+        //if (icon.name != "RawImageA")
+        //{
+        //    icon.enabled = false;
+        //}
+        icon.enabled = false;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

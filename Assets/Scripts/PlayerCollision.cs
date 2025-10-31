@@ -1,6 +1,8 @@
-using UnityEngine;
 using System.Collections;
+using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerCollision : MonoBehaviour
 {
@@ -17,6 +19,11 @@ public class PlayerCollision : MonoBehaviour
     [SerializeField] private PlayerControl pc;
     [SerializeField] private int lives = 3;
     [SerializeField] private string endScene;
+
+    //[Header("UI Hearts")]
+    //[SerializeField] private Image heartA;
+    //[SerializeField] private Image heartB;
+    //[SerializeField] private Image heartC;
 
     private AudioSource audioSource;
     private Color originalColor;
@@ -123,7 +130,28 @@ public class PlayerCollision : MonoBehaviour
 
     protected virtual void OnPlayerHit()
     {
-        Debug.Log("Player hit by obstacle!");
-        // Add your game-specific logic here
+        Debug.Log("Player hit by obstacle! " + lives + " lives remain.");
+
+        // Hide hearts according to lives remaining
+        //if (lives == 2 && heartC != null)
+        //{
+        //    heartC.SetActive(false);
+        //}
+        //else if (lives == 1 && heartB != null)
+        //{
+        //    heartB.SetActive(false);
+        //}
+        //else if (lives == 0)
+        //{
+        //    if (heartA != null)
+        //    {
+        //        heartA.SetActive(false);
+        //    }
+        //}
+    }
+
+    public int getLivesRemaining()
+    {
+        return lives;
     }
 }

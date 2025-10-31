@@ -73,6 +73,11 @@ public class MainMenuButtonsController : MonoBehaviour
 
     }
 
+    public void PlayAgain()
+    {
+        PlayGame();
+    }
+
     public void OpenOptions()
     {
         PlayClickSound();
@@ -83,6 +88,11 @@ public class MainMenuButtonsController : MonoBehaviour
     {
         PlayClickSound();
         SceneManager.LoadScene("AboutMenu");
+    }
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void QuitGame()
