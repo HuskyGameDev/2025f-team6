@@ -174,6 +174,7 @@ public class PlayerControl : MonoBehaviour
         if (other.CompareTag("Coin"))
         {
             points.AddPoints(50);
+            Destroy(other.gameObject);
         }
     }
 
@@ -186,6 +187,7 @@ public class PlayerControl : MonoBehaviour
         if (collision.gameObject.CompareTag("Coin"))
         {
             points.AddPoints(50);
+            Destroy(collision.gameObject);
         }
     }
 

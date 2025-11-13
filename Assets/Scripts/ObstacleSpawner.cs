@@ -10,6 +10,8 @@ public class ObstacleSpawner : MonoBehaviour
     [SerializeField] private float minSpawnInterval = 1f;
     [SerializeField] private float maxSpawnInterval = 5f;
     [SerializeField] private bool spawnOnStart = true;
+    [SerializeField] private int maxCoinPerLane = 3;
+    [SerializeField] private float coinSpawnDelay = .2f;
 
     [Header("Spawn Positions")]
     [SerializeField]
@@ -123,17 +125,20 @@ public class ObstacleSpawner : MonoBehaviour
         {
             float spawnDelay = Random.Range(minSpawnInterval, maxSpawnInterval);
             yield return new WaitForSeconds(spawnDelay);
-            SpawnRandomObstacle();
-            SpawnRandomCoin();
+            Vector3 obstacleSpawn = SpawnRandomObstacle();
+            if(obstacleSpawn != new Vector3(1000, 1000, 1000))
+            {
+                SpawnRandomCoin(obstacleSpawn);
+            }
         }
     }
 
-    private void SpawnRandomObstacle()
+    private Vector3 SpawnRandomObstacle()
     {
         if (obstaclePrefabs == null || obstaclePrefabs.Count == 0)
         {
             Debug.LogWarning("No obstacle prefabs assigned to the spawner!");
-            return;
+            return new Vector3(1000,1000,1000);
         }
 
         int randomIndex = Random.Range(0, obstaclePrefabs.Count);
@@ -142,16 +147,17 @@ public class ObstacleSpawner : MonoBehaviour
         if (obstaclePrefab == null)
         {
             Debug.LogWarning("One of the obstacle prefabs is null!");
-            return;
+            return new Vector3(1000,1000,1000);
         }
 
         // Get random spawn position from the fixed positions array
         Vector3 spawnPosition = GetRandomSpawnPosition();
 
         SpawnObstacle(obstaclePrefab, spawnPosition);
+        return spawnPosition;
     }
 
-    private void SpawnRandomCoin()
+    private void SpawnRandomCoin(Vector3 obstacleSpawn)
     {
         if (coinPrefabs == null || coinPrefabs.Count == 0)
         {
@@ -170,8 +176,14 @@ public class ObstacleSpawner : MonoBehaviour
 
         // Get random spawn position from the fixed positions array
         Vector3 spawnPosition = GetRandomSpawnPosition();
+        while (spawnPosition == obstacleSpawn)
+        {
+            spawnPosition = GetRandomSpawnPosition();
+        }
 
-        SpawnCoin(coinPrefab, spawnPosition);
+        
+            StartCoroutine(SpawnCoin(coinPrefab, spawnPosition));
+            
     }
 
     private Vector3 GetRandomSpawnPosition()
@@ -223,40 +235,46 @@ public class ObstacleSpawner : MonoBehaviour
         }
     }
 
-    private void SpawnCoin(GameObject coinPrefab, Vector3 position)
-    {
-        GameObject coinInstance;
-
-        if (useObjectPooling && coinPools != null && coinPools.ContainsKey(coinPrefab))
+    private IEnumerator SpawnCoin(GameObject coinPrefab, Vector3 position)
+{
+        int numCoins = Random.Range(1, maxCoinPerLane);
+        while (numCoins > 0)
         {
-            Queue<GameObject> pool = coinPools[coinPrefab];
+            GameObject coinInstance;
 
-            if (pool.Count > 0)
+            if (useObjectPooling && coinPools != null && coinPools.ContainsKey(coinPrefab))
             {
-                coinInstance = pool.Dequeue();
+                Queue<GameObject> pool = coinPools[coinPrefab];
+
+                if (pool.Count > 0)
+                {
+                    coinInstance = pool.Dequeue();
+                }
+                else
+                {
+                    // Create new instance if pool is empty
+                    coinInstance = CreateObstacleInstance(coinPrefab);
+                }
+
+                coinInstance.transform.position = position;
+                coinInstance.SetActive(true);
+
+                // Initialize the obstacle
+                ObstacleController controller = coinInstance.GetComponent<ObstacleController>();
+                if (controller != null)
+                {
+                    controller.Initialize();
+                }
             }
             else
             {
-                // Create new instance if pool is empty
+                // Non-pooled spawning (creates new instance each time)
                 coinInstance = CreateObstacleInstance(coinPrefab);
+                coinInstance.transform.position = position;
+                coinInstance.SetActive(true);
             }
-
-            coinInstance.transform.position = position;
-            coinInstance.SetActive(true);
-
-            // Initialize the obstacle
-            ObstacleController controller = coinInstance.GetComponent<ObstacleController>();
-            if (controller != null)
-            {
-                controller.Initialize();
-            }
-        }
-        else
-        {
-            // Non-pooled spawning (creates new instance each time)
-            coinInstance = CreateObstacleInstance(coinPrefab);
-            coinInstance.transform.position = position;
-            coinInstance.SetActive(true);
+            yield return new WaitForSeconds(coinSpawnDelay);
+            numCoins--;
         }
     }
 

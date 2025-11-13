@@ -186,7 +186,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 1
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -202,7 +202,7 @@ Transform:
   m_GameObject: {fileID: 121313150}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.81, y: 2.89, z: -1}
+  m_LocalPosition: {x: 15.81, y: 2.98, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -268,7 +268,7 @@ BoxCollider2D:
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
@@ -310,6 +310,8 @@ MonoBehaviour:
   minSpawnInterval: 1
   maxSpawnInterval: 5
   spawnOnStart: 1
+  maxCoinPerLane: 3
+  coinSpawnDelay: 1
   spawnPositions:
   - {x: -3, y: 8, z: 0}
   - {x: -1, y: 8, z: 0}

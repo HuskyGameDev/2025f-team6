@@ -28,7 +28,7 @@ public class ObstacleController : MonoBehaviour
         // Check if off screen
         if (IsOffScreen())
         {
-            DeactivateObstacle();
+            Destroy(this.gameObject);
         }
     }
 
