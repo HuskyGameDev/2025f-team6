@@ -42,6 +42,12 @@ public class PlayerControl : MonoBehaviour
     //Behavior that Stores the point system
     private PointCounter points;
 
+    //Global keybinds
+    private KeyCode moveLeft1;
+    private KeyCode moveLeft2;
+    private KeyCode moveRight1;
+    private KeyCode moveRight2;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -76,14 +82,14 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         // Get the input from the player to see if they are moving between positions
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(moveLeft1) || Input.GetKeyDown(moveLeft2))
         {
             if (currentPosition > 0)
             {
                 StartMovementToPosition(currentPosition - 1);
             }
         }
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(moveRight1) || Input.GetKeyDown(moveRight2))
         {
             if (currentPosition < playerPositions.Length - 1)
             {
@@ -96,6 +102,12 @@ public class PlayerControl : MonoBehaviour
         {
             MovePlayer();
         }
+        
+        //Optimization be damned
+        moveLeft1 = KeybindManager.Instance.GetMoveLeft1();
+        moveLeft2 = KeybindManager.Instance.GetMoveLeft2();
+        moveRight1 = KeybindManager.Instance.GetMoveRight1();
+        moveRight2 = KeybindManager.Instance.GetMoveRight2();
     }
 
     private void StartMovementToPosition(int newPosition)
@@ -312,5 +324,25 @@ public class PlayerControl : MonoBehaviour
     public void RestartMotion()
     {
         StartMovementToPosition(currentPosition);
+    }
+
+    public void SetMoveLeft1(KeyCode newKey)
+    {
+        moveLeft1 = newKey;
+    }
+
+    public void SetMoveLeft2(KeyCode newKey)
+    {
+        moveLeft2 = newKey;
+    }
+
+    public void SetMoveRight1(KeyCode newKey)
+    {
+        moveRight1 = newKey;
+    }
+
+    public void SetMoveRight2(KeyCode newKey)
+    {
+        moveRight2 = newKey;
     }
 }

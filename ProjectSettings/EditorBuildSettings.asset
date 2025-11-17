@@ -32,6 +32,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SecondaryMenus/HowToPlayMenu.unity
     guid: 204ac498b9b554747b260ffb7377a3ec
+  - enabled: 1
+    path: Assets/Scenes/SecondaryMenus/RebindMenu.unity
+    guid: 0636e42241bf7314c854c8557d28504c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
