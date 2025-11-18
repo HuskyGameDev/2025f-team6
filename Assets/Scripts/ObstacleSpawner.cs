@@ -13,6 +13,13 @@ public class ObstacleSpawner : MonoBehaviour
     [SerializeField] private int maxCoinPerLane = 3;
     [SerializeField] private float coinSpawnDelay = .2f;
 
+    [Header("Progressive Difficulty Settings")]
+    [SerializeField] private bool enableProgressiveDifficulty = true;
+    [SerializeField] private float timeToMaxDifficulty = 300f; // 5 minutes to reach max difficulty
+    [SerializeField] private float minSpawnIntervalLimit = 0.5f; // Fastest spawn rate
+    [SerializeField] private float maxSpawnIntervalLimit = 2f;   // Fastest spawn rate
+    [SerializeField] private float speedMultiplierLimit = 2f;   // Max 2x original speed
+
     [Header("Spawn Positions")]
     [SerializeField]
     private Vector3[] spawnPositions = new Vector3[]
@@ -20,7 +27,7 @@ public class ObstacleSpawner : MonoBehaviour
         new Vector3(-2f, 8f, 0f),
         new Vector3(0f, 8f, 0f),
         new Vector3(2f, 8f, 0f),
-        new Vector3(4f, 8f, 0f)    
+        new Vector3(4f, 8f, 0f)
     };
 
     [Header("Obstacle Pooling (Optional)")]
@@ -31,8 +38,22 @@ public class ObstacleSpawner : MonoBehaviour
     private Dictionary<GameObject, Queue<GameObject>> obstaclePools;
     private Dictionary<GameObject, Queue<GameObject>> coinPools;
 
+    // Progressive difficulty tracking
+    private float gameTime = 0f;
+    private float difficultyProgress = 0f;
+    private float currentMinSpawnInterval;
+    private float currentMaxSpawnInterval;
+    private float currentSpeedMultiplier = 1f;
+
+    // Event system to notify obstacles of speed changes
+    public System.Action<float> OnSpeedMultiplierChanged;
+
     void Start()
     {
+        // Initialize current spawn intervals
+        currentMinSpawnInterval = minSpawnInterval;
+        currentMaxSpawnInterval = maxSpawnInterval;
+
         if (useObjectPooling)
         {
             InitializePools();
@@ -42,6 +63,58 @@ public class ObstacleSpawner : MonoBehaviour
         {
             StartSpawning();
         }
+    }
+
+    void Update()
+    {
+        if (enableProgressiveDifficulty)
+        {
+            UpdateProgressiveDifficulty();
+        }
+    }
+
+    private void UpdateProgressiveDifficulty()
+    {
+        // Update game time
+        gameTime += Time.deltaTime;
+
+        // Calculate difficulty progress (0 to 1)
+        difficultyProgress = Mathf.Clamp01(gameTime / timeToMaxDifficulty);
+
+        // Update spawn intervals
+        currentMinSpawnInterval = Mathf.Lerp(minSpawnInterval, minSpawnIntervalLimit, difficultyProgress);
+        currentMaxSpawnInterval = Mathf.Lerp(maxSpawnInterval, maxSpawnIntervalLimit, difficultyProgress);
+
+        // Update speed multiplier
+        float newSpeedMultiplier = Mathf.Lerp(1f, speedMultiplierLimit, difficultyProgress);
+
+        // Only notify if multiplier changed significantly
+        if (Mathf.Abs(newSpeedMultiplier - currentSpeedMultiplier) > 0.01f)
+        {
+            currentSpeedMultiplier = newSpeedMultiplier;
+            OnSpeedMultiplierChanged?.Invoke(currentSpeedMultiplier);
+        }
+    }
+
+    // Add this method to get current difficulty info (useful for UI)
+    public float GetDifficultyProgress()
+    {
+        return difficultyProgress;
+    }
+
+    public float GetCurrentSpeedMultiplier()
+    {
+        return currentSpeedMultiplier;
+    }
+
+    // Reset difficulty (call this when game restarts)
+    public void ResetDifficulty()
+    {
+        gameTime = 0f;
+        difficultyProgress = 0f;
+        currentMinSpawnInterval = minSpawnInterval;
+        currentMaxSpawnInterval = maxSpawnInterval;
+        currentSpeedMultiplier = 1f;
     }
 
     private void InitializePools()
@@ -123,10 +196,11 @@ public class ObstacleSpawner : MonoBehaviour
     {
         while (true)
         {
-            float spawnDelay = Random.Range(minSpawnInterval, maxSpawnInterval);
+            // Use current spawn intervals that change over time
+            float spawnDelay = Random.Range(currentMinSpawnInterval, currentMaxSpawnInterval);
             yield return new WaitForSeconds(spawnDelay);
             Vector3 obstacleSpawn = SpawnRandomObstacle();
-            if(obstacleSpawn != new Vector3(1000, 1000, 1000))
+            if (obstacleSpawn != new Vector3(1000, 1000, 1000))
             {
                 SpawnRandomCoin(obstacleSpawn);
             }
@@ -138,7 +212,7 @@ public class ObstacleSpawner : MonoBehaviour
         if (obstaclePrefabs == null || obstaclePrefabs.Count == 0)
         {
             Debug.LogWarning("No obstacle prefabs assigned to the spawner!");
-            return new Vector3(1000,1000,1000);
+            return new Vector3(1000, 1000, 1000);
         }
 
         int randomIndex = Random.Range(0, obstaclePrefabs.Count);
@@ -147,7 +221,7 @@ public class ObstacleSpawner : MonoBehaviour
         if (obstaclePrefab == null)
         {
             Debug.LogWarning("One of the obstacle prefabs is null!");
-            return new Vector3(1000,1000,1000);
+            return new Vector3(1000, 1000, 1000);
         }
 
         // Get random spawn position from the fixed positions array
@@ -181,9 +255,9 @@ public class ObstacleSpawner : MonoBehaviour
             spawnPosition = GetRandomSpawnPosition();
         }
 
-        
-            StartCoroutine(SpawnCoin(coinPrefab, spawnPosition));
-            
+
+        StartCoroutine(SpawnCoin(coinPrefab, spawnPosition));
+
     }
 
     private Vector3 GetRandomSpawnPosition()
@@ -236,7 +310,7 @@ public class ObstacleSpawner : MonoBehaviour
     }
 
     private IEnumerator SpawnCoin(GameObject coinPrefab, Vector3 position)
-{
+    {
         int numCoins = Random.Range(1, maxCoinPerLane);
         while (numCoins > 0)
         {

@@ -18,12 +18,16 @@ public class ObstacleController : MonoBehaviour
     private GameObject originalPrefab;
     private bool isActive = false;
 
+    // Speed multiplier from spawner
+    private float speedMultiplier = 1f;
+    private float baseSpeed; // Store the original speed
+
     void Update()
     {
         if (!gameObject.activeSelf) return;
 
-        // Move obstacle downward
-        transform.Translate(Vector3.down * speed * Time.deltaTime);
+        // Move obstacle downward with speed multiplier
+        transform.Translate(Vector3.down * speed * speedMultiplier * Time.deltaTime);
 
         // Check if off screen
         if (IsOffScreen())
@@ -35,6 +39,12 @@ public class ObstacleController : MonoBehaviour
     public void SetSpawner(ObstacleSpawner obstacleSpawner)
     {
         this.spawner = obstacleSpawner;
+
+        // Subscribe to speed multiplier changes
+        if (spawner != null)
+        {
+            spawner.OnSpeedMultiplierChanged += OnSpeedMultiplierChanged;
+        }
     }
 
     public void Initialize()
@@ -51,6 +61,15 @@ public class ObstacleController : MonoBehaviour
             speed = moveSpeed;
         }
 
+        // Store base speed for multiplier calculations
+        baseSpeed = speed;
+
+        // Get current speed multiplier from spawner if available
+        if (spawner != null)
+        {
+            speedMultiplier = spawner.GetCurrentSpeedMultiplier();
+        }
+
         isActive = true;
 
         // Store reference to original prefab for pooling
@@ -59,6 +78,11 @@ public class ObstacleController : MonoBehaviour
             string originalName = gameObject.name.Replace("_Clone", "").Replace("(Clone)", "");
             originalPrefab = Resources.Load<GameObject>(originalName);
         }
+    }
+
+    private void OnSpeedMultiplierChanged(float newMultiplier)
+    {
+        speedMultiplier = newMultiplier;
     }
 
     private bool IsOffScreen()
@@ -118,6 +142,15 @@ public class ObstacleController : MonoBehaviour
 
         // Deactivate this obstacle after collision
         DeactivateObstacle();
+    }
+
+    // Make sure to unsubscribe from events
+    private void OnDestroy()
+    {
+        if (spawner != null)
+        {
+            spawner.OnSpeedMultiplierChanged -= OnSpeedMultiplierChanged;
+        }
     }
 
     // Optional: Visualize destruction boundary in editor
