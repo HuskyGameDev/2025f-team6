@@ -312,6 +312,11 @@ MonoBehaviour:
   spawnOnStart: 1
   maxCoinPerLane: 3
   coinSpawnDelay: 1
+  enableProgressiveDifficulty: 1
+  timeToMaxDifficulty: 300
+  minSpawnIntervalLimit: 0.5
+  maxSpawnIntervalLimit: 2
+  speedMultiplierLimit: 2
   spawnPositions:
   - {x: -3, y: 8, z: 0}
   - {x: -1, y: 8, z: 0}
@@ -671,7 +676,7 @@ SpriteRenderer:
   m_SortingLayerID: -1280270135
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3625043607559282579, guid: 19fb86013d8c24d6cb8410c0aadf30fa, type: 3}
+  m_Sprite: {fileID: 5936234870193454346, guid: ea1239f80a5b38b48b819dbe0858fea6, type: 3}
   m_Color: {r: 0.26379493, g: 0.5647838, b: 0.9811321, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -692,7 +697,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.97, y: -3.01, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -809,8 +814,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.5}
+    pivot: {x: 0.5, y: -0.23076923}
+    oldSize: {x: 0.22, y: 0.39}
     newSize: {x: 1, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1154,7 +1159,7 @@ SpriteRenderer:
   m_SortingLayerID: 1236504645
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -345342055361071070, guid: f43ae88c72139dd4a8858be34ea3e8de, type: 3}
   m_Color: {r: 1, g: 0.9561808, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1174,8 +1179,8 @@ Transform:
   m_GameObject: {fileID: 840687760}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.02, y: 0.07, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 14.02, y: 5, z: 0}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1236,8 +1241,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: -0.5}
+    oldSize: {x: 0.16, y: 0.16}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
