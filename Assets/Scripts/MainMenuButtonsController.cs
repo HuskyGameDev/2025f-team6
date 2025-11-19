@@ -69,8 +69,9 @@ public class MainMenuButtonsController : MonoBehaviour
     public void PlayGame()
     {
         PlayClickSound();
-        SceneManager.LoadScene("Main");
 
+        // TODO: difficulty functionality
+        SceneManager.LoadScene("Easy");
     }
 
     public void PlayAgain()

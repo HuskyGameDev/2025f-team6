@@ -1220,9 +1220,10 @@ GameObject:
   - component: {fileID: 857799527}
   - component: {fileID: 857799526}
   - component: {fileID: 857799528}
+  - component: {fileID: 857799529}
   m_Layer: 0
   m_Name: UIAudio
-  m_TagString: Untagged
+  m_TagString: UIAudioSource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1351,10 +1352,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7aae9929741e224e864366f2109f8ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixer: {fileID: 24100000, guid: a2fac44dc97ec9e46b4adfecc7099cf8, type: 2}
-  masterSlider: {fileID: 0}
-  musicSlider: {fileID: 0}
-  sfxSlider: {fileID: 0}
+--- !u!114 &857799529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857799525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff18a6016041fd948ba4352db412e413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1060836080
 GameObject:
   m_ObjectHideFlags: 0

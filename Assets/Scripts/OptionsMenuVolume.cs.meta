@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b7aae9929741e224e864366f2109f8ba
+guid: d1552cc56e79f944181982bb79e9f031
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - mixer: {fileID: 24100000, guid: a2fac44dc97ec9e46b4adfecc7099cf8, type: 2}
+  - mixer: {instanceID: 0}
   - masterSlider: {instanceID: 0}
   - musicSlider: {instanceID: 0}
   - sfxSlider: {instanceID: 0}

@@ -7,6 +7,7 @@ TagManager:
   - Obstacle
   - Coin
   - Hearts
+  - UIAudioSource
   layers:
   - Default
   - TransparentFX

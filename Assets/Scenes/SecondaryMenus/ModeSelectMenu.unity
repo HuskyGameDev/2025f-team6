@@ -676,7 +676,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'About MSP:'
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 973a063e0e8f2af46b4133c6ae7a420b, type: 2}
   m_sharedMaterial: {fileID: -3639410998252427554, guid: 973a063e0e8f2af46b4133c6ae7a420b, type: 2}
@@ -1118,8 +1118,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This video game has been brought to you through an innovative partnership
-    between the Michigan State Police and Michigan Tech University.
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 973a063e0e8f2af46b4133c6ae7a420b, type: 2}
   m_sharedMaterial: {fileID: -3639410998252427554, guid: 973a063e0e8f2af46b4133c6ae7a420b, type: 2}
@@ -1255,7 +1254,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Over
+  m_text: Vehicle Select
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 621544faaa3860243afcb5c77870f3ea, type: 2}
   m_sharedMaterial: {fileID: 2465878136652212801, guid: 621544faaa3860243afcb5c77870f3ea, type: 2}
@@ -1600,7 +1599,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Credits:'
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 973a063e0e8f2af46b4133c6ae7a420b, type: 2}
   m_sharedMaterial: {fileID: -3639410998252427554, guid: 973a063e0e8f2af46b4133c6ae7a420b, type: 2}
