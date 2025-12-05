@@ -4,10 +4,12 @@ using System.Drawing;
 
 public class PlayerControl : MonoBehaviour
 {
+    public static int coinsCollected = 0;
+
     [Header("Movement Settings")]
     [SerializeField] private float speed = 2f;
     [SerializeField] private float speedCurve = 0.5f; // Needs to be >0 and <2
-    [SerializeField] private float yPos = -3.5f;
+    [SerializeField] public float yPos = -3.5f;
     [SerializeField] private GameObject gameRunner;
 
     [Header("Player Positions")]
@@ -43,10 +45,10 @@ public class PlayerControl : MonoBehaviour
     private PointCounter points;
 
     //Global keybinds
-    private KeyCode moveLeft1;
-    private KeyCode moveLeft2;
-    private KeyCode moveRight1;
-    private KeyCode moveRight2;
+    private KeyCode moveLeft1 = KeyCode.A;
+    private KeyCode moveLeft2 = KeyCode.LeftArrow;
+    private KeyCode moveRight1 = KeyCode.D;
+    private KeyCode moveRight2 = KeyCode.RightArrow;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -76,6 +78,11 @@ public class PlayerControl : MonoBehaviour
         currentPosition = startingPosition;
         interpolator = 0.0f;
         isMoving = false;
+
+        moveLeft1 = KeybindManager.GetMoveLeft1();
+        moveLeft2 = KeybindManager.GetMoveLeft2();
+        moveRight1 = KeybindManager.GetMoveRight1();
+        moveRight2 = KeybindManager.GetMoveRight2();
     }
 
     // Update is called once per frame
@@ -103,11 +110,7 @@ public class PlayerControl : MonoBehaviour
             MovePlayer();
         }
         
-        //Optimization be damned
-        moveLeft1 = KeybindManager.Instance.GetMoveLeft1();
-        moveLeft2 = KeybindManager.Instance.GetMoveLeft2();
-        moveRight1 = KeybindManager.Instance.GetMoveRight1();
-        moveRight2 = KeybindManager.Instance.GetMoveRight2();
+
     }
 
     private void StartMovementToPosition(int newPosition)
@@ -177,6 +180,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     // Called when player collides with an obstacle
+    // why is this in playercontrol and not playercollision. Spent a long time looking for it...
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Obstacle"))
@@ -186,6 +190,7 @@ public class PlayerControl : MonoBehaviour
         if (other.CompareTag("Coin"))
         {
             points.AddPoints(50);
+            coinsCollected++;
             Destroy(other.gameObject);
         }
     }

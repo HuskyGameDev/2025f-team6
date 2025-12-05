@@ -1508,7 +1508,7 @@ GameObject:
   - component: {fileID: 681690319}
   m_Layer: 5
   m_Name: Medium
-  m_TagString: Untagged
+  m_TagString: Difficulty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1576,7 +1576,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 681690320}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1178063784}
+        m_TargetAssemblyTypeName: DifficultyButtonManager, Assembly-CSharp
+        m_MethodName: SetMedium
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &681690320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1597,7 +1609,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7410714790319184193, guid: 4d6bb2956169d9641ac54e85d788306a, type: 3}
+  m_Sprite: {fileID: 6178363660143142776, guid: f271d2b2f6484db47ba9226314870079, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2534,6 +2546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiAudio: {fileID: 1681206052}
   clickSound: {fileID: 8300000, guid: 4cd9e6f7e4c970d448f54e0e45b9664d, type: 3}
+  debounceTime: 0.5
 --- !u!1 &1037316890
 GameObject:
   m_ObjectHideFlags: 0
@@ -2794,6 +2807,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1178063783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1178063785}
+  - component: {fileID: 1178063784}
+  m_Layer: 0
+  m_Name: DiffButtonsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1178063784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178063783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8d4986f3f29e414b877eb0d133fcfdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadedAlpha: 0.35
+  selectedAlpha: 1
+--- !u!4 &1178063785
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178063783}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1098.1332, y: 528.99896, z: -3.8625574}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1198573252
 GameObject:
   m_ObjectHideFlags: 0
@@ -2899,6 +2958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiAudio: {fileID: 1681206052}
   clickSound: {fileID: 8300000, guid: 4cd9e6f7e4c970d448f54e0e45b9664d, type: 3}
+  debounceTime: 0.5
 --- !u!1 &1249720479
 GameObject:
   m_ObjectHideFlags: 0
@@ -3224,8 +3284,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1681206053}
   - component: {fileID: 1681206052}
-  - component: {fileID: 1681206051}
-  - component: {fileID: 1681206050}
   m_Layer: 0
   m_Name: UIAudio
   m_TagString: UIAudioSource
@@ -3233,30 +3291,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1681206050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1681206049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff18a6016041fd948ba4352db412e413, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1681206051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1681206049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7aae9929741e224e864366f2109f8ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &1681206052
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3575,7 +3609,7 @@ GameObject:
   - component: {fileID: 1897812234}
   m_Layer: 5
   m_Name: Hard
-  m_TagString: Untagged
+  m_TagString: Difficulty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3643,7 +3677,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1897812235}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1178063784}
+        m_TargetAssemblyTypeName: DifficultyButtonManager, Assembly-CSharp
+        m_MethodName: SetHard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1897812235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4118,7 +4164,7 @@ GameObject:
   - component: {fileID: 1987169450}
   m_Layer: 5
   m_Name: Easy
-  m_TagString: Untagged
+  m_TagString: Difficulty
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4186,7 +4232,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1987169451}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1178063784}
+        m_TargetAssemblyTypeName: DifficultyButtonManager, Assembly-CSharp
+        m_MethodName: SetEasy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1987169451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4507,3 +4565,4 @@ SceneRoots:
   - {fileID: 56425086}
   - {fileID: 1177329532}
   - {fileID: 1681206053}
+  - {fileID: 1178063785}

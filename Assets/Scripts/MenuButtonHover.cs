@@ -16,7 +16,7 @@ public class MenuButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExit
         //{
         //    icon.enabled = false;
         //}
-        icon.enabled = false;
+        if (icon) icon.enabled = false;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

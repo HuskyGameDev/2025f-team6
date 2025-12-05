@@ -1822,8 +1822,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1440414184}
   - component: {fileID: 1440414183}
-  - component: {fileID: 1440414182}
-  - component: {fileID: 1440414181}
   m_Layer: 0
   m_Name: UIAudio
   m_TagString: UIAudioSource
@@ -1831,30 +1829,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1440414181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1440414180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff18a6016041fd948ba4352db412e413, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1440414182
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1440414180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7aae9929741e224e864366f2109f8ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &1440414183
 AudioSource:
   m_ObjectHideFlags: 0

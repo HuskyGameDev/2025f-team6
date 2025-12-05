@@ -16,7 +16,7 @@ public class ObstacleController : MonoBehaviour
     [SerializeField] private float speed;
     private ObstacleSpawner spawner;
     private GameObject originalPrefab;
-    private bool isActive = false;
+    public bool isActive = false;
 
     // Speed multiplier from spawner
     private float speedMultiplier = 1f;

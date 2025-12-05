@@ -4,7 +4,7 @@ public class BackgroundScroller : MonoBehaviour
 {
     [SerializeField] private bool isScrolling = true;
     [SerializeField] public float scrollSpeed = 1;
-    [SerializeField] private Camera camera;
+    [SerializeField] private new Camera camera;
     private Vector3 startPos;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -8,6 +8,7 @@ TagManager:
   - Coin
   - Hearts
   - UIAudioSource
+  - Difficulty
   layers:
   - Default
   - TransparentFX
@@ -53,6 +54,9 @@ TagManager:
     locked: 0
   - name: Obstacle
     uniqueID: 1236504645
+    locked: 0
+  - name: UI
+    uniqueID: 942441317
     locked: 0
   m_RenderingLayers:
   - Default

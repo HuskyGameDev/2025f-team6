@@ -54,6 +54,8 @@ public class PlayerCollision : MonoBehaviour
             else if (heart.name == "HeartC")
                 heartC = heart;
         }
+
+        PlayerControl.coinsCollected = 0;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

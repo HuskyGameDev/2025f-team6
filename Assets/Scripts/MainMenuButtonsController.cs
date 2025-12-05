@@ -65,13 +65,26 @@ public class MainMenuButtonsController : MonoBehaviour
         Debug.LogWarning("no text for MainMenuButtonController to change color of in button " + button.name);
     }
 
-
+    // TEMPORARY SOLUTION; Main game should not be three separate scenes.
+    //    Will just pass in a difficulty and adjust linear or exponential speed increase and/or obstacle spawn rate in the future
     public void PlayGame()
     {
-        PlayClickSound();
-
-        // TODO: difficulty functionality
-        SceneManager.LoadScene("Easy");
+        switch (DifficultyButtonManager.difficultyValue)
+        {
+            case 0:
+            case 1:
+                Debug.Log("Loading easy");
+                SceneManager.LoadScene("Easy");
+                break;
+            case 2:
+                Debug.Log("Loading medium");
+                SceneManager.LoadScene("Medium");
+                break;
+            case 3:
+                Debug.Log("Loading hard");
+                SceneManager.LoadScene("Hard");
+                break;
+        }
     }
 
     public void PlayAgain()
