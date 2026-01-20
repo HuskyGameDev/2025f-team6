@@ -8,9 +8,17 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AudioSource soundFXObject; 
 
-    private void Awake() 
+     private void Awake()
     {
-        instance ??= this;
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
     }
 
 
