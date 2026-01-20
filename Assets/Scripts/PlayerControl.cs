@@ -29,6 +29,9 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private ParticleSystem hitParticles;
     [SerializeField] private AudioClip hitSound;
 
+    [Header("Sound Effects")]
+    [SerializeField] private AudioClip[] horn;
+
     private int currentPosition;
     private float interpolator;
     private Vector3 oldPosition;
@@ -49,6 +52,7 @@ public class PlayerControl : MonoBehaviour
     private KeyCode moveLeft2 = KeyCode.LeftArrow;
     private KeyCode moveRight1 = KeyCode.D;
     private KeyCode moveRight2 = KeyCode.RightArrow;
+    private KeyCode hitHorn = KeyCode.Space;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -83,6 +87,7 @@ public class PlayerControl : MonoBehaviour
         moveLeft2 = KeybindManager.GetMoveLeft2();
         moveRight1 = KeybindManager.GetMoveRight1();
         moveRight2 = KeybindManager.GetMoveRight2();
+        hitHorn = KeybindManager.GetHitHorn();
     }
 
     // Update is called once per frame
@@ -104,13 +109,25 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
+        // Get the input from player to see if they are pressing the horn.
+        if (Input.GetKeyDown(hitHorn))
+        {
+            AudioManager.instance.PlayStartLoopStop(
+                horn[0],
+                horn[1],
+                horn[2],
+                transform,
+                0.8f,
+                () => Input.GetKey(hitHorn)
+            );
+        }
+
         // Only update movement if we're actively moving between positions
         if (isMoving)
         {
             MovePlayer();
         }
         
-
     }
 
     private void StartMovementToPosition(int newPosition)
@@ -179,36 +196,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    // Called when player collides with an obstacle
-    // why is this in playercontrol and not playercollision. Spent a long time looking for it...
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Obstacle"))
-        {
-            OnHit();
-        }
-        if (other.CompareTag("Coin"))
-        {
-            points.AddPoints(50);
-            coinsCollected++;
-            Destroy(other.gameObject);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            OnHit();
-        }
-        if (collision.gameObject.CompareTag("Coin"))
-        {
-            points.AddPoints(50);
-            Destroy(collision.gameObject);
-        }
-    }
-
-    public void OnHit()
+    private void OnHit()
     {
         // Start blink effect
         if (!isBlinking)
@@ -230,6 +218,12 @@ public class PlayerControl : MonoBehaviour
 
         // Add your game logic here (reduce health, etc.)
         Debug.Log("Player hit!");
+    }
+
+    public void CollectCoin()
+    {
+        points.AddPoints(50);
+        coinsCollected += 1;
     }
 
     private IEnumerator BlinkEffect()

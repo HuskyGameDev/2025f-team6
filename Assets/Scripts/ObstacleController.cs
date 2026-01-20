@@ -12,6 +12,10 @@ public class ObstacleController : MonoBehaviour
     [SerializeField] private float destroyYPosition = -10f;
     [SerializeField] private bool destroyWhenInvisible = true;
 
+
+    [Header("Sound Effects")]
+    [SerializeField] private AudioClip hitSoundClip;
+
     private Camera mainCamera;
     [SerializeField] private float speed;
     private ObstacleSpawner spawner;
@@ -122,20 +126,24 @@ public class ObstacleController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            HandlePlayerCollision(collision.gameObject);
-        }
-    }
+    // private void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     if (collision.gameObject.CompareTag("Player"))
+    //     {
+    //         HandlePlayerCollision(collision.gameObject);
+    //     }
+    // }
 
     private void HandlePlayerCollision(GameObject player)
-    {
+    {       
         // Trigger collision effects on player
         PlayerCollision playerCollision = player.GetComponent<PlayerCollision>();
+        
         if (playerCollision != null)
         {
+            // Play SFX
+            AudioManager.instance.PlaySoundFXClip(hitSoundClip, transform, 1f);
+            
             // You might want to pass this obstacle to the player collision handler
             playerCollision.HandleCollision(gameObject);
         }

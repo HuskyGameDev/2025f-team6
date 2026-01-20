@@ -58,60 +58,53 @@ public class PlayerCollision : MonoBehaviour
         PlayerControl.coinsCollected = 0;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Obstacle"))
-        {
-            HandleCollision(other.gameObject);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-            HandleCollision(collision.gameObject);
-        }
-    }
 
     public void HandleCollision(GameObject obstacle)
-    {
-        //Reduce Lives by 1
-        lives--;
-        if(lives == 0)
-        {
-            UIController.setFinalScore(UIController.getFinalScore());
-            SceneManager.LoadScene(endScene);
-            //Pause the game (put all speeds to 0)
-            //Pop up end screen
+    {   
+        if (obstacle.CompareTag("Obstacle")) {
+            //Reduce Lives by 1
+            lives--;
+            if(lives == 0)
+            {
+                UIController.setFinalScore(UIController.getFinalScore());
+                SceneManager.LoadScene(endScene);
+                //Pause the game (put all speeds to 0)
+                //Pop up end screen
+            }
+
+            // Store current position for screen shake (where player actually is when hit)
+            shakeStartPosition = transform.position;
+
+            // Play particle effect
+            if (collisionParticle != null)
+            {
+                Instantiate(collisionParticle, transform.position, Quaternion.identity);
+            }
+
+            // Play sound
+            if (collisionSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(collisionSound);
+            }
+
+            // Screen shake
+            StartCoroutine(ScreenShake());
+
+            // Player flash
+            StartCoroutine(PlayerFlash());
+
+            // Note: The obstacle will handle its own deactivation through its ObstacleController
+            // We don't destroy it here anymore
+
+            // Add your game logic here (reduce health, game over, etc.)
+            OnPlayerHit();
+            pc.TriggerHitEffect();
         }
-
-        // Store current position for screen shake (where player actually is when hit)
-        shakeStartPosition = transform.position;
-
-        // Play particle effect
-        if (collisionParticle != null)
-        {
-            Instantiate(collisionParticle, transform.position, Quaternion.identity);
+        else if (obstacle.CompareTag("Coin")) {
+            pc.CollectCoin();
+            Destroy(obstacle);
         }
-
-        // Play sound
-        if (collisionSound != null && audioSource != null)
-        {
-            audioSource.PlayOneShot(collisionSound);
-        }
-
-        // Screen shake
-        StartCoroutine(ScreenShake());
-
-        // Player flash
-        StartCoroutine(PlayerFlash());
-
-        // Note: The obstacle will handle its own deactivation through its ObstacleController
-        // We don't destroy it here anymore
-
-        // Add your game logic here (reduce health, game over, etc.)
-        OnPlayerHit();
+        
     }
 
     private IEnumerator ScreenShake()
