@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a09d6e9584904884b80486ec4c35eac0
+guid: 3edad4406244a034f83cfb560e10bc24
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,9 +123,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Fallen_Maple_Tiny
+  - name: Fallen_Maple_Small
     originalName: 
-    pivot: {x: 0.43137255, y: -0.42424244}
+    pivot: {x: 0.42857143, y: -1.7142859}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -133,9 +133,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 51
-      height: 33
-    spriteID: ea49e92d19dc8d14ea332b0718896749
+      width: 21
+      height: 14
+    spriteID: e6aeb810a08d9b449b47c9bc9cc46db0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -148,25 +148,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 3387698539
+      value0: 321595078
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Fallen_Maple_Tiny
+    name: Fallen_Maple_Small
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Fallen_Maple_Tiny
+    - name: Fallen_Maple_Small
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 10
-        y: 14
-        width: 51
-        height: 33
-      spriteId: ea49e92d19dc8d14ea332b0718896749
+        x: 23
+        y: 24
+        width: 21
+        height: 14
+      spriteId: e6aeb810a08d9b449b47c9bc9cc46db0
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -186,4 +186,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 64, y: 64}
-  previousTextureSize: {x: 64, y: 64}
+  previousTextureSize: {x: 32, y: 32}
