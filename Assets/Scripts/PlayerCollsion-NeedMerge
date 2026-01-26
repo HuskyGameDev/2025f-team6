@@ -1,7 +1,7 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -17,8 +17,8 @@ public class PlayerCollision : MonoBehaviour
     [SerializeField] private SpriteRenderer playerSprite;
     [SerializeField] private Color damageColor = Color.red;
     [SerializeField] private float flashDuration = 0.3f;
-    [SerializeField] private float immunityDuration = 2.0f;
-    [SerializeField] private BoxCollider2D pHitbox;
+    [SerializeField] private float immunityTime = 1.0f;
+    [SerializeField] private Collider2D playerHitbox;
     [SerializeField] private PlayerControl pc;
     [SerializeField] private int lives = 3;
     [SerializeField] private string endScene;
@@ -31,8 +31,6 @@ public class PlayerCollision : MonoBehaviour
     private AudioSource audioSource;
     private Color originalColor;
     private Vector3 shakeStartPosition;
-
-    private Boolean immunity = false;
 
     void Start()
     {
@@ -59,62 +57,66 @@ public class PlayerCollision : MonoBehaviour
             else if (heart.name == "HeartC")
                 heartC = heart;
         }
-
-        PlayerControl.coinsCollected = 0;
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Obstacle"))
+        {
+            HandleCollision(other.gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            HandleCollision(collision.gameObject);
+        }
+    }
 
     public void HandleCollision(GameObject obstacle)
-    {   
-        if (obstacle.CompareTag("Obstacle") && !immunity) {
-            //Reduce Lives by 1
-            lives--;
-            BoxCollider2D obHitbox = obstacle.GetComponent<BoxCollider2D>();
-            obHitbox.enabled = false;
-            if(lives == 0)
-            {
-                UIController.setFinalScore(UIController.getFinalScore());
-                SceneManager.LoadScene(endScene);
-                //Pause the game (put all speeds to 0)
-                //Pop up end screen
-            }
+    {
 
-            // Store current position for screen shake (where player actually is when hit)
-            //shakeStartPosition = transform.position;
-
-            // Play particle effect
-            if (collisionParticle != null)
-            {
-                Instantiate(collisionParticle, transform.position, Quaternion.identity);
-            }
-
-            // Play sound
-            if (collisionSound != null && audioSource != null)
-            {
-                audioSource.PlayOneShot(collisionSound);
-            }
-
-            // Screen shake
-            //StartCoroutine(ScreenShake());
-
-            // Player flash
-            StartCoroutine(PlayerFlash());
-
-            // Invicibility Frames
-            StartCoroutine(iFrames());
-
-            // Note: The obstacle will handle its own deactivation through its ObstacleController
-            // We don't destroy it here anymore
-
-            // Add your game logic here (reduce health, game over, etc.)
-            OnPlayerHit();
-            pc.TriggerHitEffect();
+        //Reduce Lives by 1
+        lives--;
+        if(lives == 0)
+        {
+            UIController.setFinalScore(UIController.getFinalScore());
+            SceneManager.LoadScene(endScene);
+            //Pause the game (put all speeds to 0)
+            //Pop up end screen
         }
-        else if (obstacle.CompareTag("Coin")) {
-            pc.CollectCoin();
-            Destroy(obstacle);
+
+        // Store current position for screen shake (where player actually is when hit)
+        shakeStartPosition = transform.position;
+
+        // Play particle effect
+        if (collisionParticle != null)
+        {
+            Instantiate(collisionParticle, transform.position, Quaternion.identity);
         }
-        
+
+        // Play sound
+        if (collisionSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(collisionSound);
+        }
+
+        // Screen shake
+        StartCoroutine(ScreenShake());
+
+        // Player flash
+        StartCoroutine(PlayerFlash());
+
+        // Player flash
+        StartCoroutine(IFrames());
+
+        // Note: The obstacle will handle its own deactivation through its ObstacleController
+        // We don't destroy it here anymore
+
+        // Add your game logic here (reduce health, game over, etc.)
+        OnPlayerHit();
     }
 
     private IEnumerator ScreenShake()
@@ -123,8 +125,8 @@ public class PlayerCollision : MonoBehaviour
 
         while (elapsed < shakeDuration)
         {
-            float x = shakeStartPosition.x + UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
-            float y = shakeStartPosition.y + UnityEngine.Random.Range(-1f, 1f) * shakeMagnitude;
+            float x = shakeStartPosition.x + Random.Range(-1f, 1f) * shakeMagnitude;
+            float y = shakeStartPosition.y + Random.Range(-1f, 1f) * shakeMagnitude;
 
             transform.position = new Vector3(x, y, shakeStartPosition.z);
 
@@ -145,15 +147,11 @@ public class PlayerCollision : MonoBehaviour
             playerSprite.color = originalColor;
         }
     }
-
-    private IEnumerator iFrames()
+    private IEnumerator IFrames()
     {
-        if (pHitbox != null)
-        {
-            immunity = true;
-            yield return new WaitForSeconds(immunityDuration);
-            immunity = false;
-        }
+        playerHitbox.enabled = false;
+        yield return new WaitForSeconds(immunityTime);
+        playerHitbox.enabled = true;
     }
 
     protected virtual void OnPlayerHit()

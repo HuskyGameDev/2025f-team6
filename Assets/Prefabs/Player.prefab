@@ -140,6 +140,8 @@ MonoBehaviour:
   playerSprite: {fileID: 0}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.3
+  immunityDuration: 2
+  pHitbox: {fileID: 4720095877785755651}
   pc: {fileID: 0}
   lives: 3
   endScene: GameOverMenu
