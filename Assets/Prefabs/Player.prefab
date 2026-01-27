@@ -121,6 +121,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3fba064952c767340982c7b2fa4f7425, type: 3}
   - {fileID: 8300000, guid: 645e76d0d2f2b7649b67d67ca18f5d21, type: 3}
   - {fileID: 8300000, guid: cc22f696a130108479d95742b910d06c, type: 3}
+  usePowerupClip: {fileID: 8300000, guid: 4cd9e6f7e4c970d448f54e0e45b9664d, type: 3}
+  powerupSprite: {fileID: 0}
+  currentPowerup: 
 --- !u!114 &1133778747936902698
 MonoBehaviour:
   m_ObjectHideFlags: 0

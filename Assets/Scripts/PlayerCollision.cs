@@ -20,6 +20,7 @@ public class PlayerCollision : MonoBehaviour
     [SerializeField] private float immunityDuration = 2.0f;
     [SerializeField] private BoxCollider2D pHitbox;
     [SerializeField] private PlayerControl pc;
+    [SerializeField] private int maxLives = 3;
     [SerializeField] private int lives = 3;
     [SerializeField] private string endScene;
 
@@ -112,7 +113,10 @@ public class PlayerCollision : MonoBehaviour
         }
         else if (obstacle.CompareTag("Coin")) {
             pc.CollectCoin();
-            Destroy(obstacle);
+        }
+        else if (obstacle.CompareTag("Powerup"))
+        {
+            pc.GainPowerup(obstacle);
         }
         
     }
@@ -160,7 +164,14 @@ public class PlayerCollision : MonoBehaviour
     {
         Debug.Log("Player hit by obstacle! " + lives + " lives remain.");
 
-        hideHearts(lives);
+        updateHearts(lives, true);
+    }
+
+    public void incrementLives()
+    {
+        if (lives < maxLives) {
+            lives++;
+        }
     }
 
     public int getLivesRemaining()
@@ -168,7 +179,7 @@ public class PlayerCollision : MonoBehaviour
         return lives;
     }
 
-    public void hideHearts(int lives)
+    public void updateHearts(int lives, bool lose)
     {
         if (heartA == null || heartB == null || heartC == null)
         {
@@ -176,23 +187,40 @@ public class PlayerCollision : MonoBehaviour
             return;
         }
 
-        // Hide based on remaining lives (called from PlayerCollision)
-        if (lives == 2) // first hit
+        GameObject[] hearts = {null, heartA, heartB, heartC};
+        
+        if (lose)
         {
-            heartC.SetActive(false);
+            GameObject heart = hearts[lives+1];
+            heart.SetActive(false);
         }
-        if (lives == 1) // second hit
+        else
         {
-            heartB.SetActive(false);
-        }
-        if (lives <= 0) // perish
-        {
-            heartA.SetActive(false);
+            GameObject heart = hearts[lives];
+            heart.SetActive(true);
         }
 
-            // Ensure the others are also hidden if lives <= 0
-            //if (heartB != null) heartB.SetActive(false);
-            //if (heartC != null) heartC.SetActive(false);
+        // if (lives == 3)
+        // {
+        //     heart
+        // }
+        // // Hide based on remaining lives (called from PlayerCollision)
+        // if (lives == 2) // first hit
+        // {
+        //     heartC.SetActive(!heartC.activeSelf);
+        // }
+        // if (lives == 1) // second hit
+        // {
+        //     heartB.SetActive(!heartB.activeSelf);
+        // }
+        // if (lives <= 0) // perish
+        // {
+        //     heartA.SetActive(!heartA.activeSelf);
+        // }
+
+        //     // Ensure the others are also hidden if lives <= 0
+        //     //if (heartB != null) heartB.SetActive(false);
+        //     //if (heartC != null) heartC.SetActive(false);
     }
 
     public void showAllHearts()

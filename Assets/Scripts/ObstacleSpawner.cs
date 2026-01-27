@@ -7,11 +7,13 @@ public class ObstacleSpawner : MonoBehaviour
     [Header("Spawn Settings")]
     [SerializeField] private List<GameObject> obstaclePrefabs;
     [SerializeField] private List<GameObject> coinPrefabs;
+    [SerializeField] private List<GameObject> powerupPrefabs;
     [SerializeField] private float minSpawnInterval = 1f;
     [SerializeField] private float maxSpawnInterval = 5f;
     [SerializeField] private bool spawnOnStart = true;
     [SerializeField] private int maxCoinPerLane = 3;
     [SerializeField] private float coinSpawnDelay = .2f;
+    [SerializeField] private float powerupSpawnDelay = 15;
 
     [Header("Progressive Difficulty Settings")]
     [SerializeField] private bool enableProgressiveDifficulty = true;
@@ -37,6 +39,7 @@ public class ObstacleSpawner : MonoBehaviour
     private Coroutine spawnCoroutine;
     private Dictionary<GameObject, Queue<GameObject>> obstaclePools;
     private Dictionary<GameObject, Queue<GameObject>> coinPools;
+    private Dictionary<GameObject, Queue<GameObject>> powerupPools;
 
     // Progressive difficulty tracking
     private float gameTime = 0f;
@@ -44,6 +47,9 @@ public class ObstacleSpawner : MonoBehaviour
     private float currentMinSpawnInterval;
     private float currentMaxSpawnInterval;
     private float currentSpeedMultiplier = 1f;
+
+    // Global Variables
+    private bool powerupCanSpawn = true;
 
     // Event system to notify obstacles of speed changes
     public System.Action<float> OnSpeedMultiplierChanged;
@@ -156,6 +162,25 @@ public class ObstacleSpawner : MonoBehaviour
                 coinPools[prefab] = objectQueue;
             }
         }
+
+        powerupPools = new Dictionary<GameObject, Queue<GameObject>>();
+
+        foreach (GameObject prefab in powerupPrefabs)
+        {
+            if (prefab != null)
+            {
+                Queue<GameObject> objectQueue = new Queue<GameObject>();
+
+                for (int i = 0; i < poolSize; i++)
+                {
+                    GameObject powerup = CreateObstacleInstance(prefab);
+                    powerup.SetActive(false);
+                    objectQueue.Enqueue(powerup);
+                }
+
+                powerupPools[prefab] = objectQueue;
+            }
+        }
     }
 
     private GameObject CreateObstacleInstance(GameObject prefab)
@@ -203,6 +228,7 @@ public class ObstacleSpawner : MonoBehaviour
             if (obstacleSpawn != new Vector3(1000, 1000, 1000))
             {
                 SpawnRandomCoin(obstacleSpawn);
+                SpawnRandomPowerup(obstacleSpawn);
             }
         }
     }
@@ -255,8 +281,35 @@ public class ObstacleSpawner : MonoBehaviour
             spawnPosition = GetRandomSpawnPosition();
         }
 
-
         StartCoroutine(SpawnCoin(coinPrefab, spawnPosition));
+
+    }
+
+    private void SpawnRandomPowerup(Vector3 obstacleSpawn)
+    {
+        if (powerupPrefabs == null || powerupPrefabs.Count == 0)
+        {
+            Debug.LogWarning("No obstacle prefabs assigned to the spawner!");
+            return;
+        }
+
+        int randomIndex = Random.Range(0, powerupPrefabs.Count);
+        GameObject powerupPrefab = powerupPrefabs[randomIndex];
+
+        if (powerupPrefab == null)
+        {
+            Debug.LogWarning("One of the obstacle prefabs is null!");
+            return;
+        }
+
+        // Get random spawn position from the fixed positions array
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+        while (spawnPosition == obstacleSpawn)
+        {
+            spawnPosition = GetRandomSpawnPosition();
+        }
+
+        StartCoroutine(SpawnPowerup(powerupPrefab, spawnPosition));
 
     }
 
@@ -349,6 +402,50 @@ public class ObstacleSpawner : MonoBehaviour
             }
             yield return new WaitForSeconds(coinSpawnDelay);
             numCoins--;
+        }
+    }
+
+     private IEnumerator SpawnPowerup(GameObject powerupPrefab, Vector3 position)
+    {
+        if (powerupCanSpawn) {
+
+            powerupCanSpawn = false;
+
+            GameObject powerupInstance;
+
+            if (useObjectPooling && powerupPools != null && powerupPools.ContainsKey(powerupPrefab))
+            {
+                Queue<GameObject> pool = powerupPools[powerupPrefab];
+
+                if (pool.Count > 0)
+                {
+                    powerupInstance = pool.Dequeue();
+                }
+                else
+                {
+                    // Create new instance if pool is empty
+                    powerupInstance = CreateObstacleInstance(powerupPrefab);
+                }
+
+                powerupInstance.transform.position = position;
+                powerupInstance.SetActive(true);
+
+                // Initialize the obstacle
+                ObstacleController controller = powerupInstance.GetComponent<ObstacleController>();
+                if (controller != null)
+                {
+                    controller.Initialize();
+                }
+            }
+            else
+            {
+                // Non-pooled spawning (creates new instance each time)
+                powerupInstance = CreateObstacleInstance(powerupPrefab);
+                powerupInstance.transform.position = position;
+                powerupInstance.SetActive(true);
+            }
+            yield return new WaitForSeconds(powerupSpawnDelay);
+            powerupCanSpawn = true;
         }
     }
 

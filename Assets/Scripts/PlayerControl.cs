@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Drawing;
 
@@ -31,6 +32,11 @@ public class PlayerControl : MonoBehaviour
 
     [Header("Sound Effects")]
     [SerializeField] private AudioClip[] horn;
+    [SerializeField] private AudioClip usePowerupClip;
+
+    [Header("Powerups")]
+    [SerializeField] private Image powerupSprite;
+    [SerializeField] private GameObject currentPowerup = null;
 
     private int currentPosition;
     private float interpolator;
@@ -53,6 +59,7 @@ public class PlayerControl : MonoBehaviour
     private KeyCode moveRight1 = KeyCode.D;
     private KeyCode moveRight2 = KeyCode.RightArrow;
     private KeyCode hitHorn = KeyCode.Space;
+    private KeyCode powerupButton = KeyCode.E;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -120,6 +127,15 @@ public class PlayerControl : MonoBehaviour
                 0.8f,
                 () => Input.GetKey(hitHorn)
             );
+        }
+
+        if (Input.GetKeyDown(powerupButton))
+        {
+            if (currentPowerup != null)
+            {
+                UsePowerup(currentPowerup);
+            }
+
         }
 
         // Only update movement if we're actively moving between positions
@@ -194,6 +210,25 @@ public class PlayerControl : MonoBehaviour
             isMoving = false;
             interpolator = 0f;
         }
+    }
+
+    private void UsePowerup(GameObject powerup)
+    {   
+        if (powerup.name.Contains("Heart Powerup") || powerup.name.Contains("Donut Powerup"))
+        {
+            PlayerCollision playerCollision = gameObject.GetComponent<PlayerCollision>();
+            playerCollision.incrementLives();
+            playerCollision.updateHearts(playerCollision.getLivesRemaining(), false);
+            AudioManager.instance.PlaySoundFXClip(usePowerupClip, transform, 1f);
+            currentPowerup = null;
+            powerupSprite.gameObject.GetComponent<Image>().sprite = null;
+        }        
+    }
+
+    public void GainPowerup(GameObject powerup)
+    {
+        currentPowerup = powerup;
+        powerupSprite.gameObject.GetComponent<Image>().sprite = powerup.gameObject.GetComponent<SpriteRenderer>().sprite;
     }
 
     private void OnHit()

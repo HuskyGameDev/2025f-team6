@@ -126,14 +126,6 @@ public class ObstacleController : MonoBehaviour
         }
     }
 
-    // private void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     if (collision.gameObject.CompareTag("Player"))
-    //     {
-    //         HandlePlayerCollision(collision.gameObject);
-    //     }
-    // }
-
     private void HandlePlayerCollision(GameObject player)
     {       
         // Trigger collision effects on player

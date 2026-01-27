@@ -9,6 +9,7 @@ TagManager:
   - Hearts
   - UIAudioSource
   - Difficulty
+  - Powerup
   layers:
   - Default
   - TransparentFX
