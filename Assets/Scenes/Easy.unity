@@ -409,11 +409,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 251280712}
   m_CullTransparentMesh: 1
---- !u!1 &265855459 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2446816782754949235, guid: c59a9d54f3b8e2348abb9780fe8291af, type: 3}
-  m_PrefabInstance: {fileID: 2893212897646858861}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &266088575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,11 +1123,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 081e17c7f0b396649934b4189726447d, type: 3}
---- !u!1 &775789374 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6709770037043817538, guid: 081e17c7f0b396649934b4189726447d, type: 3}
-  m_PrefabInstance: {fileID: 775789373}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &798642239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1459,11 +1449,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2560, y: 1440}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1069982940 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4335383998503685107, guid: ec7c5ae61184a4f4a96d456f38aa0e0b, type: 3}
-  m_PrefabInstance: {fileID: 798642239}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1141974158
 GameObject:
   m_ObjectHideFlags: 0
@@ -1649,13 +1634,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclePrefabs:
-  - {fileID: 1785008639}
-  - {fileID: 1069982940}
+  - {fileID: 4669787302616043920, guid: 4d1500300ae6435448f96974fd47df86, type: 3}
+  - {fileID: 4335383998503685107, guid: ec7c5ae61184a4f4a96d456f38aa0e0b, type: 3}
   coinPrefabs:
-  - {fileID: 775789374}
+  - {fileID: 6709770037043817538, guid: 081e17c7f0b396649934b4189726447d, type: 3}
   powerupPrefabs:
-  - {fileID: 265855459}
-  - {fileID: 3949933054563162899}
+  - {fileID: 2446816782754949235, guid: c59a9d54f3b8e2348abb9780fe8291af, type: 3}
+  - {fileID: 3286121048380036430, guid: e65f7e52c786e3140857047a5e251fc2, type: 3}
   minSpawnInterval: 1
   maxSpawnInterval: 5
   spawnOnStart: 1
@@ -1830,11 +1815,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5242180808068283138, guid: 4d1500300ae6435448f96974fd47df86, type: 3}
   m_PrefabInstance: {fileID: 1785008637}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1785008639 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4669787302616043920, guid: 4d1500300ae6435448f96974fd47df86, type: 3}
-  m_PrefabInstance: {fileID: 1785008637}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1838156920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1969,6 +1949,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96c8fa0fb7073641853e19372b16685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseScrollSpeed: 2
+  difficultyMultiplier: 1
 --- !u!1001 &1972729900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2396,11 +2378,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c59a9d54f3b8e2348abb9780fe8291af, type: 3}
---- !u!1 &3949933054563162899 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3286121048380036430, guid: e65f7e52c786e3140857047a5e251fc2, type: 3}
-  m_PrefabInstance: {fileID: 7303586664635861374}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7303586664635861374
 PrefabInstance:
   m_ObjectHideFlags: 0
