@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 8874830884445386043}
   - component: {fileID: 7358243016997566352}
   - component: {fileID: 8746405250466216582}
+  - component: {fileID: 1623981267928093791}
   m_Layer: 5
   m_Name: Pause Button
   m_TagString: Untagged
@@ -170,7 +171,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 6330833245223751334, guid: 2f2ccfcba34dbd743958e313fe3a7f5b, type: 3}
+  m_Sprite: {fileID: -6212078187627972208, guid: 9c50c7b14dd5e5f45b57056178ccd96d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -236,6 +237,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1623981267928093791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366617467417917147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3029ab362e1768b44a8d833867ef2958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetImage: {fileID: 7358243016997566352}
+  button: {fileID: 8746405250466216582}
+  normalSprite: {fileID: -6212078187627972208, guid: 9c50c7b14dd5e5f45b57056178ccd96d, type: 3}
+  hoverSprite: {fileID: -6212078187627972208, guid: 9c50c7b14dd5e5f45b57056178ccd96d, type: 3}
+  pressedSprite: {fileID: 738370416402247853, guid: 9c50c7b14dd5e5f45b57056178ccd96d, type: 3}
+  mode: 3
+  applyHover: 1
+  applyPressed: 1
+  toggleObject: {fileID: 6191280531197419418}
+  invertToggleObjectState: 0
+  driveToggleObjectOnClick: 0
+  startToggled: 0
 --- !u!1 &3232132079696469902
 GameObject:
   m_ObjectHideFlags: 0
