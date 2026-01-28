@@ -16,6 +16,11 @@ public class BackgroundScroller : MonoBehaviour
     void Start()
     {
         startPos = this.transform.position;
+
+        if (ScrollSpeedProvider.Instance != null)
+        {
+            ScrollSpeedProvider.Instance.SetBaseScrollSpeed(scrollSpeed);
+        }
     }
 
     // Update is called once per frame
@@ -23,7 +28,14 @@ public class BackgroundScroller : MonoBehaviour
     {
         if (isScrolling)
         {
-            transform.position -= new Vector3(0, scrollSpeed * Time.deltaTime, 0);
+            float speed = scrollSpeed;
+
+            if (ScrollSpeedProvider.Instance != null)
+            {
+                speed = ScrollSpeedProvider.Instance.CurrentSpeed;
+            }
+
+            transform.position -= new Vector3(0, speed * Time.deltaTime, 0);
             if (this.transform.position.y <= camera.transform.position.y - camera.orthographicSize)
             {
                 this.transform.position = startPos;
@@ -44,5 +56,10 @@ public class BackgroundScroller : MonoBehaviour
     void setScrollSpeed(float speed)
     {
         scrollSpeed = speed;
+
+        if (ScrollSpeedProvider.Instance != null)
+        {
+            ScrollSpeedProvider.Instance.SetBaseScrollSpeed(scrollSpeed);
+        }
     }
 }

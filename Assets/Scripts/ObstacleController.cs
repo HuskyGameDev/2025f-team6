@@ -15,6 +15,9 @@ public class ObstacleController : MonoBehaviour
     [SerializeField]
     private float maxSpeed = 8f;
 
+    [SerializeField]
+    private float verticalSpeedMultiplier = 1f;
+
     [Header("Destruction Settings")]
     [SerializeField]
     private float destroyYPosition = -10f;
@@ -43,8 +46,14 @@ public class ObstacleController : MonoBehaviour
         if (!gameObject.activeSelf)
             return;
 
-        // Move obstacle downward with speed multiplier
-        transform.Translate(Vector3.down * speed * speedMultiplier * Time.deltaTime);
+        float scrollSpeed = speed;
+
+        if (ScrollSpeedProvider.Instance != null)
+        {
+            scrollSpeed = ScrollSpeedProvider.Instance.CurrentSpeed;
+        }
+
+        transform.Translate(Vector3.down * scrollSpeed * verticalSpeedMultiplier * Time.deltaTime);
 
         // Check if off screen
         if (IsOffScreen())
@@ -68,17 +77,25 @@ public class ObstacleController : MonoBehaviour
     {
         mainCamera = Camera.main;
 
-        // Set movement speed
-        if (useRandomSpeed)
+        float scrollSpeed = moveSpeed;
+
+        if (ScrollSpeedProvider.Instance != null)
         {
-            speed = Random.Range(minSpeed, maxSpeed);
-        }
-        else
-        {
-            speed = moveSpeed;
+            scrollSpeed = ScrollSpeedProvider.Instance.CurrentSpeed;
         }
 
-        // Store base speed for multiplier calculations
+        speed = scrollSpeed;
+
+        if (useRandomSpeed && ScrollSpeedProvider.Instance != null)
+        {
+            float baseScroll = ScrollSpeedProvider.Instance.GetBaseScrollSpeed();
+            if (baseScroll > 0.0001f)
+            {
+                float randomAbsolute = Random.Range(minSpeed, maxSpeed);
+                verticalSpeedMultiplier = randomAbsolute / baseScroll;
+            }
+        }
+
         baseSpeed = speed;
 
         // Get current speed multiplier from spawner if available

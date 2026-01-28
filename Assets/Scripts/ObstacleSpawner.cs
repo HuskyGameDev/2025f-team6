@@ -89,6 +89,11 @@ public class ObstacleSpawner : MonoBehaviour
         currentMinSpawnInterval = minSpawnInterval;
         currentMaxSpawnInterval = maxSpawnInterval;
 
+        if (ScrollSpeedProvider.Instance != null)
+        {
+            ScrollSpeedProvider.Instance.SetDifficultyMultiplier(currentSpeedMultiplier);
+        }
+
         if (useObjectPooling)
         {
             InitializePools();
@@ -135,6 +140,12 @@ public class ObstacleSpawner : MonoBehaviour
         if (Mathf.Abs(newSpeedMultiplier - currentSpeedMultiplier) > 0.01f)
         {
             currentSpeedMultiplier = newSpeedMultiplier;
+
+            if (ScrollSpeedProvider.Instance != null)
+            {
+                ScrollSpeedProvider.Instance.SetDifficultyMultiplier(currentSpeedMultiplier);
+            }
+
             OnSpeedMultiplierChanged?.Invoke(currentSpeedMultiplier);
         }
     }
@@ -158,6 +169,11 @@ public class ObstacleSpawner : MonoBehaviour
         currentMinSpawnInterval = minSpawnInterval;
         currentMaxSpawnInterval = maxSpawnInterval;
         currentSpeedMultiplier = 1f;
+
+        if (ScrollSpeedProvider.Instance != null)
+        {
+            ScrollSpeedProvider.Instance.SetDifficultyMultiplier(currentSpeedMultiplier);
+        }
     }
 
     private void InitializePools()
