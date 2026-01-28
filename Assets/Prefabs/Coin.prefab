@@ -105,7 +105,6 @@ MonoBehaviour:
   useRandomSpeed: 0
   minSpeed: 3
   maxSpeed: 8
-  verticalSpeedMultiplier: 1
   destroyYPosition: -10
   destroyWhenInvisible: 1
   hitSoundClip: {fileID: 8300000, guid: 4cd9e6f7e4c970d448f54e0e45b9664d, type: 3}
