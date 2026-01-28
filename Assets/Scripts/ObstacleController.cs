@@ -3,21 +3,33 @@ using UnityEngine;
 public class ObstacleController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private bool useRandomSpeed = false;
-    [SerializeField] private float minSpeed = 3f;
-    [SerializeField] private float maxSpeed = 8f;
+    [SerializeField]
+    private float moveSpeed = 5f;
+
+    [SerializeField]
+    private bool useRandomSpeed = false;
+
+    [SerializeField]
+    private float minSpeed = 3f;
+
+    [SerializeField]
+    private float maxSpeed = 8f;
 
     [Header("Destruction Settings")]
-    [SerializeField] private float destroyYPosition = -10f;
-    [SerializeField] private bool destroyWhenInvisible = true;
+    [SerializeField]
+    private float destroyYPosition = -10f;
 
+    [SerializeField]
+    private bool destroyWhenInvisible = true;
 
     [Header("Sound Effects")]
-    [SerializeField] private AudioClip hitSoundClip;
+    [SerializeField]
+    private AudioClip hitSoundClip;
 
     private Camera mainCamera;
-    [SerializeField] private float speed;
+
+    [SerializeField]
+    private float speed;
     private ObstacleSpawner spawner;
     private GameObject originalPrefab;
     public bool isActive = false;
@@ -28,7 +40,8 @@ public class ObstacleController : MonoBehaviour
 
     void Update()
     {
-        if (!gameObject.activeSelf) return;
+        if (!gameObject.activeSelf)
+            return;
 
         // Move obstacle downward with speed multiplier
         transform.Translate(Vector3.down * speed * speedMultiplier * Time.deltaTime);
@@ -127,15 +140,15 @@ public class ObstacleController : MonoBehaviour
     }
 
     private void HandlePlayerCollision(GameObject player)
-    {       
+    {
         // Trigger collision effects on player
         PlayerCollision playerCollision = player.GetComponent<PlayerCollision>();
-        
+
         if (playerCollision != null)
         {
             // Play SFX
             AudioManager.instance.PlaySoundFXClip(hitSoundClip, transform, 1f);
-            
+
             // You might want to pass this obstacle to the player collision handler
             playerCollision.HandleCollision(gameObject);
         }
@@ -159,7 +172,11 @@ public class ObstacleController : MonoBehaviour
         if (!destroyWhenInvisible)
         {
             Gizmos.color = Color.yellow;
-            Vector3 destructionPoint = new Vector3(transform.position.x, destroyYPosition, transform.position.z);
+            Vector3 destructionPoint = new Vector3(
+                transform.position.x,
+                destroyYPosition,
+                transform.position.z
+            );
             Gizmos.DrawLine(transform.position, destructionPoint);
             Gizmos.DrawWireCube(destructionPoint, Vector3.one);
         }
