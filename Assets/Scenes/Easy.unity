@@ -1324,6 +1324,10 @@ PrefabInstance:
       propertyPath: usePowerupClip
       value: 
       objectReference: {fileID: 8300000, guid: 4cd9e6f7e4c970d448f54e0e45b9664d, type: 3}
+    - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
+      propertyPath: defaultPowerupSprite
+      value: 
+      objectReference: {fileID: 3600303234130359456, guid: 047191f6b1a0f0c43a428c20dd52e262, type: 3}
     - target: {fileID: 5088528645924244018, guid: d37843219a18e164d970618c46226d31, type: 3}
       propertyPath: m_Name
       value: Player

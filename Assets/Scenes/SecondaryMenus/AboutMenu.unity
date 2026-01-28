@@ -935,16 +935,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ian Washington
+  m_text: 'J.P. King
+
+    Dylan Wheeler
+
+    Tyler Gingras
 
     Coleton Wilczynski
 
-    Elliot Lapenga
+    Elliot
+    Lapenga
 
     Penn Roberts
 
-    J.P.
-    King'
+    Ian Washington'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 973a063e0e8f2af46b4133c6ae7a420b, type: 2}
   m_sharedMaterial: {fileID: -3639410998252427554, guid: 973a063e0e8f2af46b4133c6ae7a420b, type: 2}
@@ -1652,8 +1656,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -343.50467}
-  m_SizeDelta: {x: 1226.5945, y: 263.5016}
+  m_AnchoredPosition: {x: 0, y: -299.93}
+  m_SizeDelta: {x: 1226.5945, y: 356.3599}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1275473228
 MonoBehaviour:
@@ -1728,7 +1732,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -167}
+  m_AnchoredPosition: {x: 0, y: -77}
   m_SizeDelta: {x: 1226.5945, y: 89.50537}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1796592006
