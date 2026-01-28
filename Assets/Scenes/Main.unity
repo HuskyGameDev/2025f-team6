@@ -678,7 +678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isScrolling: 1
-  scrollSpeed: 1
+  speedMultiplier: 1
   camera: {fileID: 1979255340}
 --- !u!4 &423534176
 Transform:
@@ -1284,7 +1284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 323194375780585108, guid: d37843219a18e164d970618c46226d31, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.01
+      value: -5.01
       objectReference: {fileID: 0}
     - target: {fileID: 323194375780585108, guid: d37843219a18e164d970618c46226d31, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1333,7 +1333,7 @@ PrefabInstance:
     - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
       propertyPath: defaultPowerupSprite
       value: 
-      objectReference: {fileID: 3600303234130359456, guid: 047191f6b1a0f0c43a428c20dd52e262, type: 3}
+      objectReference: {fileID: 3600303234130359456, guid: 652ec08be7692f744a05c280458fd420, type: 3}
     - target: {fileID: 5088528645924244018, guid: d37843219a18e164d970618c46226d31, type: 3}
       propertyPath: m_Name
       value: Player
