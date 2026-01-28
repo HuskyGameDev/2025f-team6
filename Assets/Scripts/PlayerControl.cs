@@ -149,7 +149,7 @@ public class PlayerControl : MonoBehaviour
         {
             MovePlayer();
         }
-
+        
     }
 
     private void StartMovementToPosition(int newPosition)
@@ -219,7 +219,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     private void UsePowerup(GameObject powerup)
-    {
+    {   
         if (powerup.name.Contains("Heart Powerup") || powerup.name.Contains("Donut Powerup"))
         {
             PlayerCollision playerCollision = gameObject.GetComponent<PlayerCollision>();
@@ -230,7 +230,7 @@ public class PlayerControl : MonoBehaviour
             Image img = powerupSprite.gameObject.GetComponent<Image>();
             img.sprite = Resources.Load<Sprite>("MSPPixel");
             img.color = new UnityEngine.Color(1f, 1f, 1f, (float)MSPPixelTransparency); //
-        }
+        }        
     }
 
     public void GainPowerup(GameObject powerup)
