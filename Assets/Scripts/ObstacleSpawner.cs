@@ -5,48 +5,22 @@ using UnityEngine;
 public class ObstacleSpawner : MonoBehaviour
 {
     [Header("Spawn Settings")]
-    [SerializeField]
-    private List<GameObject> obstaclePrefabs;
-
-    [SerializeField]
-    private List<GameObject> coinPrefabs;
-
-    [SerializeField]
-    private List<GameObject> powerupPrefabs;
-
-    [SerializeField]
-    private float minSpawnInterval = 1f;
-
-    [SerializeField]
-    private float maxSpawnInterval = 5f;
-
-    [SerializeField]
-    private bool spawnOnStart = true;
-
-    [SerializeField]
-    private int maxCoinPerLane = 3;
-
-    [SerializeField]
-    private float coinSpawnDelay = .2f;
-
-    [SerializeField]
-    private float powerupSpawnDelay = 15;
+    [SerializeField] private List<GameObject> obstaclePrefabs;
+    [SerializeField] private List<GameObject> coinPrefabs;
+    [SerializeField] private List<GameObject> powerupPrefabs;
+    [SerializeField] private float minSpawnInterval = 1f;
+    [SerializeField] private float maxSpawnInterval = 5f;
+    [SerializeField] private bool spawnOnStart = true;
+    [SerializeField] private int maxCoinPerLane = 3;
+    [SerializeField] private float coinSpawnDelay = .2f;
+    [SerializeField] private float powerupSpawnDelay = 15;
 
     [Header("Progressive Difficulty Settings")]
-    [SerializeField]
-    private bool enableProgressiveDifficulty = true;
-
-    [SerializeField]
-    private float timeToMaxDifficulty = 300f; // 5 minutes to reach max difficulty
-
-    [SerializeField]
-    private float minSpawnIntervalLimit = 0.5f; // Fastest spawn rate
-
-    [SerializeField]
-    private float maxSpawnIntervalLimit = 2f; // Fastest spawn rate
-
-    [SerializeField]
-    private float speedMultiplierLimit = 2f; // Max 2x original speed
+    [SerializeField] private bool enableProgressiveDifficulty = true;
+    [SerializeField] private float timeToMaxDifficulty = 300f; // 5 minutes to reach max difficulty
+    [SerializeField] private float minSpawnIntervalLimit = 0.5f; // Fastest spawn rate
+    [SerializeField] private float maxSpawnIntervalLimit = 2f;   // Fastest spawn rate
+    [SerializeField] private float speedMultiplierLimit = 2f;   // Max 2x original speed
 
     [Header("Spawn Positions")]
     [SerializeField]
@@ -55,15 +29,12 @@ public class ObstacleSpawner : MonoBehaviour
         new Vector3(-2f, 8f, 0f),
         new Vector3(0f, 8f, 0f),
         new Vector3(2f, 8f, 0f),
-        new Vector3(4f, 8f, 0f),
+        new Vector3(4f, 8f, 0f)
     };
 
     [Header("Obstacle Pooling (Optional)")]
-    [SerializeField]
-    private bool useObjectPooling = true;
-
-    [SerializeField]
-    private int poolSize = 10;
+    [SerializeField] private bool useObjectPooling = true;
+    [SerializeField] private int poolSize = 10;
 
     private Coroutine spawnCoroutine;
     private Dictionary<GameObject, Queue<GameObject>> obstaclePools;
@@ -88,11 +59,6 @@ public class ObstacleSpawner : MonoBehaviour
         // Initialize current spawn intervals
         currentMinSpawnInterval = minSpawnInterval;
         currentMaxSpawnInterval = maxSpawnInterval;
-
-        if (ScrollSpeedProvider.Instance != null)
-        {
-            ScrollSpeedProvider.Instance.SetDifficultyMultiplier(currentSpeedMultiplier);
-        }
 
         if (useObjectPooling)
         {
@@ -122,16 +88,8 @@ public class ObstacleSpawner : MonoBehaviour
         difficultyProgress = Mathf.Clamp01(gameTime / timeToMaxDifficulty);
 
         // Update spawn intervals
-        currentMinSpawnInterval = Mathf.Lerp(
-            minSpawnInterval,
-            minSpawnIntervalLimit,
-            difficultyProgress
-        );
-        currentMaxSpawnInterval = Mathf.Lerp(
-            maxSpawnInterval,
-            maxSpawnIntervalLimit,
-            difficultyProgress
-        );
+        currentMinSpawnInterval = Mathf.Lerp(minSpawnInterval, minSpawnIntervalLimit, difficultyProgress);
+        currentMaxSpawnInterval = Mathf.Lerp(maxSpawnInterval, maxSpawnIntervalLimit, difficultyProgress);
 
         // Update speed multiplier
         float newSpeedMultiplier = Mathf.Lerp(1f, speedMultiplierLimit, difficultyProgress);
@@ -140,12 +98,6 @@ public class ObstacleSpawner : MonoBehaviour
         if (Mathf.Abs(newSpeedMultiplier - currentSpeedMultiplier) > 0.01f)
         {
             currentSpeedMultiplier = newSpeedMultiplier;
-
-            if (ScrollSpeedProvider.Instance != null)
-            {
-                ScrollSpeedProvider.Instance.SetDifficultyMultiplier(currentSpeedMultiplier);
-            }
-
             OnSpeedMultiplierChanged?.Invoke(currentSpeedMultiplier);
         }
     }
@@ -169,11 +121,6 @@ public class ObstacleSpawner : MonoBehaviour
         currentMinSpawnInterval = minSpawnInterval;
         currentMaxSpawnInterval = maxSpawnInterval;
         currentSpeedMultiplier = 1f;
-
-        if (ScrollSpeedProvider.Instance != null)
-        {
-            ScrollSpeedProvider.Instance.SetDifficultyMultiplier(currentSpeedMultiplier);
-        }
     }
 
     private void InitializePools()
@@ -335,6 +282,7 @@ public class ObstacleSpawner : MonoBehaviour
         }
 
         StartCoroutine(SpawnCoin(coinPrefab, spawnPosition));
+
     }
 
     private void SpawnRandomPowerup(Vector3 obstacleSpawn)
@@ -362,6 +310,7 @@ public class ObstacleSpawner : MonoBehaviour
         }
 
         StartCoroutine(SpawnPowerup(powerupPrefab, spawnPosition));
+
     }
 
     private Vector3 GetRandomSpawnPosition()
@@ -456,10 +405,10 @@ public class ObstacleSpawner : MonoBehaviour
         }
     }
 
-    private IEnumerator SpawnPowerup(GameObject powerupPrefab, Vector3 position)
+     private IEnumerator SpawnPowerup(GameObject powerupPrefab, Vector3 position)
     {
-        if (powerupCanSpawn)
-        {
+        if (powerupCanSpawn) {
+
             powerupCanSpawn = false;
 
             GameObject powerupInstance;
