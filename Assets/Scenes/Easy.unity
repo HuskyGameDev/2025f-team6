@@ -1074,6 +1074,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5157313370161308167, guid: 081e17c7f0b396649934b4189726447d, type: 3}
+      propertyPath: verticalSpeedMultiplier
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6709770037043817538, guid: 081e17c7f0b396649934b4189726447d, type: 3}
       propertyPath: m_Name
       value: Coin
@@ -1949,7 +1953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e96c8fa0fb7073641853e19372b16685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseScrollSpeed: 2
+  baseScrollSpeed: 5
   difficultyMultiplier: 1
 --- !u!1001 &1972729900
 PrefabInstance:
@@ -2043,6 +2047,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6191280531197419418, guid: 5b027c40ee0cfba4db05ddb269ef38ec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358243016997566352, guid: 5b027c40ee0cfba4db05ddb269ef38ec, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6212078187627972208, guid: 9c50c7b14dd5e5f45b57056178ccd96d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
