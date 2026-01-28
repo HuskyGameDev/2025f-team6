@@ -37,6 +37,8 @@ public class PlayerControl : MonoBehaviour
     [Header("Powerups")]
     [SerializeField] private Image powerupSprite;
     [SerializeField] private GameObject currentPowerup = null;
+    [SerializeField] private Sprite defaultPowerupSprite; // MSPPixel
+    const double MSPPixelTransparency = 0.3;
 
     private int currentPosition;
     private float interpolator;
@@ -95,6 +97,10 @@ public class PlayerControl : MonoBehaviour
         moveRight1 = KeybindManager.GetMoveRight1();
         moveRight2 = KeybindManager.GetMoveRight2();
         hitHorn = KeybindManager.GetHitHorn();
+
+        Image img = powerupSprite.GetComponent<Image>();
+        img.sprite = defaultPowerupSprite;
+        img.color = new UnityEngine.Color(1f, 1f, 1f, (float)MSPPixelTransparency);
     }
 
     // Update is called once per frame
@@ -221,7 +227,9 @@ public class PlayerControl : MonoBehaviour
             playerCollision.updateHearts(playerCollision.getLivesRemaining(), false);
             AudioManager.instance.PlaySoundFXClip(usePowerupClip, transform, 1f);
             currentPowerup = null;
-            powerupSprite.gameObject.GetComponent<Image>().sprite = null;
+            Image img = powerupSprite.gameObject.GetComponent<Image>();
+            img.sprite = Resources.Load<Sprite>("MSPPixel");
+            img.color = new UnityEngine.Color(1f, 1f, 1f, (float)MSPPixelTransparency); //
         }        
     }
 
@@ -229,6 +237,7 @@ public class PlayerControl : MonoBehaviour
     {
         currentPowerup = powerup;
         powerupSprite.gameObject.GetComponent<Image>().sprite = powerup.gameObject.GetComponent<SpriteRenderer>().sprite;
+        powerupSprite.gameObject.GetComponent<Image>().color = new UnityEngine.Color(1f, 1f, 1f, 1);
     }
 
     private void OnHit()

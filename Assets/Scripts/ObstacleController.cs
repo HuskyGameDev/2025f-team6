@@ -28,15 +28,16 @@ public class ObstacleController : MonoBehaviour
 
     void Update()
     {
-        if (!gameObject.activeSelf) return;
+        if (!gameObject.activeSelf || !isActive) return;
 
-        // Move obstacle downward with speed multiplier
-        transform.Translate(Vector3.down * speed * speedMultiplier * Time.deltaTime);
+        GameSpeedController speedController = GameSpeedController.GetOrCreate();
+        float globalSpeed = speedController.CurrentSpeed;
 
-        // Check if off screen
+        transform.Translate(Vector3.down * globalSpeed * speedMultiplier * Time.deltaTime);
+
         if (IsOffScreen())
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 
