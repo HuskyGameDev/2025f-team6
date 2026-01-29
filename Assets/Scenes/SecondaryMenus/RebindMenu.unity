@@ -154,7 +154,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000033379, y: -88.81799}
+  m_AnchoredPosition: {x: 0.0000033379, y: -82}
   m_SizeDelta: {x: 1320.438, y: 88.818}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &24911409
@@ -434,7 +434,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -725,7 +725,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -990,7 +990,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1470,8 +1470,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuController: {fileID: 2026761145}
   icon: {fileID: 65120440}
-  BaseSprite: {fileID: 0}
-  HoverSprite: {fileID: 0}
+  BaseSprite: {fileID: 2800000, guid: 0248800f13629ea49ace577c8862c47f, type: 3}
+  HoverSprite: {fileID: 2800000, guid: 0248800f13629ea49ace577c8862c47f, type: 3}
 --- !u!1 &1019739650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2490,7 +2490,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
