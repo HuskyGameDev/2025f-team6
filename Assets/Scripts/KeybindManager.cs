@@ -9,7 +9,7 @@ public class KeybindManager : MonoBehaviour
     private static KeyCode moveLeft2 = KeyCode.LeftArrow;
     private static KeyCode moveRight1 = KeyCode.D;
     private static KeyCode moveRight2 = KeyCode.RightArrow;
-    private static KeyCode hitHorn = KeyCode.Space;
+    private static KeyCode honkHorn = KeyCode.Space;
     private static KeyCode usePowerup = KeyCode.E;
 
     private void Awake()
@@ -45,9 +45,9 @@ public class KeybindManager : MonoBehaviour
         moveRight2 = newKey;
     }
 
-    public static void SetHitHorn(KeyCode newKey)
+    public static void SetHonkHorn(KeyCode newKey)
     {
-        hitHorn = newKey;
+        honkHorn = newKey;
     }
 
     public static void SetUsePowerup(KeyCode newKey)
@@ -75,9 +75,9 @@ public class KeybindManager : MonoBehaviour
         return moveRight2;
     }
 
-    public static KeyCode GetHitHorn()
+    public static KeyCode GetHonkHorn()
     {
-        return hitHorn;
+        return honkHorn;
     }
 
     public static KeyCode GetUsePowerup()

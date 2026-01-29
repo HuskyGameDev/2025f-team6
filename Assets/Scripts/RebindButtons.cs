@@ -70,6 +70,8 @@ public class RebindButtons : MonoBehaviour
     [Header("Buttons")]
     [SerializeField] private Button moveLeft1Button;
     [SerializeField] private Button moveRight1Button;
+    [SerializeField] private Button usePowerupButton;
+    [SerializeField] private Button honkHornButton;
 
     private bool listening = false;
     private KeyCode[] values;
@@ -92,6 +94,12 @@ public class RebindButtons : MonoBehaviour
 
         moveRight1Button.GetComponentInChildren<TextMeshProUGUI>().text =
             "Move Right: " + KeybindManager.GetMoveRight1().ToString();
+
+        usePowerupButton.GetComponentInChildren<TextMeshProUGUI>().text =
+            "Use Powerup: " + KeybindManager.GetUsePowerup().ToString();
+
+        honkHornButton.GetComponentInChildren<TextMeshProUGUI>().text =
+            "Honk Horn: " + KeybindManager.GetHonkHorn().ToString();
     }
 
     void Update()
@@ -117,6 +125,18 @@ public class RebindButtons : MonoBehaviour
                             KeybindManager.SetMoveRight1(values[i]);
                             button.GetComponentInChildren<TextMeshProUGUI>().text =
                                 "Move Right: " + values[i].ToString();
+                            break;
+
+                        case "UsePowerupButton":
+                            KeybindManager.SetUsePowerup(values[i]);
+                            button.GetComponentInChildren<TextMeshProUGUI>().text =
+                                "Use Powerup: " + values[i].ToString();
+                            break;
+
+                        case "HonkHornButton":
+                            KeybindManager.SetHonkHorn(values[i]);
+                            button.GetComponentInChildren<TextMeshProUGUI>().text =
+                                "Honk Horn: " + values[i].ToString();
                             break;
                     }
                 }

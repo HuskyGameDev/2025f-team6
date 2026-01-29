@@ -60,7 +60,7 @@ public class PlayerControl : MonoBehaviour
     private KeyCode moveLeft2 = KeyCode.LeftArrow;
     private KeyCode moveRight1 = KeyCode.D;
     private KeyCode moveRight2 = KeyCode.RightArrow;
-    private KeyCode hitHorn = KeyCode.Space;
+    private KeyCode honkHorn = KeyCode.Space;
     private KeyCode powerupButton = KeyCode.E;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -96,7 +96,8 @@ public class PlayerControl : MonoBehaviour
         moveLeft2 = KeybindManager.GetMoveLeft2();
         moveRight1 = KeybindManager.GetMoveRight1();
         moveRight2 = KeybindManager.GetMoveRight2();
-        hitHorn = KeybindManager.GetHitHorn();
+        honkHorn = KeybindManager.GetHonkHorn();
+        powerupButton = KeybindManager.GetUsePowerup();
 
         Image img = powerupSprite.GetComponent<Image>();
         img.sprite = defaultPowerupSprite;
@@ -123,7 +124,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         // Get the input from player to see if they are pressing the horn.
-        if (Input.GetKeyDown(hitHorn))
+        if (Input.GetKeyDown(honkHorn))
         {
             AudioManager.instance.PlayStartLoopStop(
                 horn[0],
@@ -131,7 +132,7 @@ public class PlayerControl : MonoBehaviour
                 horn[2],
                 transform,
                 0.8f,
-                () => Input.GetKey(hitHorn)
+                () => Input.GetKey(honkHorn)
             );
         }
 
