@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SecondaryMenus/RebindMenu.unity
     guid: 0636e42241bf7314c854c8557d28504c
+  - enabled: 1
+    path: Assets/Scenes/Intro Cutscene/Intro Cutscene.unity
+    guid: f232db332932fb04fa12f2df15b76279
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

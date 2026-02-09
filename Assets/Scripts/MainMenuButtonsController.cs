@@ -93,7 +93,7 @@ public class MainMenuButtonsController : MonoBehaviour
 
         // Difficulty is already stored statically
         // GameSpeedController will read it on scene load
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Intro Cutscene");
     }
 
     public void PlayAgain()
