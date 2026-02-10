@@ -570,6 +570,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuController: {fileID: 2026761145}
   icon: {fileID: 636054789}
+  BaseSprite: {fileID: 0}
+  HoverSprite: {fileID: 0}
 --- !u!1 &356717037
 GameObject:
   m_ObjectHideFlags: 0
@@ -1209,6 +1211,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuController: {fileID: 2026761145}
   icon: {fileID: 65120440}
+  BaseSprite: {fileID: 0}
+  HoverSprite: {fileID: 0}
 --- !u!1 &1060836080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1866,6 +1870,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuController: {fileID: 2026761145}
   icon: {fileID: 356717039}
+  BaseSprite: {fileID: 0}
+  HoverSprite: {fileID: 0}
 --- !u!1 &1158242273
 GameObject:
   m_ObjectHideFlags: 0
@@ -2170,6 +2176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuController: {fileID: 2026761145}
   icon: {fileID: 2094854750}
+  BaseSprite: {fileID: 0}
+  HoverSprite: {fileID: 0}
 --- !u!1 &1371287304
 GameObject:
   m_ObjectHideFlags: 0

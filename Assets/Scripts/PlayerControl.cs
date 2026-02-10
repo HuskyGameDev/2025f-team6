@@ -80,6 +80,7 @@ public class PlayerControl : MonoBehaviour
         // Store original color
         if (spriteRenderer != null)
         {
+            spriteRenderer.sprite = VehicleManager.instance.GetVehicle();
             originalColor = spriteRenderer.color;
         }
 
