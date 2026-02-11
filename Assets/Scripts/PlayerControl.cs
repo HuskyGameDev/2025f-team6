@@ -12,6 +12,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float speedCurve = 0.5f; // Needs to be >0 and <2
     [SerializeField] public float yPos = -3.5f;
     [SerializeField] private GameObject gameRunner;
+    [SerializeField] private float targetRotation;
 
     [Header("Player Positions")]
     [SerializeField]
@@ -41,8 +42,14 @@ public class PlayerControl : MonoBehaviour
     const double MSPPixelTransparency = 0.3;
 
     private int currentPosition;
-    private float interpolator;
+    private float interpolatorPos;
+    private float interpolatorRot;
     private Vector3 oldPosition;
+    private Quaternion oldRotation;
+    private Quaternion targetRotationRight;
+    private Quaternion targetRotationLeft;
+    private bool left;
+    private bool halfwayRot;
     private float posDiff;
     private bool isMoving = false;
 
@@ -89,9 +96,13 @@ public class PlayerControl : MonoBehaviour
         Vector3 startPos = playerPositions[startingPosition];
         transform.SetPositionAndRotation(startPos, Quaternion.identity);
         oldPosition = transform.position;
+        oldRotation = transform.rotation;
         currentPosition = startingPosition;
-        interpolator = 0.0f;
+        interpolatorPos = 0.0f;
+        interpolatorRot = 0.0f;
         isMoving = false;
+        targetRotationRight = Quaternion.Euler(0f, 0f, targetRotation *-1);
+        targetRotationLeft = Quaternion.Euler(0f, 0f, targetRotation);
 
         moveLeft1 = KeybindManager.GetMoveLeft1();
         moveLeft2 = KeybindManager.GetMoveLeft2();
@@ -156,9 +167,22 @@ public class PlayerControl : MonoBehaviour
 
     private void StartMovementToPosition(int newPosition)
     {
+        // See if we're moving left or right
+        if(currentPosition < newPosition)
+        {
+            left = false;
+        }
+        else
+        {
+            left = true;
+        }
+
         currentPosition = newPosition;
-        interpolator = 0f;
+        interpolatorPos = 0.0f;
+        interpolatorRot = 0.0f;
+        halfwayRot = false;
         oldPosition = transform.position;
+        oldRotation = transform.rotation;
 
         // Calculate the absolute distance to the target position
         posDiff = Mathf.Abs(oldPosition.x - playerPositions[currentPosition].x);
@@ -169,6 +193,7 @@ public class PlayerControl : MonoBehaviour
             posDiff = 0.001f;
         }
 
+
         isMoving = true;
     }
 
@@ -177,7 +202,37 @@ public class PlayerControl : MonoBehaviour
         Vector3 targetPosition = playerPositions[currentPosition];
 
         // Safe Lerp calculation
-        float newX = Mathf.Lerp(oldPosition.x, targetPosition.x, interpolator);
+        float newX = Mathf.Lerp(oldPosition.x, targetPosition.x, interpolatorPos);
+
+        //Determine if we need to rotate left or right
+        Quaternion newRot;
+        if(interpolatorPos < 0.5f && left)
+        {
+            newRot = Quaternion.Lerp(oldRotation, targetRotationLeft, interpolatorRot);
+        } 
+        else if(interpolatorPos < 0.5f && !left)
+        {   
+            newRot = Quaternion.Lerp(oldRotation, targetRotationRight, interpolatorRot);
+        }
+        else if(left)
+        {
+            if (!halfwayRot)
+            {
+                halfwayRot = true;
+                interpolatorRot = 0f;
+            }
+            newRot = Quaternion.Lerp(targetRotationLeft, Quaternion.Euler(0f,0f,0f), interpolatorRot);
+        } 
+        else
+        {   
+            if (!halfwayRot)
+            {
+                halfwayRot = true;
+                interpolatorRot = 0f;
+            }
+            newRot = Quaternion.Lerp(targetRotationRight, Quaternion.Euler(0f,0f,0f), interpolatorRot);
+        }
+
 
         // Ensure we don't get NaN values
         if (float.IsNaN(newX))
@@ -186,6 +241,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         transform.position = new Vector3(newX, targetPosition.y, targetPosition.z);
+        transform.rotation = newRot;
 
         // Check if we've reached the target position
         float currentDistance = Mathf.Abs(transform.position.x - targetPosition.x);
@@ -199,24 +255,28 @@ public class PlayerControl : MonoBehaviour
             // Ensure diffPercent is valid
             if (!float.IsNaN(diffPercent) && !float.IsInfinity(diffPercent))
             {
-                interpolator += Mathf.Clamp(diffPercent, 0.1f, 2f) * speed * Time.deltaTime;
+                interpolatorPos += Mathf.Clamp(diffPercent, 0.1f, 2f) * speed * Time.deltaTime;
+                interpolatorRot += Mathf.Clamp(diffPercent, 0.1f, 2f) * speed * Time.deltaTime * 2;
             }
             else
             {
-                interpolator += speed * Time.deltaTime;
+                interpolatorPos += speed * Time.deltaTime;
+                interpolatorRot += speed * Time.deltaTime * 2;
             }
         }
         else
         {
-            interpolator += speed * Time.deltaTime;
+            interpolatorPos += speed * Time.deltaTime;
+            interpolatorRot += speed * Time.deltaTime * 2;
         }
 
         // Check if movement is complete
-        if (interpolator >= 1f || currentDistance < 0.01f)
+        if (interpolatorPos >= 1f || currentDistance < 0.01f)
         {
             transform.position = targetPosition;
+            transform.rotation = Quaternion.Euler(0f,0f,0f);
             isMoving = false;
-            interpolator = 0f;
+            interpolatorPos = 0f;
         }
     }
 
