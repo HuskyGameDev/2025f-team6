@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2489c688603e4bd4a86daecdab242495, type: 3}
-  m_Name: Red SUV
+  m_Name: SUV 2
   m_EditorClassIdentifier: 
-  <EntryGraphic>k__BackingField: {fileID: -2603878343545472840, guid: 1f40409c4f0ee944c86f8ccd55a7b78b, type: 3}
-  <Headline>k__BackingField: Red SUV
+  <EntryGraphic>k__BackingField: {fileID: 6484836833136209882, guid: ad5bf2cd59d90674aa47657502566334, type: 3}
+  <Headline>k__BackingField: SUV 2
   levelNameToLoad: 

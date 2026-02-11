@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4135986964852380575}
   - component: {fileID: 8027621924923452789}
   m_Layer: 5
-  m_Name: White SUV
+  m_Name: SUV 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 500}
+  m_SizeDelta: {x: 267, y: 507}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4135986964852380575
 CanvasRenderer:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8082611214803629788, guid: f3e535eacaa3c574f86da1c78489a234, type: 3}
+  m_Sprite: {fileID: 6484836833136209882, guid: ad5bf2cd59d90674aa47657502566334, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

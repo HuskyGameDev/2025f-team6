@@ -146,14 +146,14 @@ RectTransform:
   m_GameObject: {fileID: 65120438}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1190524232}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -203, y: 0}
+  m_AnchoredPosition: {x: -263, y: 15}
   m_SizeDelta: {x: 62.7044, y: 62.7044}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &65120440
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 0248800f13629ea49ace577c8862c47f, type: 3}
+  m_Texture: {fileID: -8328923581568760697, guid: 9dc47e44f1d383d458678aaada9cc999, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -570,8 +570,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuController: {fileID: 2026761145}
   icon: {fileID: 636054789}
-  BaseSprite: {fileID: 0}
-  HoverSprite: {fileID: 0}
+  BaseSprite: {fileID: -8328923581568760697, guid: 9dc47e44f1d383d458678aaada9cc999, type: 3}
+  HoverSprite: {fileID: -8328923581568760697, guid: 9dc47e44f1d383d458678aaada9cc999, type: 3}
 --- !u!1 &356717037
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,14 +599,14 @@ RectTransform:
   m_GameObject: {fileID: 356717037}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2120580801}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -120, y: 0}
+  m_AnchoredPosition: {x: -130, y: 15}
   m_SizeDelta: {x: 62.7044, y: 62.7044}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &356717039
@@ -629,7 +629,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 0248800f13629ea49ace577c8862c47f, type: 3}
+  m_Texture: {fileID: -8328923581568760697, guid: 9dc47e44f1d383d458678aaada9cc999, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1018,14 +1018,14 @@ RectTransform:
   m_GameObject: {fileID: 636054787}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1780117435}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -144, y: 0}
+  m_AnchoredPosition: {x: -164, y: 15}
   m_SizeDelta: {x: 62.7044, y: 62.7044}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &636054789
@@ -1048,7 +1048,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 0248800f13629ea49ace577c8862c47f, type: 3}
+  m_Texture: {fileID: -8328923581568760697, guid: 9dc47e44f1d383d458678aaada9cc999, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1211,8 +1211,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuController: {fileID: 2026761145}
   icon: {fileID: 65120440}
-  BaseSprite: {fileID: 0}
-  HoverSprite: {fileID: 0}
+  BaseSprite: {fileID: -8328923581568760697, guid: 9dc47e44f1d383d458678aaada9cc999, type: 3}
+  HoverSprite: {fileID: -8328923581568760697, guid: 9dc47e44f1d383d458678aaada9cc999, type: 3}
 --- !u!1 &1060836080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1870,8 +1870,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuController: {fileID: 2026761145}
   icon: {fileID: 356717039}
-  BaseSprite: {fileID: 0}
-  HoverSprite: {fileID: 0}
+  BaseSprite: {fileID: -8328923581568760697, guid: 9dc47e44f1d383d458678aaada9cc999, type: 3}
+  HoverSprite: {fileID: -8328923581568760697, guid: 9dc47e44f1d383d458678aaada9cc999, type: 3}
 --- !u!1 &1158242273
 GameObject:
   m_ObjectHideFlags: 0
@@ -2176,8 +2176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuController: {fileID: 2026761145}
   icon: {fileID: 2094854750}
-  BaseSprite: {fileID: 0}
-  HoverSprite: {fileID: 0}
+  BaseSprite: {fileID: -8328923581568760697, guid: 9dc47e44f1d383d458678aaada9cc999, type: 3}
+  HoverSprite: {fileID: -8328923581568760697, guid: 9dc47e44f1d383d458678aaada9cc999, type: 3}
 --- !u!1 &1371287304
 GameObject:
   m_ObjectHideFlags: 0
@@ -2761,14 +2761,14 @@ RectTransform:
   m_GameObject: {fileID: 2094854748}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1560191727}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -114, y: 0}
+  m_AnchoredPosition: {x: -134, y: 15}
   m_SizeDelta: {x: 62.7044, y: 62.7044}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2094854750
@@ -2791,7 +2791,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 0248800f13629ea49ace577c8862c47f, type: 3}
+  m_Texture: {fileID: -8328923581568760697, guid: 9dc47e44f1d383d458678aaada9cc999, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
