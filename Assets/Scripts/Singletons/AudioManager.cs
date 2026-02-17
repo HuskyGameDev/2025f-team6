@@ -45,9 +45,7 @@ public class AudioManager : MonoBehaviour
         AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
 
         audioSource.clip = audioClip[rand];
-
         audioSource.volume = volume;
-
         audioSource.Play();
 
         float clipLength = audioSource.clip.length;
@@ -96,15 +94,18 @@ public class AudioManager : MonoBehaviour
             }
         }
 
-        // 4. Play End
-        audioSource.loop = false;
-        audioSource.clip = end;
-        audioSource.Play();
+        if (audioSource != null) {
+             // 4. Play End
+            audioSource.loop = false;
+            audioSource.clip = end;
+            audioSource.Play();
 
-        // 5. Cleanup
-        Destroy(audioSource.gameObject, end.length);
+            // 5. Cleanup
+            Destroy(audioSource.gameObject, end.length);
+        }
     }
 
 }
+
 
 
