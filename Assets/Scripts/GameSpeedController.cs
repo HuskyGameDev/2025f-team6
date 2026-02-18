@@ -1,96 +1,5 @@
-﻿//using UnityEngine;
-//using UnityEngine.SceneManagement;
-
-//public class GameSpeedController : MonoBehaviour
-//{
-//    public static GameSpeedController Instance;
-
-//    [Header("Base Speeds")]
-//    public float easyStartSpeed = 3f;
-//    public float normalStartSpeed = 5f;
-//    public float hardStartSpeed = 7f;
-
-//    [Header("Progression")]
-//    public float speedIncreasePerSecond = 0.25f;
-
-//    public float CurrentSpeed { get; private set; }
-
-//    private void Awake()
-//    {
-//        if (Instance != null && Instance != this)
-//        {
-//            Destroy(gameObject);
-//            return;
-//        }
-
-//        Instance = this;
-//        DontDestroyOnLoad(gameObject);
-
-//        SceneManager.sceneLoaded += OnSceneLoaded;
-//    }
-//    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-//    {
-//        // Reset only when entering gameplay scene
-//        if (scene.name == "Main")
-//        {
-//            ResetSpeed();
-//        }
-//    }
-
-//    private void Start()
-//    {
-//        CurrentSpeed = GetStartSpeedFromDifficulty();
-//    }
-
-//    private float debugTimer;
-
-//    private void Update()
-//    {
-//        CurrentSpeed += speedIncreasePerSecond * Time.deltaTime;
-
-//        debugTimer += Time.deltaTime;
-//        if (debugTimer >= 1f)
-//        {
-//            debugTimer = 0f;
-
-//            Debug.Log(
-//                $"[GameSpeedController] Difficulty = {DifficultyButtonManager.difficultyValue} | Speed = {CurrentSpeed:F2}"
-//            );
-//        }
-//    }
-
-//    private float GetStartSpeedFromDifficulty()
-//    {
-//        switch (DifficultyButtonManager.difficultyValue)
-//        {
-//            case 1: return easyStartSpeed;
-//            case 3: return hardStartSpeed;
-//            default: return normalStartSpeed;  // fix, default's currently ez
-//        }
-//    }
-
-//    public void ResetSpeed()
-//    {
-//        CurrentSpeed = GetStartSpeedFromDifficulty();
-
-//        Debug.Log(
-//            $"[GameSpeedController] RESET | Difficulty = {DifficultyButtonManager.difficultyValue} | StartSpeed = {CurrentSpeed}"
-//        );
-//    }
-
-//    // I am too tired of this error
-//    public static GameSpeedController GetOrCreate()
-//    {
-//        if (Instance == null)
-//        {
-//            GameObject go = new GameObject("GameSpeedController");
-//            Instance = go.AddComponent<GameSpeedController>();
-//        }
-//        return Instance;
-//    }
-//}
-
-
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -110,11 +19,14 @@ public class GameSpeedController : MonoBehaviour
 
     [Header("Limits")]
     public float maxSpeed = 15f;
+    public float turboSpeed = 25f;
+    public float turboDelay = 3f;
 
     public float CurrentSpeed { get; private set; }
 
     private float speedIncreasePerSecond;
     private float debugTimer;
+    private bool turbo = false;
 
     private void Awake()
     {
@@ -137,18 +49,21 @@ public class GameSpeedController : MonoBehaviour
 
     private void Update()
     {
-        CurrentSpeed += speedIncreasePerSecond * Time.deltaTime;
+        if (!turbo)
+        {
+            CurrentSpeed += speedIncreasePerSecond * Time.deltaTime;
 
-        // Cap the speed
-        if (CurrentSpeed > maxSpeed)
-            CurrentSpeed = maxSpeed;
+            // Cap the speed
+            if (CurrentSpeed > maxSpeed)
+                CurrentSpeed = maxSpeed;
+        }
 
         // Debug print once per second
         debugTimer += Time.deltaTime;
         if (debugTimer >= 1f)
         {
             debugTimer = 0f;
-            Debug.Log($"[GameSpeedController] Difficulty = {DifficultyButtonManager.difficultyValue} | Speed = {CurrentSpeed:F2}");
+            //Debug.Log($"[GameSpeedController] Difficulty = {DifficultyButtonManager.difficultyValue} | Speed = {CurrentSpeed:F2}");
         }
     }
 
@@ -190,6 +105,32 @@ public class GameSpeedController : MonoBehaviour
         {
             ResetSpeed();
         }
+    }
+
+    // Turbo Mode Controller
+    public void TurboPowerup(PlayerCollision collision)
+    {
+        turbo = true;
+        //Set the player to immune
+        collision.toggleImmunity();
+        //Store current speed to resume later
+        float speedStore = CurrentSpeed;
+        CurrentSpeed = turboSpeed;
+        Debug.Log("Turbo Start");
+
+        //Delay for the turbo delay
+        StartCoroutine(TurboDelay(speedStore,collision));
+    }
+
+    private IEnumerator TurboDelay(float speed, PlayerCollision collision)
+    {
+        yield return new WaitForSeconds(turboDelay);
+
+        //Reset speed to the old speed
+        CurrentSpeed = speed;
+        turbo = false;
+        collision.toggleImmunity();
+        Debug.Log("Turbo End");
     }
 
     // Safety getter if obstacles or background need it before Awake/Start

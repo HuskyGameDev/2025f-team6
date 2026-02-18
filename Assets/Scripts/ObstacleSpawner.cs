@@ -225,10 +225,14 @@ public class ObstacleSpawner : MonoBehaviour
             float spawnDelay = Random.Range(currentMinSpawnInterval, currentMaxSpawnInterval);
             yield return new WaitForSeconds(spawnDelay);
             Vector3 obstacleSpawn = SpawnRandomObstacle();
+            Vector3 coinSpawn = Vector3.zero;
             if (obstacleSpawn != new Vector3(1000, 1000, 1000))
             {
-                SpawnRandomCoin(obstacleSpawn);
-                SpawnRandomPowerup(obstacleSpawn);
+                coinSpawn = SpawnRandomCoin(obstacleSpawn);
+            }
+            if(obstacleSpawn != new Vector3(1000,1000,1000) && coinSpawn != Vector3.zero)
+            {
+                SpawnRandomPowerup(obstacleSpawn, coinSpawn);
             }
         }
     }
@@ -257,12 +261,12 @@ public class ObstacleSpawner : MonoBehaviour
         return spawnPosition;
     }
 
-    private void SpawnRandomCoin(Vector3 obstacleSpawn)
+    private Vector3 SpawnRandomCoin(Vector3 obstacleSpawn)
     {
         if (coinPrefabs == null || coinPrefabs.Count == 0)
         {
             Debug.LogWarning("No obstacle prefabs assigned to the spawner!");
-            return;
+            return Vector3.zero;
         }
 
         int randomIndex = Random.Range(0, coinPrefabs.Count);
@@ -271,7 +275,7 @@ public class ObstacleSpawner : MonoBehaviour
         if (coinPrefab == null)
         {
             Debug.LogWarning("One of the obstacle prefabs is null!");
-            return;
+            return Vector3.zero;
         }
 
         // Get random spawn position from the fixed positions array
@@ -282,10 +286,10 @@ public class ObstacleSpawner : MonoBehaviour
         }
 
         StartCoroutine(SpawnCoin(coinPrefab, spawnPosition));
-
+        return spawnPosition;
     }
 
-    private void SpawnRandomPowerup(Vector3 obstacleSpawn)
+    private void SpawnRandomPowerup(Vector3 obstacleSpawn, Vector3 coinSpawn)
     {
         if (powerupPrefabs == null || powerupPrefabs.Count == 0)
         {
@@ -304,7 +308,7 @@ public class ObstacleSpawner : MonoBehaviour
 
         // Get random spawn position from the fixed positions array
         Vector3 spawnPosition = GetRandomSpawnPosition();
-        while (spawnPosition == obstacleSpawn)
+        while (spawnPosition == obstacleSpawn || spawnPosition == coinSpawn)
         {
             spawnPosition = GetRandomSpawnPosition();
         }

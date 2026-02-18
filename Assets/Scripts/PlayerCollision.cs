@@ -236,4 +236,13 @@ public class PlayerCollision : MonoBehaviour
         if (heartB != null) heartB.SetActive(true);
         if (heartC != null) heartC.SetActive(true);
     }
+
+    public bool checkImmunity()
+    {
+        return immunity;
+    }
+    public void toggleImmunity()
+    {
+        immunity = !immunity;
+    }
 }

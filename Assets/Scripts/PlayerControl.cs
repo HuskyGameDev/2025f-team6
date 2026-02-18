@@ -292,7 +292,20 @@ public class PlayerControl : MonoBehaviour
             Image img = powerupSprite.gameObject.GetComponent<Image>();
             img.sprite = Resources.Load<Sprite>("MSPPixel");
             img.color = new UnityEngine.Color(1f, 1f, 1f, (float)MSPPixelTransparency); //
-        }        
+        } 
+        else if (powerup.name.Contains("Turbo"))
+        {
+            PlayerCollision collision = gameObject.GetComponent<PlayerCollision>();
+            AudioManager.instance.PlaySoundFXClip(usePowerupClip, transform, 1f);
+            if(GameSpeedController.Instance != null)
+            {
+                GameSpeedController.Instance.TurboPowerup(collision);
+            }
+            currentPowerup = null;
+            Image img = powerupSprite.gameObject.GetComponent<Image>();
+            img.sprite = Resources.Load<Sprite>("MSPPixel");
+            img.color = new UnityEngine.Color(1f, 1f, 1f, (float)MSPPixelTransparency); //
+        }
     }
 
     public void GainPowerup(GameObject powerup)
