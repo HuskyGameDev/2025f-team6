@@ -3144,6 +3144,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
+      propertyPath: yPos
+      value: -3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
       propertyPath: gameRunner
       value: 
       objectReference: {fileID: 1914262280}
@@ -3177,19 +3181,19 @@ PrefabInstance:
       objectReference: {fileID: 3600303234130359456, guid: 652ec08be7692f744a05c280458fd420, type: 3}
     - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
       propertyPath: playerPositions.Array.data[0].y
-      value: -4
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
       propertyPath: playerPositions.Array.data[1].y
-      value: -4
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
       propertyPath: playerPositions.Array.data[2].y
-      value: -4
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
       propertyPath: playerPositions.Array.data[3].y
-      value: -4
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 4596137652305553478, guid: d37843219a18e164d970618c46226d31, type: 3}
       propertyPath: m_Color.a
