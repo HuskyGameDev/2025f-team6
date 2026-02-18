@@ -107,14 +107,17 @@ MonoBehaviour:
   speedCurve: 1.5
   yPos: -3.5
   gameRunner: {fileID: 0}
+  targetRotation: 0
   playerPositions:
   - {x: -3, y: -3, z: 0}
   - {x: -1, y: -3, z: 0}
   - {x: 1, y: -3, z: 0}
   - {x: 3, y: -3, z: 0}
   blinkDuration: 1
+  shieldDuration: 5
   blinkInterval: 0.1
   hitColor: {r: 1, g: 0, b: 0, a: 1}
+  shieldColor: {r: 1, g: 0, b: 0.7741265, a: 1}
   hitParticles: {fileID: 0}
   hitSound: {fileID: 0}
   horn:
@@ -123,7 +126,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cc22f696a130108479d95742b910d06c, type: 3}
   usePowerupClip: {fileID: 8300000, guid: 4cd9e6f7e4c970d448f54e0e45b9664d, type: 3}
   powerupSprite: {fileID: 0}
-  currentPowerup: 
+  currentPowerup: {fileID: 0}
+  defaultPowerupSprite: {fileID: 0}
 --- !u!114 &1133778747936902698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +150,7 @@ MonoBehaviour:
   immunityDuration: 2
   pHitbox: {fileID: 4720095877785755651}
   pc: {fileID: 0}
+  maxLives: 3
   lives: 3
   endScene: GameOverMenu
 --- !u!61 &4720095877785755651

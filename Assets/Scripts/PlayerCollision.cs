@@ -245,4 +245,8 @@ public class PlayerCollision : MonoBehaviour
     {
         immunity = !immunity;
     }
+    public void setImmunity(bool set)
+    {
+        immunity = set;
+    }
 }

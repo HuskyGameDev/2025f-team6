@@ -26,8 +26,10 @@ public class PlayerControl : MonoBehaviour
 
     [Header("Hit Effect Settings")]
     [SerializeField] private float blinkDuration = 1f;
+    [SerializeField] private float shieldDuration = 5f;
     [SerializeField] private float blinkInterval = 0.1f;
     [SerializeField] private UnityEngine.Color hitColor = UnityEngine.Color.red;
+    [SerializeField] private UnityEngine.Color shieldColor = new UnityEngine.Color(1f, 0.4117647f, 0.7058824f);
     [SerializeField] private ParticleSystem hitParticles;
     [SerializeField] private AudioClip hitSound;
 
@@ -52,6 +54,7 @@ public class PlayerControl : MonoBehaviour
     private bool halfwayRot;
     private float posDiff;
     private bool isMoving = false;
+    private bool isShielded = false;
 
     // Rendering components
     private SpriteRenderer spriteRenderer;
@@ -154,6 +157,7 @@ public class PlayerControl : MonoBehaviour
             {
                 UsePowerup(currentPowerup);
             }
+            //else play error noise maybe?
 
         }
 
@@ -306,6 +310,15 @@ public class PlayerControl : MonoBehaviour
             img.sprite = Resources.Load<Sprite>("MSPPixel");
             img.color = new UnityEngine.Color(1f, 1f, 1f, (float)MSPPixelTransparency); //
         }
+        else if (powerup.name.Contains("Shield Powerup"))
+        {
+            StartCoroutine(Shielded());
+            AudioManager.instance.PlaySoundFXClip(usePowerupClip, transform, 1f);
+            currentPowerup = null;
+            Image img = powerupSprite.gameObject.GetComponent<Image>();
+            img.sprite = Resources.Load<Sprite>("MSPPixel");
+            img.color = new UnityEngine.Color(1f, 1f, 1f, (float)MSPPixelTransparency);
+        }
     }
 
     public void GainPowerup(GameObject powerup)
@@ -317,26 +330,33 @@ public class PlayerControl : MonoBehaviour
 
     private void OnHit()
     {
-        // Start blink effect
-        if (!isBlinking)
+        if(isShielded)
         {
-            StartCoroutine(BlinkEffect());
+            //Play metallic shield hit sound or something but ignore the hit
         }
-
-        // Play hit sound
-        if (hitSound != null && audioSource != null)
+        else
         {
-            audioSource.PlayOneShot(hitSound);
-        }
+            // Start blink effect
+            if (!isBlinking)
+            {
+                StartCoroutine(BlinkEffect());
+            }
 
-        // Play particle effect
-        if (hitParticles != null)
-        {
-            Instantiate(hitParticles, transform.position, Quaternion.identity);
-        }
+            // Play hit sound
+            if (hitSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(hitSound);
+            }
 
-        // Add your game logic here (reduce health, etc.)
-        Debug.Log("Player hit!");
+            // Play particle effect
+            if (hitParticles != null)
+            {
+                Instantiate(hitParticles, transform.position, Quaternion.identity);
+            }
+
+            // Add your game logic here (reduce health, etc.)   | Are we just leaving chatgpt comments in here?? -elliot
+            Debug.Log("Player hit!");
+        }
     }
 
     public void CollectCoin()
@@ -369,6 +389,32 @@ public class PlayerControl : MonoBehaviour
         }
 
         isBlinking = false;
+    }
+
+    private IEnumerator Shielded()
+    {
+        float elapsedTime = 0f;
+        isShielded = true;
+        PlayerCollision playerCollision = gameObject.GetComponent<PlayerCollision>();
+        playerCollision.setImmunity(true);
+
+        if(spriteRenderer != null)
+        {
+            spriteRenderer.color = shieldColor;
+        }
+
+        while(elapsedTime < shieldDuration)
+        {
+            
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        if(spriteRenderer != null)
+        {
+            spriteRenderer.color = originalColor;
+        }
+        playerCollision.setImmunity(false);
+        isShielded = false;
     }
 
     // Public method to trigger hit effect from other scripts
