@@ -6,6 +6,7 @@ using TMPro;
 public class MainMenuButtonsController : MonoBehaviour
 {
     public Button[] buttons;
+    public GameObject[] selectorIcons;
 
     public Color defaultColor = Color.white;
     public Color hoverColor = new Color32(239, 195, 9, 255);
@@ -23,24 +24,33 @@ public class MainMenuButtonsController : MonoBehaviour
 
         if (buttons != null)
         {
-            foreach (Button b in buttons)
-                SetButtonTextColor(b, defaultColor);
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                SetButtonTextColor(buttons[i], defaultColor);
 
-            // optional; highlight the first button by default
-            if (buttons.Length > 0)
-                SetButtonTextColor(buttons[0], hoverColor);
+                if (selectorIcons != null && i < selectorIcons.Length && selectorIcons[i] != null)
+                    selectorIcons[i].SetActive(false);
+            }
         }
     }
-
 
     public void OnButtonHover(Button hoveredButton)
     {
         if (buttons == null) return;
 
-        foreach (Button b in buttons)
-            SetButtonTextColor(b, defaultColor);
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            SetButtonTextColor(buttons[i], defaultColor);
+
+            if (selectorIcons != null && i < selectorIcons.Length && selectorIcons[i] != null)
+                selectorIcons[i].SetActive(false);
+        }
 
         SetButtonTextColor(hoveredButton, hoverColor);
+
+        int idx = System.Array.IndexOf(buttons, hoveredButton);
+        if (selectorIcons != null && idx >= 0 && idx < selectorIcons.Length && selectorIcons[idx] != null)
+            selectorIcons[idx].SetActive(true);
 
         if (hoverSound != null && audioSource != null)
             audioSource.PlayOneShot(hoverSound);
@@ -49,6 +59,10 @@ public class MainMenuButtonsController : MonoBehaviour
     public void OnButtonExit(Button button)
     {
         SetButtonTextColor(button, defaultColor);
+
+        int idx = System.Array.IndexOf(buttons, button);
+        if (selectorIcons != null && idx >= 0 && idx < selectorIcons.Length && selectorIcons[idx] != null)
+            selectorIcons[idx].SetActive(false);
     }
 
     void SetButtonTextColor(Button button, Color color)
@@ -65,34 +79,9 @@ public class MainMenuButtonsController : MonoBehaviour
         Debug.LogWarning("no text for MainMenuButtonController to change color of in button " + button.name);
     }
 
-    //// TEMPORARY SOLUTION; Main game should not be three separate scenes.
-    ////    Will just pass in a difficulty and adjust linear or exponential speed increase and/or obstacle spawn rate in the future
-    //public void PlayGame()  // time to make this go to scene "Main" and make the difficulty (starting speed) work.
-    //{
-    //    switch (DifficultyButtonManager.difficultyValue)
-    //    {
-    //        case 0:
-    //        case 1:
-    //            Debug.Log("Loading easy");
-    //            SceneManager.LoadScene("Easy");
-    //            break;
-    //        case 2:
-    //            Debug.Log("Loading medium");
-    //            SceneManager.LoadScene("Medium");
-    //            break;
-    //        case 3:
-    //            Debug.Log("Loading hard");
-    //            SceneManager.LoadScene("Hard");
-    //            break;
-    //    }
-    //}
-
     public void PlayGame()
     {
         PlayClickSound();
-
-        // Difficulty is already stored statically
-        // GameSpeedController will read it on scene load
         SceneManager.LoadScene("VehicleMenu");
     }
 
@@ -127,7 +116,7 @@ public class MainMenuButtonsController : MonoBehaviour
 
     public void PlayClickSound()
     {
-        if (hoverSound != null && audioSource != null)
+        if (clickSound != null && audioSource != null)
             audioSource.PlayOneShot(clickSound);
     }
 }
