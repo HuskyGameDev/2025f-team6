@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7711255068481105560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7d547f79b4f6f4fba3b01c6ea5f641, type: 3}
+  m_Name: Stage One
+  m_EditorClassIdentifier: 
+  sameTypePersistenceBonus: 2
+  recentPenaltyPerOccurrence: 0.5
+  recentHistorySize: 4
+  allowDirectFallbackWhenTransitionMissing: 0
+  backgroundTypes:
+  - {fileID: 8059897252564094859}
+  transitions: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f25a57408b9e3f46897330d8c59a48f, type: 3}
+  m_Name: BackgroundLibrary
+  m_EditorClassIdentifier: 
+  stages:
+  - {fileID: -7711255068481105560}
+  backgroundTypes:
+  - {fileID: 8059897252564094859}
+  transitions: []
+--- !u!114 &8059897252564094859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 831236c8e491b3d4bb15692c9876903c, type: 3}
+  m_Name: Grass
+  m_EditorClassIdentifier: 
+  baseWeight: 1
+  sprites:
+  - {fileID: 3380681749429040740, guid: 402b3cc9666c9b94c9e22be3fa769468, type: 3}
+  decorationSpawnChance: 0.35
+  decorations:
+  - sprite: {fileID: 21300000, guid: 8808b3950486da140a78c9ac26a9228d, type: 3}
+    weight: 1
+    allowMirroring: 1
+    randomizeMirror: 1
+    mirrored: 0
+  - sprite: {fileID: 21300000, guid: cc2817b4a907bb04fb4878b6b3e48800, type: 3}
+    weight: 2
+    allowMirroring: 1
+    randomizeMirror: 1
+    mirrored: 0
+  allowedNextTypes:
+  - targetType: {fileID: 8059897252564094859}
+    requiresTransition: 0
+    allowDirectIfTransitionMissing: 1

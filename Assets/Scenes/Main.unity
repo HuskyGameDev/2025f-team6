@@ -1616,6 +1616,7 @@ GameObject:
   m_Component:
   - component: {fileID: 395832014}
   - component: {fileID: 395832015}
+  - component: {fileID: 395832016}
   m_Layer: 0
   m_Name: background1
   m_TagString: Untagged
@@ -1693,6 +1694,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &395832016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395832013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50eb5cc2d4af5d0439c3fdae01fe1f17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundSpriteRenderer: {fileID: 395832015}
+  decorationChildName: BackgroundDecoration
 --- !u!1 &423534174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,6 +1718,7 @@ GameObject:
   m_Component:
   - component: {fileID: 423534176}
   - component: {fileID: 423534175}
+  - component: {fileID: 423534177}
   m_Layer: 0
   m_Name: Background Scroller
   m_TagString: Untagged
@@ -1725,6 +1741,10 @@ MonoBehaviour:
   isScrolling: 1
   speedMultiplier: 1
   camera: {fileID: 1979255340}
+  panels:
+  - {fileID: 395832016}
+  - {fileID: 478312021}
+  autoFindPanelsIfEmpty: 1
 --- !u!4 &423534176
 Transform:
   m_ObjectHideFlags: 0
@@ -1734,7 +1754,7 @@ Transform:
   m_GameObject: {fileID: 423534174}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 0, y: 4.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1742,6 +1762,27 @@ Transform:
   - {fileID: 478312019}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &423534177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423534174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 776fd8b2dd66d4e4c91ac15981644b45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scroller: {fileID: 423534175}
+  panels:
+  - {fileID: 395832016}
+  - {fileID: 478312021}
+  library: {fileID: 11400000, guid: c7d6a33807fe6474da2a3887b484aa6c, type: 2}
+  currentStageIndex: 0
+  initializeOnStart: 1
+  autoFindPanelsIfEmpty: 1
+  verboseLogging: 0
 --- !u!1 &478312018
 GameObject:
   m_ObjectHideFlags: 0
@@ -1752,6 +1793,7 @@ GameObject:
   m_Component:
   - component: {fileID: 478312019}
   - component: {fileID: 478312020}
+  - component: {fileID: 478312021}
   m_Layer: 0
   m_Name: background2
   m_TagString: Untagged
@@ -1829,6 +1871,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &478312021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478312018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50eb5cc2d4af5d0439c3fdae01fe1f17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundSpriteRenderer: {fileID: 478312020}
+  decorationChildName: BackgroundDecoration
 --- !u!1 &479392142
 GameObject:
   m_ObjectHideFlags: 0
@@ -5146,6 +5202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttons: []
+  selectorIcons: []
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColor: {r: 0.9372549, g: 0.7647059, b: 0.03529412, a: 1}
   hoverSound: {fileID: 8300000, guid: 4808e9083c2a0324ba81d388d6a937d7, type: 3}
@@ -6044,7 +6101,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.654902, g: 0.654902, b: 0.654902, a: 0}
+  m_BackGroundColor: {r: 0.0627451, g: 0.078431375, b: 0.121568635, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
