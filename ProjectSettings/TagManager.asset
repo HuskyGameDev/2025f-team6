@@ -10,6 +10,7 @@ TagManager:
   - UIAudioSource
   - Difficulty
   - Powerup
+  - Slick
   layers:
   - Default
   - TransparentFX
