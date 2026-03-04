@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameSpeedController : MonoBehaviour
 {
     public static GameSpeedController Instance;
-
     [Header("Base Speeds")]
     public float easyStartSpeed = 3f;
     public float normalStartSpeed = 5f;
@@ -26,7 +26,7 @@ public class GameSpeedController : MonoBehaviour
 
     private float speedIncreasePerSecond;
     private float debugTimer;
-    private bool turbo = false;
+    public bool turbo {get; private set;} = false;
 
     private void Awake()
     {
@@ -108,28 +108,31 @@ public class GameSpeedController : MonoBehaviour
     }
 
     // Turbo Mode Controller
-    public void TurboPowerup(PlayerCollision collision)
+    public void TurboPowerup(PlayerCollision collision, PointCounter scoreScript)
     {
         turbo = true;
         //Set the player to immune
-        collision.toggleImmunity();
+        collision.setImmunity(true);
         //Store current speed to resume later
         float speedStore = CurrentSpeed;
         CurrentSpeed = turboSpeed;
         Debug.Log("Turbo Start");
+        //Update Points Per Second to make it feel more like zooming
+        scoreScript.UpdatePPS(25);
 
         //Delay for the turbo delay
-        StartCoroutine(TurboDelay(speedStore,collision));
+        StartCoroutine(TurboDelay(speedStore,collision, scoreScript));
     }
 
-    private IEnumerator TurboDelay(float speed, PlayerCollision collision)
+    private IEnumerator TurboDelay(float speed, PlayerCollision collision, PointCounter scoreScript)
     {
         yield return new WaitForSeconds(turboDelay);
 
         //Reset speed to the old speed
         CurrentSpeed = speed;
         turbo = false;
-        collision.toggleImmunity();
+        collision.setImmunity(false);
+        scoreScript.UpdatePPS(1);
         Debug.Log("Turbo End");
     }
 

@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PointCounter : MonoBehaviour
 {
-    [SerializeField] private float points;
-    [SerializeField] private float pointsPerSecond;
+    private float points;
+    private float pointsPerSecond = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,6 +30,11 @@ public class PointCounter : MonoBehaviour
     public int GetPoints()
     {
         return (int) Mathf.Floor(points);
+    }
+
+    public void UpdatePPS(float newPPS)
+    {
+        pointsPerSecond = newPPS;
     }
     
 }

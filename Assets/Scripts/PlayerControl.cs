@@ -303,7 +303,7 @@ public class PlayerControl : MonoBehaviour
             AudioManager.instance.PlaySoundFXClip(usePowerupClip, transform, 1f);
             if(GameSpeedController.Instance != null)
             {
-                GameSpeedController.Instance.TurboPowerup(collision);
+                GameSpeedController.Instance.TurboPowerup(collision, points);
             }
             currentPowerup = null;
             Image img = powerupSprite.gameObject.GetComponent<Image>();
@@ -330,7 +330,7 @@ public class PlayerControl : MonoBehaviour
 
     private void OnHit()
     {
-        if(isShielded)
+        if(isShielded || GameSpeedController.Instance.turbo)
         {
             //Play metallic shield hit sound or something but ignore the hit
         }
