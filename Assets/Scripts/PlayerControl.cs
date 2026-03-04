@@ -43,7 +43,7 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private Sprite defaultPowerupSprite; // MSPPixel
     const double MSPPixelTransparency = 0.3;
 
-    private int currentPosition;
+    [SerializeField] private int currentPosition;
     private float interpolatorPos;
     private float interpolatorRot;
     private Vector3 oldPosition;
@@ -55,6 +55,7 @@ public class PlayerControl : MonoBehaviour
     private float posDiff;
     private bool isMoving = false;
     private bool isShielded = false;
+    private bool isSlicked = false;
 
     // Rendering components
     private SpriteRenderer spriteRenderer;
@@ -123,14 +124,14 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         // Get the input from the player to see if they are moving between positions
-        if (Input.GetKeyDown(moveLeft1) || Input.GetKeyDown(moveLeft2))
+        if ((Input.GetKeyDown(moveLeft1) || Input.GetKeyDown(moveLeft2)) && !isSlicked)
         {
             if (currentPosition > 0)
             {
                 StartMovementToPosition(currentPosition - 1);
             }
         }
-        if (Input.GetKeyDown(moveRight1) || Input.GetKeyDown(moveRight2))
+        if ((Input.GetKeyDown(moveRight1) || Input.GetKeyDown(moveRight2)) && !isSlicked)
         {
             if (currentPosition < playerPositions.Length - 1)
             {
@@ -165,8 +166,13 @@ public class PlayerControl : MonoBehaviour
         if (isMoving)
         {
             MovePlayer();
-        }
+        } //*/
         
+        if(isSlicked && !isMoving)
+        {
+            isSlicked = false;
+        }
+
     }
 
     private void StartMovementToPosition(int newPosition)
@@ -483,6 +489,28 @@ public class PlayerControl : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void RandomMove()
+    {
+        int newPos = currentPosition;
+        if(currentPosition == 0)
+        {
+            newPos++;
+        }
+        else if(currentPosition == 3)
+        {
+            newPos--;
+        }
+        else
+        {
+            do {
+                newPos += Random.Range(-1, 1);
+            } while(newPos == currentPosition);
+        }
+
+        isSlicked = true;
+        StartMovementToPosition(newPos);
     }
 
     public void RestartMotion()

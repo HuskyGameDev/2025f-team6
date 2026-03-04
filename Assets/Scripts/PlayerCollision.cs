@@ -68,6 +68,7 @@ public class PlayerCollision : MonoBehaviour
     public void HandleCollision(GameObject obstacle)
     {   
         if (obstacle.CompareTag("Obstacle") && !immunity) {
+            Debug.Log("Hit an obstacle");
             //Reduce Lives by 1
             lives--;
             BoxCollider2D obHitbox = obstacle.GetComponent<BoxCollider2D>();
@@ -111,11 +112,19 @@ public class PlayerCollision : MonoBehaviour
             OnPlayerHit();
             pc.TriggerHitEffect();
         }
-        else if (obstacle.CompareTag("Coin")) {
+        else if (obstacle.CompareTag("Slick") && !immunity)
+        {
+            Debug.Log("Hit a slick obstacle");
+            pc.RandomMove();
+        }
+        else if (obstacle.CompareTag("Coin")) 
+        {
+            Debug.Log("Got a Coin");
             pc.CollectCoin();
         }
         else if (obstacle.CompareTag("Powerup"))
         {
+            Debug.Log("Collected a Powerup");
             pc.GainPowerup(obstacle);
         }
         
