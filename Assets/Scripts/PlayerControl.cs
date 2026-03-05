@@ -36,6 +36,9 @@ public class PlayerControl : MonoBehaviour
     [Header("Sound Effects")]
     [SerializeField] private AudioClip[] horn;
     [SerializeField] private AudioClip usePowerupClip;
+    [SerializeField] private AudioClip useDonutPowerup;
+    [SerializeField] private AudioClip useTurboPowerup;
+    [SerializeField] private AudioClip useShieldPowerup;
 
     [Header("Powerups")]
     [SerializeField] private Image powerupSprite;
@@ -297,7 +300,7 @@ public class PlayerControl : MonoBehaviour
             PlayerCollision playerCollision = gameObject.GetComponent<PlayerCollision>();
             playerCollision.incrementLives();
             playerCollision.updateHearts(playerCollision.getLivesRemaining(), false);
-            AudioManager.instance.PlaySoundFXClip(usePowerupClip, transform, 1f);
+            AudioManager.instance.PlaySoundFXClip(useDonutPowerup, transform, 1f);
             currentPowerup = null;
             Image img = powerupSprite.gameObject.GetComponent<Image>();
             img.sprite = Resources.Load<Sprite>("MSPPixel");
@@ -306,7 +309,7 @@ public class PlayerControl : MonoBehaviour
         else if (powerup.name.Contains("Turbo"))
         {
             PlayerCollision collision = gameObject.GetComponent<PlayerCollision>();
-            AudioManager.instance.PlaySoundFXClip(usePowerupClip, transform, 1f);
+            AudioManager.instance.PlaySoundFXClip(useTurboPowerup, transform, 1f);
             if(GameSpeedController.Instance != null)
             {
                 GameSpeedController.Instance.TurboPowerup(collision, points);
@@ -319,7 +322,7 @@ public class PlayerControl : MonoBehaviour
         else if (powerup.name.Contains("Shield Powerup"))
         {
             StartCoroutine(Shielded());
-            AudioManager.instance.PlaySoundFXClip(usePowerupClip, transform, 1f);
+            AudioManager.instance.PlaySoundFXClip(useShieldPowerup, transform, 1f);
             currentPowerup = null;
             Image img = powerupSprite.gameObject.GetComponent<Image>();
             img.sprite = Resources.Load<Sprite>("MSPPixel");

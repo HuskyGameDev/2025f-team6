@@ -19,9 +19,9 @@ public class UIController : MonoBehaviour
     void Start()
     {
         scoreScript = runner.GetComponent<PointCounter>();
-        temp = GetComponentsInChildren<Component>();
-        scoreDisplay = GetComponentInChildren<TextMeshProUGUI>();
-        coinDisplay = coiner.GetComponentInChildren<TextMeshProUGUI>();
+        // temp = GetComponentsInChildren<Component>();
+        // scoreDisplay = GetComponentInChildren<TextMeshProUGUI>();
+        // coinDisplay = coiner.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     // Update is called once per frame

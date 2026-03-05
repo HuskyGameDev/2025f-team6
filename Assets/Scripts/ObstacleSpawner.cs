@@ -50,6 +50,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     // Global Variables
     private bool powerupCanSpawn = true;
+    public int disabledLane = -1;
 
     // Event system to notify obstacles of speed changes
     public System.Action<float> OnSpeedMultiplierChanged;
@@ -325,8 +326,13 @@ public class ObstacleSpawner : MonoBehaviour
             return new Vector3(0f, 8f, 0f);
         }
 
-        // Return a random position from the spawnPositions array
-        return spawnPositions[Random.Range(0, spawnPositions.Length)];
+        // Return a random position from the spawnPositions array, redo if disabled lane was picked
+        int result;
+        do {
+            result = Random.Range(0, spawnPositions.Length);
+        } while (result == disabledLane);
+
+        return spawnPositions[result];
     }
 
     private void SpawnObstacle(GameObject obstaclePrefab, Vector3 position)

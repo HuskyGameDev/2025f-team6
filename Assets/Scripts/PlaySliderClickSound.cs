@@ -5,7 +5,7 @@
 //    public AudioSource uiAudio; // Assign your UIAudio AudioSource
 //    public AudioClip clickSound; // Assign the click sound effect
 
-//    private Slider slider;
+//    private Slider slider;
 //    void Awake()
 //    {
 //        slider = GetComponent<Slider>();
@@ -28,7 +28,7 @@ public class SliderClickSound : MonoBehaviour
     public AudioClip clickSound;
     public float debounceTime = 0.5f; // seconds between allowed plays
 
-    private Slider slider;
+    private Slider slider;
     private float lastPlayTime = -999f;
     void Awake() {
         slider = GetComponent<Slider>();
