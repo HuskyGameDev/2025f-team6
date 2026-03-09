@@ -67,7 +67,7 @@ public class GameSpeedController : MonoBehaviour
         }
     }
 
-    private float GetStartSpeedFromDifficulty()
+    public float GetStartSpeedFromDifficulty()
     {
         switch (DifficultyButtonManager.difficultyValue)
         {
