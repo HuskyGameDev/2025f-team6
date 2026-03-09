@@ -254,8 +254,36 @@ public class ObstacleSpawner : MonoBehaviour
             return new Vector3(1000, 1000, 1000);
         }
 
-        int randomIndex = Random.Range(0, obstaclePrefabs.Count);
-        GameObject obstaclePrefab = obstaclePrefabs[randomIndex];
+        // Get random spawn position from the fixed positions array
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+
+        int randomIndex;
+        GameObject obstaclePrefab;
+        while (true) 
+        {
+            randomIndex = Random.Range(0, obstaclePrefabs.Count);
+            obstaclePrefab = obstaclePrefabs[randomIndex];
+
+            int lane = PositionToLane(spawnPosition.x);
+            
+            if (obstaclePrefab.name.Contains("Road Block"))
+            {
+                if (!obstaclePrefab.name.Contains("Lane" + lane))
+                {
+                    continue;
+                }
+
+                // if (disabledLane != -1)
+                // {
+                //     if (disabledLane != lane-1)
+                //     {
+                //         continue;
+                //     }
+                // }
+            }
+
+            break;
+        } 
 
         if (obstaclePrefab == null)
         {
@@ -263,11 +291,18 @@ public class ObstacleSpawner : MonoBehaviour
             return new Vector3(1000, 1000, 1000);
         }
 
-        // Get random spawn position from the fixed positions array
-        Vector3 spawnPosition = GetRandomSpawnPosition();
-
         SpawnObstacle(obstaclePrefab, spawnPosition);
         return spawnPosition;
+    }
+
+    private int PositionToLane(float x)
+    {
+        if (Mathf.Approximately(x, -2.85f)) return 1;
+        if (Mathf.Approximately(x, -1f))    return 2;
+        if (Mathf.Approximately(x, 1f))     return 3;
+        if (Mathf.Approximately(x, 3f))     return 4;
+
+        return -1;
     }
 
     private Vector3 SpawnRandomCoin(Vector3 obstacleSpawn)
@@ -382,21 +417,21 @@ public class ObstacleSpawner : MonoBehaviour
         // Display obstacle indiactors if speed is high enough
         if (GameSpeedController.Instance.CurrentSpeed > minSpeedRequired)
         {
-            if (position.x == -3)
+            if (obstaclePrefab.name.Contains("Road Block"))
             {
-                lanes[0].SetTrigger("PlayAnim");
-            }
-            else if (position.x == -1)
+                int missingLane = PositionToLane(position.x);
+
+                for (int i = 0; i < 4; i++)
+                {
+                    if (i != missingLane-1)
+                    {
+                        lanes[i].SetTrigger("PlayAnim");
+                    }
+                }
+            } 
+            else
             {
-                lanes[1].SetTrigger("PlayAnim");
-            }
-            else if (position.x == 1)
-            {
-                lanes[2].SetTrigger("PlayAnim");
-            }
-            else if (position.x == 3)
-            {
-                lanes[3].SetTrigger("PlayAnim");
+                lanes[PositionToLane(position.x)-1].SetTrigger("PlayAnim");
             }
         }
 

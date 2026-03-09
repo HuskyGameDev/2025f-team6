@@ -95,7 +95,7 @@ public class ObstacleController : MonoBehaviour
         if (destroyWhenInvisible && mainCamera != null)
         {
             Vector3 screenPoint = mainCamera.WorldToViewportPoint(transform.position);
-            return screenPoint.y < -0.1f; // Slightly below the screen
+            return screenPoint.y < -0.25f; // Slightly below the screen
         }
         else
         {

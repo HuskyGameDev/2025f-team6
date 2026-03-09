@@ -115,7 +115,7 @@ public class PlayerCollision : MonoBehaviour
         }
         else if (obstacle.CompareTag("Slick") && !immunity)
         {
-            Debug.Log("Hit a slick obstacle");
+            // Debug.Log("Hit a slick obstacle");
             pc.RandomMove();
         }
         else if ((obstacle.CompareTag("Slick") || obstacle.CompareTag("Obstacle")) && getTurbo())
@@ -125,12 +125,12 @@ public class PlayerCollision : MonoBehaviour
         }
         else if (obstacle.CompareTag("Coin")) 
         {
-            Debug.Log("Got a Coin");
+            // Debug.Log("Got a Coin");
             pc.CollectCoin();
         }
         else if (obstacle.CompareTag("Powerup"))
         {
-            Debug.Log("Collected a Powerup");
+            // Debug.Log("Collected a Powerup");
             pc.GainPowerup(obstacle);
         }
         
