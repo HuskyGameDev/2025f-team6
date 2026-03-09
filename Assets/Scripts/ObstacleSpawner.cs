@@ -32,6 +32,10 @@ public class ObstacleSpawner : MonoBehaviour
         new Vector3(4f, 8f, 0f)
     };
 
+    [Header("Obstacle Indication")]
+    [SerializeField] private List<Animator> lanes;
+    [SerializeField] private float minSpeedRequired = 10f;
+
     [Header("Obstacle Pooling (Optional)")]
     [SerializeField] private bool useObjectPooling = true;
     [SerializeField] private int poolSize = 10;
@@ -374,6 +378,28 @@ public class ObstacleSpawner : MonoBehaviour
             obstacleInstance.transform.position = position;
             obstacleInstance.SetActive(true);
         }
+    
+        // Display obstacle indiactors if speed is high enough
+        if (GameSpeedController.Instance.CurrentSpeed > minSpeedRequired)
+        {
+            if (position.x == -3)
+            {
+                lanes[0].SetTrigger("PlayAnim");
+            }
+            else if (position.x == -1)
+            {
+                lanes[1].SetTrigger("PlayAnim");
+            }
+            else if (position.x == 1)
+            {
+                lanes[2].SetTrigger("PlayAnim");
+            }
+            else if (position.x == 3)
+            {
+                lanes[3].SetTrigger("PlayAnim");
+            }
+        }
+
     }
 
     private IEnumerator SpawnCoin(GameObject coinPrefab, Vector3 position)
