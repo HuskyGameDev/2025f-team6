@@ -224,6 +224,10 @@ public class ObstacleSpawner : MonoBehaviour
         {
             // Use current spawn intervals that change over time
             float spawnDelay = Random.Range(currentMinSpawnInterval, currentMaxSpawnInterval);
+            if (GameSpeedController.Instance.turbo)
+            {
+                spawnDelay /= 3;
+            }
             yield return new WaitForSeconds(spawnDelay);
             Vector3 obstacleSpawn = SpawnRandomObstacle();
             Vector3 coinSpawn = Vector3.zero;

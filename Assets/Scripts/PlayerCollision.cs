@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -23,7 +24,7 @@ public class PlayerCollision : MonoBehaviour
     [SerializeField] private int maxLives = 3;
     [SerializeField] private int lives = 3;
     [SerializeField] private string endScene;
-
+    [SerializeField] private GameObject runner;
 
     private GameObject heartA; // left-most
     private GameObject heartB;
@@ -116,6 +117,11 @@ public class PlayerCollision : MonoBehaviour
         {
             Debug.Log("Hit a slick obstacle");
             pc.RandomMove();
+        }
+        else if ((obstacle.CompareTag("Slick") || obstacle.CompareTag("Obstacle")) && getTurbo())
+        {
+            Debug.Log("Hit an obstacle while turboing");
+            GameSpeedController.Instance.EndTurbo(this, runner.GetComponent<PointCounter>());
         }
         else if (obstacle.CompareTag("Coin")) 
         {
@@ -257,5 +263,10 @@ public class PlayerCollision : MonoBehaviour
     public void setImmunity(bool set)
     {
         immunity = set;
+    }
+
+    public bool getTurbo()
+    {
+        return GameSpeedController.Instance.turbo;
     }
 }

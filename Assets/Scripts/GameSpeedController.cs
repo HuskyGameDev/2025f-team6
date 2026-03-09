@@ -19,10 +19,10 @@ public class GameSpeedController : MonoBehaviour
 
     [Header("Limits")]
     public float maxSpeed = 15f;
-    public float turboSpeed = 25f;
-    public float turboDelay = 3f;
+    public float turboSpeed = 20f;
 
     public float CurrentSpeed { get; private set; }
+    private float tempSpeed;
 
     private float speedIncreasePerSecond;
     private float debugTimer;
@@ -108,28 +108,23 @@ public class GameSpeedController : MonoBehaviour
     }
 
     // Turbo Mode Controller
-    public void TurboPowerup(PlayerCollision collision, PointCounter scoreScript)
+    public void StartTurbo(PlayerCollision collision, PointCounter scoreScript)
     {
         turbo = true;
         //Set the player to immune
         collision.setImmunity(true);
         //Store current speed to resume later
-        float speedStore = CurrentSpeed;
+        tempSpeed = CurrentSpeed;
         CurrentSpeed = turboSpeed;
         Debug.Log("Turbo Start");
         //Update Points Per Second to make it feel more like zooming
         scoreScript.UpdatePPS(25);
-
-        //Delay for the turbo delay
-        StartCoroutine(TurboDelay(speedStore,collision, scoreScript));
     }
 
-    private IEnumerator TurboDelay(float speed, PlayerCollision collision, PointCounter scoreScript)
+    public void EndTurbo(PlayerCollision collision, PointCounter scoreScript)
     {
-        yield return new WaitForSeconds(turboDelay);
-
         //Reset speed to the old speed
-        CurrentSpeed = speed;
+        CurrentSpeed = tempSpeed;
         turbo = false;
         collision.setImmunity(false);
         scoreScript.UpdatePPS(1);

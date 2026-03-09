@@ -312,7 +312,7 @@ public class PlayerControl : MonoBehaviour
             AudioManager.instance.PlaySoundFXClip(useTurboPowerup, transform, 1f);
             if(GameSpeedController.Instance != null)
             {
-                GameSpeedController.Instance.TurboPowerup(collision, points);
+                GameSpeedController.Instance.StartTurbo(collision, points);
             }
             currentPowerup = null;
             Image img = powerupSprite.gameObject.GetComponent<Image>();
