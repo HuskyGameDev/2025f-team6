@@ -1,3 +1,4 @@
+using System.Numerics;
 using UnityEngine;
 
 public class ObstacleController : MonoBehaviour
@@ -22,6 +23,12 @@ public class ObstacleController : MonoBehaviour
     private GameObject originalPrefab;
     public bool isActive = false;
 
+    [Header("Coin/Powerup Effect")]
+
+    [SerializeField] private float maxSize = 1.1f;
+    [SerializeField] private float sizeSpeed = 1;
+    private float interpolator = 0.0f;
+    private bool interpolatorFlip = false;
     // Speed multiplier from spawner
     private float speedMultiplier = 1f;
     private float baseSpeed; // Store the original speed
@@ -33,7 +40,12 @@ public class ObstacleController : MonoBehaviour
         GameSpeedController speedController = GameSpeedController.GetOrCreate();
         float globalSpeed = speedController.CurrentSpeed;
 
-        transform.Translate(Vector3.down * globalSpeed * speedMultiplier * Time.deltaTime);
+        transform.Translate(UnityEngine.Vector3.down * globalSpeed * speedMultiplier * Time.deltaTime);
+
+        if(CompareTag("Powerup") || CompareTag("Coin"))
+        {
+            Undulate();
+        }
 
         if (IsOffScreen())
         {
@@ -94,7 +106,7 @@ public class ObstacleController : MonoBehaviour
     {
         if (destroyWhenInvisible && mainCamera != null)
         {
-            Vector3 screenPoint = mainCamera.WorldToViewportPoint(transform.position);
+            UnityEngine.Vector3 screenPoint = mainCamera.WorldToViewportPoint(transform.position);
             return screenPoint.y < -0.25f; // Slightly below the screen
         }
         else
@@ -160,9 +172,32 @@ public class ObstacleController : MonoBehaviour
         if (!destroyWhenInvisible)
         {
             Gizmos.color = Color.yellow;
-            Vector3 destructionPoint = new Vector3(transform.position.x, destroyYPosition, transform.position.z);
+            UnityEngine.Vector3 destructionPoint = new UnityEngine.Vector3(transform.position.x, destroyYPosition, transform.position.z);
             Gizmos.DrawLine(transform.position, destructionPoint);
-            Gizmos.DrawWireCube(destructionPoint, Vector3.one);
+            Gizmos.DrawWireCube(destructionPoint, UnityEngine.Vector3.one);
+        }
+    }
+
+    private void Undulate()
+    {
+        float newSize = Mathf.Lerp(5, 5*maxSize, interpolator);
+
+        if (interpolatorFlip)
+        {
+            interpolator -= Time.deltaTime * sizeSpeed;
+        } else if (!interpolatorFlip)
+        {
+            interpolator += Time.deltaTime * sizeSpeed;
+        }
+
+        transform.localScale = new UnityEngine.Vector3(newSize, newSize, 1);
+
+        if(interpolator >= 1)
+        {
+            interpolatorFlip = true;
+        } else if(interpolator <= 0)
+        {
+            interpolatorFlip = false;
         }
     }
 }
