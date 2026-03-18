@@ -119,6 +119,57 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &9880069
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9880071}
+  - component: {fileID: 9880070}
+  m_Layer: 0
+  m_Name: Siren Animation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!320 &9880070
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9880069}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 61aceaccd778b7d4fb54a8a38c3b820e, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 5352978277724235437, guid: 61aceaccd778b7d4fb54a8a38c3b820e, type: 2}
+    value: {fileID: 1326157693}
+  m_ExposedReferences:
+    m_References: []
+--- !u!4 &9880071
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9880069}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.48188797, y: -3.1193542, z: 0.09183184}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &16998996 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4335383998503685107, guid: ec7c5ae61184a4f4a96d456f38aa0e0b, type: 3}
@@ -1766,8 +1817,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.1364163}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: -0.5}
-    oldSize: {x: 0.22, y: 0.16}
+    pivot: {x: 0.42857146, y: -0.4666667}
+    oldSize: {x: 0.14, y: 0.15}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1840,7 +1891,7 @@ SpriteRenderer:
   m_SortingLayerID: 1236504645
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7441146526612628826, guid: 9dc47e44f1d383d458678aaada9cc999, type: 3}
+  m_Sprite: {fileID: 8042806341163241499, guid: cb3ec4e8da1f08c49961490bab481c0f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4714,10 +4765,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
-      propertyPath: yPos
-      value: -3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
       propertyPath: gameRunner
       value: 
       objectReference: {fileID: 1914262280}
@@ -4725,82 +4772,10 @@ PrefabInstance:
       propertyPath: powerupSprite
       value: 
       objectReference: {fileID: 1578090249}
-    - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
-      propertyPath: shieldColor.b
-      value: 0.06871343
-      objectReference: {fileID: 0}
-    - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
-      propertyPath: shieldColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
-      propertyPath: shieldColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
-      propertyPath: targetRotation
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
-      propertyPath: usePowerupClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 4cd9e6f7e4c970d448f54e0e45b9664d, type: 3}
-    - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
-      propertyPath: useDonutPowerup
-      value: 
-      objectReference: {fileID: 8300000, guid: 73f4a820bfd2c4b6c855d773558133d2, type: 3}
-    - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
-      propertyPath: useTurboPowerup
-      value: 
-      objectReference: {fileID: 8300000, guid: cfebd6c2c23ae42b7bc0412721dfbac9, type: 3}
-    - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
-      propertyPath: useShieldPowerup
-      value: 
-      objectReference: {fileID: 8300000, guid: cef502e03be47405289927d7f2eccff5, type: 3}
-    - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
-      propertyPath: defaultPowerupSprite
-      value: 
-      objectReference: {fileID: 3600303234130359456, guid: 652ec08be7692f744a05c280458fd420, type: 3}
-    - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
-      propertyPath: playerPositions.Array.data[0].x
-      value: -2.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
-      propertyPath: playerPositions.Array.data[0].y
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
-      propertyPath: playerPositions.Array.data[1].y
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
-      propertyPath: playerPositions.Array.data[2].y
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
-      propertyPath: playerPositions.Array.data[3].y
-      value: -5
-      objectReference: {fileID: 0}
     - target: {fileID: 1133778747936902698, guid: d37843219a18e164d970618c46226d31, type: 3}
       propertyPath: runner
       value: 
       objectReference: {fileID: 1914262280}
-    - target: {fileID: 4596137652305553478, guid: d37843219a18e164d970618c46226d31, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596137652305553478, guid: d37843219a18e164d970618c46226d31, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596137652305553478, guid: d37843219a18e164d970618c46226d31, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596137652305553478, guid: d37843219a18e164d970618c46226d31, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5088528645924244018, guid: d37843219a18e164d970618c46226d31, type: 3}
       propertyPath: m_Name
       value: Player
@@ -5092,11 +5067,6 @@ MonoBehaviour:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4335383998503685107, guid: ec7c5ae61184a4f4a96d456f38aa0e0b, type: 3}
   m_PrefabInstance: {fileID: 798642239}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1073229728 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3286121048380036430, guid: e65f7e52c786e3140857047a5e251fc2, type: 3}
-  m_PrefabInstance: {fileID: 7303586664635861374}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1079022623
 GameObject:
@@ -6033,6 +6003,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320009637}
   m_CullTransparentMesh: 1
+--- !u!95 &1326157693 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5805062361008709759, guid: d37843219a18e164d970618c46226d31, type: 3}
+  m_PrefabInstance: {fileID: 996787499}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1365940857
 GameObject:
   m_ObjectHideFlags: 0
@@ -6605,7 +6580,6 @@ MonoBehaviour:
   - {fileID: 390296478}
   - {fileID: 1387786643}
   - {fileID: 77299476}
-  - {fileID: 1073229728}
   minSpawnInterval: 1
   maxSpawnInterval: 5
   spawnOnStart: 1
@@ -7305,6 +7279,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield Powerup
       objectReference: {fileID: 0}
+    - target: {fileID: 6233946356460390077, guid: 078a1a9cf064d874aa325381cfd59896, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3559808599813593578, guid: 15675c06e028e1d4696bb14def0e9a04, type: 3}
     - target: {fileID: 8080624061308715542, guid: 078a1a9cf064d874aa325381cfd59896, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
@@ -8739,6 +8717,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Heart Powerup
       objectReference: {fileID: 0}
+    - target: {fileID: 3286121048380036430, guid: e65f7e52c786e3140857047a5e251fc2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7505796985546025877, guid: e65f7e52c786e3140857047a5e251fc2, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
@@ -8816,4 +8798,5 @@ SceneRoots:
   - {fileID: 1972729900}
   - {fileID: 1055038713}
   - {fileID: 787260873}
+  - {fileID: 9880071}
   - {fileID: 1712492791}
