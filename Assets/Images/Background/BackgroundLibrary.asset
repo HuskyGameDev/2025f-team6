@@ -19,6 +19,48 @@ MonoBehaviour:
   backgroundTypes:
   - {fileID: 8059897252564094859}
   transitions: []
+--- !u!114 &-3815005740622204646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7d547f79b4f6f4fba3b01c6ea5f641, type: 3}
+  m_Name: Stage Two
+  m_EditorClassIdentifier: 
+  sameTypePersistenceBonus: 2
+  recentPenaltyPerOccurrence: 0.5
+  recentHistorySize: 4
+  allowDirectFallbackWhenTransitionMissing: 0
+  backgroundTypes:
+  - {fileID: -1973275149534055501}
+  transitions: []
+--- !u!114 &-1973275149534055501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 831236c8e491b3d4bb15692c9876903c, type: 3}
+  m_Name: Ice
+  m_EditorClassIdentifier: 
+  baseWeight: 1
+  sprites:
+  - {fileID: 21300000, guid: fe01081938ef1a3478d43cc51e16f845, type: 3}
+  decorationSpawnChance: 0.35
+  decorations:
+  - sprite: {fileID: 21300000, guid: 45b58a86db501a948a3f25157f727aa4, type: 3}
+    weight: 2
+    allowMirroring: 1
+    randomizeMirror: 1
+    mirrored: 0
+  allowedNextTypes: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,8 +75,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stages:
   - {fileID: -7711255068481105560}
+  - {fileID: -3815005740622204646}
   backgroundTypes:
   - {fileID: 8059897252564094859}
+  - {fileID: -1973275149534055501}
   transitions: []
 --- !u!114 &8059897252564094859
 MonoBehaviour:
