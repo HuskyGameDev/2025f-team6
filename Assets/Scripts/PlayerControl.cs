@@ -58,6 +58,7 @@ public class PlayerControl : MonoBehaviour
     private float posDiff;
     private bool isMoving = false;
     private bool isShielded = false;
+    private Coroutine shieldCoroutine;
     private bool isSlicked = false;
 
     // Rendering components
@@ -321,9 +322,16 @@ public class PlayerControl : MonoBehaviour
         }
         else if (powerup.name.Contains("Shield Powerup"))
         {
-            StartCoroutine(Shielded());
+            if (shieldCoroutine != null)
+            {
+                StopCoroutine(shieldCoroutine);
+            }
+
+            shieldCoroutine = StartCoroutine(Shielded());
+
             AudioManager.instance.PlaySoundFXClip(useShieldPowerup, transform, 1f);
             currentPowerup = null;
+
             Image img = powerupSprite.gameObject.GetComponent<Image>();
             img.sprite = Resources.Load<Sprite>("MSPPixel");
             img.color = new UnityEngine.Color(1f, 1f, 1f, (float)MSPPixelTransparency);
@@ -424,6 +432,8 @@ public class PlayerControl : MonoBehaviour
         }
         playerCollision.setImmunity(false);
         isShielded = false;
+
+        shieldCoroutine = null;
     }
 
     // Public method to trigger hit effect from other scripts
