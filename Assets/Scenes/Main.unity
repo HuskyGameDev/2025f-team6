@@ -2406,7 +2406,7 @@ MonoBehaviour:
   - {fileID: 395832016}
   - {fileID: 478312021}
   library: {fileID: 11400000, guid: c7d6a33807fe6474da2a3887b484aa6c, type: 2}
-  currentStageIndex: 1
+  currentStageIndex: 0
   initializeOnStart: 1
   autoFindPanelsIfEmpty: 1
   verboseLogging: 0
