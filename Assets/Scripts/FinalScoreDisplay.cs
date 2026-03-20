@@ -3,16 +3,41 @@ using UnityEngine;
 
 public class FinalScoreDisplay : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public TextMeshProUGUI yourScoreText;
+    public TextMeshProUGUI highScoreText;
+
+    private const string HighScoreKey = "HighScore";
+
     void Start()
     {
-        TextMeshProUGUI tmp = GetComponentInChildren<TextMeshProUGUI>();
-        tmp.SetText(UIController.getFinalScore().ToString());
+        int finalScore = UIController.getFinalScore();
+
+        int highScore = PlayerPrefs.GetInt(HighScoreKey, 0);
+
+        bool isNewHighScore = finalScore > highScore;
+
+        if (isNewHighScore)
+        {
+            highScore = finalScore;
+            PlayerPrefs.SetInt(HighScoreKey, highScore);
+            PlayerPrefs.Save();
+        }
+
+        yourScoreText.text = finalScore.ToString();
+        highScoreText.text = highScore.ToString();
+
+        if (isNewHighScore)
+        {
+            HighlightText(yourScoreText);
+            HighlightText(highScoreText);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    void HighlightText(TextMeshProUGUI text)
     {
-        
+        text.color = Color.yellow;
+
+        // bold
+        text.fontStyle = FontStyles.Bold;
     }
 }

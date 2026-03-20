@@ -24,9 +24,9 @@ public class OptionsMenuVolume : MonoBehaviour, IPointerDownHandler, IPointerUpH
     {
         if (!PlayerPrefs.HasKey(MasterKey))
         {
-            PlayerPrefs.SetFloat(MasterKey, 0.5f);
-            PlayerPrefs.SetFloat(MusicKey, 0.5f);
-            PlayerPrefs.SetFloat(SfxKey, 0.5f);
+            PlayerPrefs.SetFloat(MasterKey, 1f);
+            PlayerPrefs.SetFloat(MusicKey, 1f);
+            PlayerPrefs.SetFloat(SfxKey, 1f);
             PlayerPrefs.Save();
         }
 

@@ -135,8 +135,6 @@ public class AudioManager : MonoBehaviour
         ApplySavedVolumes(); // Apply saved volumes at game start
     }
 
-    // ---------------- Global Volume Management ----------------
-
     public void SetVolume(string exposedParam, float linearValue)
     {
         if (linearValue <= 0f)
@@ -156,7 +154,6 @@ public class AudioManager : MonoBehaviour
         SetVolume("SFXVolume", sfx);
     }
 
-    // ---------------- Sound FX Playback ----------------
 
     public void PlaySoundFXClip(AudioClip audioClip, Transform spawnTransform, float volume)
     {
