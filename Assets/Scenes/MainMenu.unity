@@ -3047,6 +3047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundFXObject: {fileID: 1803549639392639230, guid: dfe35baf5c69d24428ab0a6214a5799a, type: 3}
+  mixer: {fileID: 24100000, guid: a2fac44dc97ec9e46b4adfecc7099cf8, type: 2}
 --- !u!4 &1803498742
 Transform:
   m_ObjectHideFlags: 0
