@@ -14,11 +14,88 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sameTypePersistenceBonus: 2
   recentPenaltyPerOccurrence: 0.5
-  recentHistorySize: 4
-  allowDirectFallbackWhenTransitionMissing: 0
+  recentHistorySize: 12
+  allowDirectFallbackWhenTransitionMissing: 1
   backgroundTypes:
   - {fileID: 8059897252564094859}
+  - {fileID: -6141645875903018551}
+  transitions:
+  - {fileID: 4032172903225918287}
+--- !u!114 &-6141645875903018551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 831236c8e491b3d4bb15692c9876903c, type: 3}
+  m_Name: Leafy
+  m_EditorClassIdentifier: 
+  baseWeight: 1
+  sprites:
+  - {fileID: 21300000, guid: 51c376af0388510468863b1fa6633622, type: 3}
+  - {fileID: 21300000, guid: 14c9a9adb971d9646b746d1a641e6978, type: 3}
+  decorationSpawnChance: 0.3906
+  decorations:
+  - sprite: {fileID: 21300000, guid: 8808b3950486da140a78c9ac26a9228d, type: 3}
+    weight: 2
+    allowMirroring: 1
+    randomizeMirror: 1
+    mirrored: 0
+  allowedNextTypes:
+  - targetType: {fileID: -6141645875903018551}
+    requiresTransition: 0
+    allowDirectIfTransitionMissing: 1
+  - targetType: {fileID: 8059897252564094859}
+    requiresTransition: 1
+    allowDirectIfTransitionMissing: 0
+--- !u!114 &-3815005740622204646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff7d547f79b4f6f4fba3b01c6ea5f641, type: 3}
+  m_Name: Stage Two
+  m_EditorClassIdentifier: 
+  sameTypePersistenceBonus: 2
+  recentPenaltyPerOccurrence: 0.5
+  recentHistorySize: 8
+  allowDirectFallbackWhenTransitionMissing: 0
+  backgroundTypes:
+  - {fileID: -1973275149534055501}
   transitions: []
+--- !u!114 &-1973275149534055501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 831236c8e491b3d4bb15692c9876903c, type: 3}
+  m_Name: Ice
+  m_EditorClassIdentifier: 
+  baseWeight: 1
+  sprites:
+  - {fileID: 21300000, guid: fe01081938ef1a3478d43cc51e16f845, type: 3}
+  decorationSpawnChance: 0.35
+  decorations:
+  - sprite: {fileID: 21300000, guid: 45b58a86db501a948a3f25157f727aa4, type: 3}
+    weight: 2
+    allowMirroring: 1
+    randomizeMirror: 1
+    mirrored: 0
+  allowedNextTypes:
+  - targetType: {fileID: -1973275149534055501}
+    requiresTransition: 0
+    allowDirectIfTransitionMissing: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,9 +110,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stages:
   - {fileID: -7711255068481105560}
+  - {fileID: -3815005740622204646}
   backgroundTypes:
   - {fileID: 8059897252564094859}
-  transitions: []
+  - {fileID: -1973275149534055501}
+  - {fileID: -6141645875903018551}
+  transitions:
+  - {fileID: 4032172903225918287}
+--- !u!114 &4032172903225918287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 494b32f74dabb80428a26b9ee2a12d11, type: 3}
+  m_Name: Grass/Leafy Interchange
+  m_EditorClassIdentifier: 
+  fromType: {fileID: 8059897252564094859}
+  toType: {fileID: -6141645875903018551}
+  transitionSprite: {fileID: 21300000, guid: 14c9a9adb971d9646b746d1a641e6978, type: 3}
+  bidirectional: 1
 --- !u!114 &8059897252564094859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,7 +148,8 @@ MonoBehaviour:
   baseWeight: 1
   sprites:
   - {fileID: 3380681749429040740, guid: 402b3cc9666c9b94c9e22be3fa769468, type: 3}
-  decorationSpawnChance: 0.35
+  - {fileID: 21300000, guid: 14c9a9adb971d9646b746d1a641e6978, type: 3}
+  decorationSpawnChance: 0.4
   decorations:
   - sprite: {fileID: 21300000, guid: 8808b3950486da140a78c9ac26a9228d, type: 3}
     weight: 1
@@ -67,3 +165,6 @@ MonoBehaviour:
   - targetType: {fileID: 8059897252564094859}
     requiresTransition: 0
     allowDirectIfTransitionMissing: 1
+  - targetType: {fileID: -6141645875903018551}
+    requiresTransition: 1
+    allowDirectIfTransitionMissing: 0

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fe01081938ef1a3478d43cc51e16f845
+guid: 14c9a9adb971d9646b746d1a641e6978
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 798052105687141986
-    second: BG_Snowy_0
+      213: -3409389349829337163
+    second: BG_Leafy_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BG_Snowy_0
+      name: BG_Leafy_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 26e0cbf6920431b00800000000000000
-      internalID: 798052105687141986
+      spriteID: 5bf1c66337a6fa0d0800000000000000
+      internalID: -3409389349829337163
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BG_Snowy_0: 798052105687141986
+      BG_Leafy_0: -3409389349829337163
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
