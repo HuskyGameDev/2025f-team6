@@ -16,6 +16,13 @@ public class MainMenuButtonsController : MonoBehaviour
 
     void Start()
     {
+
+
+        // For testing; THIS WIPES ALL SAVE DATA
+        //PlayerPrefs.DeleteAll();
+
+
+
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();

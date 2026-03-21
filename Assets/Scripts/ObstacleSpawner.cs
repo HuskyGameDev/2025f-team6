@@ -291,6 +291,7 @@ public class ObstacleSpawner : MonoBehaviour
             return new Vector3(1000, 1000, 1000);
         }
 
+        Debug.Log("Spawning obstacle: " + obstaclePrefab.name);
         SpawnObstacle(obstaclePrefab, spawnPosition);
         return spawnPosition;
     }
