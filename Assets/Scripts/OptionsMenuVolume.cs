@@ -11,6 +11,8 @@ public class OptionsMenuVolume : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public Slider musicSlider;
     public Slider sfxSlider;
 
+    public AudioSource masterPreviewSound; // assign in inspector
+    public AudioSource musicPreviewSound; // assign in inspector
     public AudioSource sfxPreviewSound; // assign in inspector
 
     const string MasterKey = "Master";
@@ -58,7 +60,7 @@ public class OptionsMenuVolume : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
         if (!isDragging)
         {
-            PlayPreviewSound();
+            PlayPreviewSound("Master");
         }
     }
 
@@ -69,7 +71,7 @@ public class OptionsMenuVolume : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
         if (!isDragging)
         {
-            PlayPreviewSound();
+            PlayPreviewSound("Music");
         }
     }
 
@@ -80,7 +82,7 @@ public class OptionsMenuVolume : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
         if (!isDragging)
         {
-            PlayPreviewSound();
+            PlayPreviewSound("SFX");
         }
     }
 
@@ -111,7 +113,7 @@ public class OptionsMenuVolume : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
         if (isDragging)
         {
-            PlayPreviewSound(); // play immediately after release
+            PlayPreviewSound("SFX"); // play immediately after release
         }
 
         isDragging = false;
@@ -123,13 +125,27 @@ public class OptionsMenuVolume : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
         if (isDragging)
         {
-            PlayPreviewSound();
+            PlayPreviewSound("SFX");
         }
     }
 
-    void PlayPreviewSound()
+    void PlayPreviewSound(string mixer)
     {
-        if (sfxPreviewSound != null)
+        
+        // if (sfxPreviewSound != null)
+        //     sfxPreviewSound.Play();
+
+        if (mixer == "Master")
+        {
+            masterPreviewSound.Play();
+        }
+        else if (mixer == "Music")
+        {
+            musicPreviewSound.Play();
+        }
+        else if (mixer == "SFX")
+        {
             sfxPreviewSound.Play();
+        }
     }
 }
