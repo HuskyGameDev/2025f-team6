@@ -82,6 +82,12 @@ public class BackgroundOrchestrator : MonoBehaviour
         {
             panels = GetComponentsInChildren<BackgroundPanelVisual>(true).ToList();
         }
+
+        if (VehicleManager.instance != null)
+        {
+            SetStageIndex(VehicleManager.instance.GetStage());
+        }
+
     }
 
     private void OnEnable()

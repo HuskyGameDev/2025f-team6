@@ -153,6 +153,11 @@ public class ObstacleController : MonoBehaviour
             playerCollision.HandleCollision(gameObject);
         }
 
+        if (this.gameObject.name.Contains("Pot_Hole"))
+        {
+            return;
+        }
+
         // Deactivate this obstacle after collision
         DeactivateObstacle();
     }

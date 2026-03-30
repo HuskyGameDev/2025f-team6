@@ -101,3 +101,5 @@ InitTestScene*.unity*
 .DS_Store
 .vscode/
 .vscode/settings.json
+.vscode/settings.json
+Assets/Fonts/pixeloid-font/PixeloidMono-nAOpP SDF.asset

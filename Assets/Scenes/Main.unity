@@ -364,11 +364,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 27675150}
   m_CullTransparentMesh: 1
---- !u!1 &77299476 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2446816782754949235, guid: c59a9d54f3b8e2348abb9780fe8291af, type: 3}
-  m_PrefabInstance: {fileID: 2893212897646858861}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &79338295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3507,6 +3502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSprite: {fileID: 5936234870193454346, guid: ea1239f80a5b38b48b819dbe0858fea6, type: 3}
+  stage: 0
 --- !u!4 &589026172
 Transform:
   m_ObjectHideFlags: 0
@@ -5042,6 +5038,10 @@ PrefabInstance:
       propertyPath: runner
       value: 
       objectReference: {fileID: 1914262280}
+    - target: {fileID: 4596137652305553478, guid: d37843219a18e164d970618c46226d31, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5936234870193454346, guid: ea1239f80a5b38b48b819dbe0858fea6, type: 3}
     - target: {fileID: 4720095877785755651, guid: d37843219a18e164d970618c46226d31, type: 3}
       propertyPath: m_Size.x
       value: 0.22900215
@@ -5057,6 +5057,18 @@ PrefabInstance:
     - target: {fileID: 4720095877785755651, guid: d37843219a18e164d970618c46226d31, type: 3}
       propertyPath: m_Offset.y
       value: 0.28504562
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720095877785755651, guid: d37843219a18e164d970618c46226d31, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: -0.23076923
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720095877785755651, guid: d37843219a18e164d970618c46226d31, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720095877785755651, guid: d37843219a18e164d970618c46226d31, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.39
       objectReference: {fileID: 0}
     - target: {fileID: 5088528645924244018, guid: d37843219a18e164d970618c46226d31, type: 3}
       propertyPath: m_Name
@@ -5252,7 +5264,7 @@ SpriteRenderer:
   m_SortingLayerID: 1236504645
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 6712586185932371391, guid: f54579b4aee0ae64a96545565fd21518, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5315,8 +5327,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.6111111, y: -0.2631579}
+    oldSize: {x: 0.18, y: 0.19}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -6475,11 +6487,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7225160801042876331, guid: ec7c5ae61184a4f4a96d456f38aa0e0b, type: 3}
   m_PrefabInstance: {fileID: 1379947584}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1387786643 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2446816782754949235, guid: 078a1a9cf064d874aa325381cfd59896, type: 3}
-  m_PrefabInstance: {fileID: 1715204181}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1405176475
 GameObject:
   m_ObjectHideFlags: 0
@@ -6865,8 +6872,8 @@ MonoBehaviour:
   - {fileID: 775789374}
   powerupPrefabs:
   - {fileID: 390296478}
-  - {fileID: 1387786643}
-  - {fileID: 77299476}
+  - {fileID: 2893212897646858862}
+  - {fileID: 1715204182}
   minSpawnInterval: 1
   maxSpawnInterval: 5
   spawnOnStart: 1
@@ -7566,6 +7573,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield Powerup
       objectReference: {fileID: 0}
+    - target: {fileID: 2446816782754949235, guid: 078a1a9cf064d874aa325381cfd59896, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6233946356460390077, guid: 078a1a9cf064d874aa325381cfd59896, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -7639,6 +7650,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 078a1a9cf064d874aa325381cfd59896, type: 3}
+--- !u!1 &1715204182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2446816782754949235, guid: 078a1a9cf064d874aa325381cfd59896, type: 3}
+  m_PrefabInstance: {fileID: 1715204181}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1773068108
 GameObject:
   m_ObjectHideFlags: 0
@@ -7787,6 +7803,61 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4669787302616043920, guid: 4d1500300ae6435448f96974fd47df86, type: 3}
   m_PrefabInstance: {fileID: 1785008637}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1815741346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1815741348}
+  - component: {fileID: 1815741347}
+  m_Layer: 0
+  m_Name: GameSpeedController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1815741347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815741346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dff37362735df841bb69e08a5cdb164, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  easyStartSpeed: 3
+  normalStartSpeed: 5
+  hardStartSpeed: 7
+  easyIncrease: 0.0625
+  normalIncrease: 0.125
+  hardIncrease: 0.25
+  maxSpeed: 15
+  turboSpeed: 20
+  turboStart: {fileID: 8300000, guid: 1f64bea0d16766e47844ebf6503fc7ba, type: 3}
+  turboLoop: {fileID: 8300000, guid: 8b5f2fe9ec62f3946996ebf18cc70df2, type: 3}
+  turboEnd: {fileID: 8300000, guid: d2758bfba2ea0084e97df626e2952cbe, type: 3}
+--- !u!4 &1815741348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815741346}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.7593706, y: 0.38464385, z: 790.14764}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1838156920
 GameObject:
   m_ObjectHideFlags: 0
@@ -8955,6 +9026,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Donut Powerup
       objectReference: {fileID: 0}
+    - target: {fileID: 2446816782754949235, guid: c59a9d54f3b8e2348abb9780fe8291af, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8080624061308715542, guid: c59a9d54f3b8e2348abb9780fe8291af, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
@@ -9012,6 +9087,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c59a9d54f3b8e2348abb9780fe8291af, type: 3}
+--- !u!1 &2893212897646858862 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2446816782754949235, guid: c59a9d54f3b8e2348abb9780fe8291af, type: 3}
+  m_PrefabInstance: {fileID: 2893212897646858861}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7303586664635861374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9099,6 +9179,7 @@ SceneRoots:
   - {fileID: 1141974160}
   - {fileID: 1907204772}
   - {fileID: 589026172}
+  - {fileID: 1815741348}
   - {fileID: 998252557}
   - {fileID: 1557647148}
   - {fileID: 775789373}

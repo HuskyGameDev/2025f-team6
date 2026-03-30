@@ -5,6 +5,7 @@ public class VehicleManager : MonoBehaviour
     public static VehicleManager instance;
     
     [SerializeField] public Sprite playerSprite = null;
+    [SerializeField] public int stage = 0;
 
     private void Awake()
     {
@@ -27,5 +28,15 @@ public class VehicleManager : MonoBehaviour
     public void SetVehicle(Sprite sprite)
     {
         playerSprite = sprite;
+    }
+
+    public int GetStage()
+    {
+        return stage;
+    }
+
+    public void SetStage(int stageNum)
+    {
+        stage = stageNum;
     }
 }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Stage1
   m_EditorClassIdentifier: 
   <EntryGraphic>k__BackingField: {fileID: 3380681749429040740, guid: 402b3cc9666c9b94c9e22be3fa769468, type: 3}
-  <Headline>k__BackingField: Stage 1
+  <Headline>k__BackingField: Normal
   levelNameToLoad: 

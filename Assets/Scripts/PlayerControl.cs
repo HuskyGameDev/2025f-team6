@@ -37,7 +37,6 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private AudioClip[] horn;
     [SerializeField] private AudioClip usePowerupClip;
     [SerializeField] private AudioClip useDonutPowerup;
-    [SerializeField] private AudioClip useTurboPowerup;
     [SerializeField] private AudioClip useShieldPowerup;
 
     [Header("Powerups")]
@@ -310,7 +309,6 @@ public class PlayerControl : MonoBehaviour
         else if (powerup.name.Contains("Turbo"))
         {
             PlayerCollision collision = gameObject.GetComponent<PlayerCollision>();
-            AudioManager.instance.PlaySoundFXClip(useTurboPowerup, transform, 1f);
             if(GameSpeedController.Instance != null)
             {
                 GameSpeedController.Instance.StartTurbo(collision, points);

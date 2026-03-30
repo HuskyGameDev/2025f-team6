@@ -21,6 +21,12 @@ public class GameSpeedController : MonoBehaviour
     public float maxSpeed = 15f;
     public float turboSpeed = 20f;
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip turboStart;
+    [SerializeField] private AudioClip turboLoop;
+    [SerializeField] private AudioClip turboEnd;
+
+
     public float CurrentSpeed { get; private set; }
     private float tempSpeed;
 
@@ -107,10 +113,24 @@ public class GameSpeedController : MonoBehaviour
         }
     }
 
+    public bool TurboActive()
+    {
+        return turbo;
+    }
+
     // Turbo Mode Controller
     public void StartTurbo(PlayerCollision collision, PointCounter scoreScript)
     {
         turbo = true;
+        AudioManager.instance.PlayStartLoopStop(
+            turboStart,
+            turboLoop,
+            turboEnd,
+            transform,
+            2.0f,
+            () => TurboActive()
+        );
+
         //Set the player to immune
         collision.setImmunity(true);
         //Store current speed to resume later
@@ -123,9 +143,10 @@ public class GameSpeedController : MonoBehaviour
 
     public void EndTurbo(PlayerCollision collision, PointCounter scoreScript)
     {
+        turbo = false;
+
         //Reset speed to the old speed
         CurrentSpeed = tempSpeed;
-        turbo = false;
         collision.setImmunity(false);
         scoreScript.UpdatePPS(1);
         Debug.Log("Turbo End");

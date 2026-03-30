@@ -33,7 +33,8 @@ namespace TurboPursuit.UI {
         [SerializeField] private Button callToAction;
 
         [Header("Carousel Type")]
-        [SerializeField] private bool isVehicle = true;
+        [SerializeField] private bool isVehicle = false;
+        [SerializeField] private bool isStage = false;
 
         private int currentIndex = 0;
         private Coroutine scrollCoroutine;
@@ -54,9 +55,14 @@ namespace TurboPursuit.UI {
                 carouselEntry.sprite = entry.EntryGraphic;
                 imagesForEntries.Add(carouselEntry);
 
-                if (carouselEntry.sprite == VehicleManager.instance.GetVehicle())
+                if (carouselEntry.sprite == VehicleManager.instance.GetVehicle() && isVehicle)
                 {
                     startingIndex = imagesForEntries.Count-1;
+                }
+
+                if (isStage)
+                {
+                    startingIndex = VehicleManager.instance.GetStage();
                 }
             }
 
@@ -112,6 +118,11 @@ namespace TurboPursuit.UI {
             if (isVehicle)
             {
                 VehicleManager.instance.SetVehicle(imagesForEntries[currentIndex].sprite);
+            }
+
+            if (isStage)
+            {
+                VehicleManager.instance.SetStage(currentIndex);
             }
 
         }

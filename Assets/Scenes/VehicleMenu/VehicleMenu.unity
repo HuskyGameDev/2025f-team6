@@ -1349,7 +1349,7 @@ Transform:
   m_GameObject: {fileID: 857799525}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1192.1583, y: 750.55255, z: -7.049253}
+  m_LocalPosition: {x: 908, y: 460, z: -7.049253}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1518,6 +1518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSprite: {fileID: 5936234870193454346, guid: ea1239f80a5b38b48b819dbe0858fea6, type: 3}
+  stage: 0
 --- !u!4 &1040591011
 Transform:
   m_ObjectHideFlags: 0
@@ -1527,7 +1528,7 @@ Transform:
   m_GameObject: {fileID: 1040591009}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 896.6013, y: 470.97046, z: -0.7655651}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2623,6 +2624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundFXObject: {fileID: 1803549639392639230, guid: dfe35baf5c69d24428ab0a6214a5799a, type: 3}
+  mixer: {fileID: 24100000, guid: a2fac44dc97ec9e46b4adfecc7099cf8, type: 2}
 --- !u!4 &1927189148
 Transform:
   m_ObjectHideFlags: 0
@@ -2687,6 +2689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttons: []
+  selectorIcons: []
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   hoverColor: {r: 1, g: 0.80784315, b: 0, a: 1}
   hoverSound: {fileID: 8300000, guid: 4808e9083c2a0324ba81d388d6a937d7, type: 3}
@@ -2936,6 +2939,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2099144518}
     m_Modifications:
+    - target: {fileID: 3032555268809915052, guid: 0d2d88c1c285d164192045f18552aa14, type: 3}
+      propertyPath: isStage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5908846157032406296, guid: 0d2d88c1c285d164192045f18552aa14, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3041,6 +3048,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 822540636314640120, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 822540636314640120, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 1093062002077756808, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
       propertyPath: m_Name
       value: VehicleSelectPanel
@@ -3057,6 +3072,30 @@ PrefabInstance:
       propertyPath: 'entries.Array.data[3]'
       value: 
       objectReference: {fileID: 11400000, guid: 88883b063ffaba642ae0f6aaaed9ff07, type: 2}
+    - target: {fileID: 6262015447715181475, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
+      propertyPath: m_Spacing
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6262015447715181475, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
+      propertyPath: m_Padding.m_Top
+      value: 325
+      objectReference: {fileID: 0}
+    - target: {fileID: 6262015447715181475, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
+      propertyPath: m_ChildAlignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6262015447715181475, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
+      propertyPath: m_Padding.m_Left
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 6262015447715181475, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
+      propertyPath: m_Padding.m_Right
+      value: 235
+      objectReference: {fileID: 0}
+    - target: {fileID: 6262015447715181475, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
+      propertyPath: m_Padding.m_Bottom
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8860333748957121079, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
