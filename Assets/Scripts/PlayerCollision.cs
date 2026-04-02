@@ -256,13 +256,12 @@ public class PlayerCollision : MonoBehaviour
     {
         return immunity;
     }
-    public void toggleImmunity()
-    {
-        immunity = !immunity;
-    }
     public void setImmunity(bool set)
     {
-        immunity = set;
+        if (!GameSpeedController.Instance.TurboActive() && !pc.isShielded)
+        {
+            immunity = set;
+        }
     }
 
     public bool getTurbo()

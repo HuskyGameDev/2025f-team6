@@ -121,7 +121,10 @@ public class GameSpeedController : MonoBehaviour
     // Turbo Mode Controller
     public void StartTurbo(PlayerCollision collision, PointCounter scoreScript)
     {
+        //Set the player to immune
+        collision.setImmunity(true);
         turbo = true;
+
         AudioManager.instance.PlayStartLoopStop(
             turboStart,
             turboLoop,
@@ -131,12 +134,11 @@ public class GameSpeedController : MonoBehaviour
             () => TurboActive()
         );
 
-        //Set the player to immune
-        collision.setImmunity(true);
         //Store current speed to resume later
         tempSpeed = CurrentSpeed;
         CurrentSpeed = turboSpeed;
         Debug.Log("Turbo Start");
+        
         //Update Points Per Second to make it feel more like zooming
         scoreScript.UpdatePPS(25);
     }

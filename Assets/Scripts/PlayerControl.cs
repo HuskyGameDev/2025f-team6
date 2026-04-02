@@ -56,7 +56,7 @@ public class PlayerControl : MonoBehaviour
     private bool halfwayRot;
     private float posDiff;
     private bool isMoving = false;
-    private bool isShielded = false;
+    public  bool isShielded = false;
     private Coroutine shieldCoroutine;
     private bool isSlicked = false;
 
@@ -427,8 +427,8 @@ public class PlayerControl : MonoBehaviour
         {
             spriteRenderer.color = originalColor;
         }
-        playerCollision.setImmunity(false);
         isShielded = false;
+        playerCollision.setImmunity(false);
 
         shieldCoroutine = null;
     }
