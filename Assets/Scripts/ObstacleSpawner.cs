@@ -56,7 +56,7 @@ public class ObstacleSpawner : MonoBehaviour
     private float currentMinSpawnInterval;
     private float currentMaxSpawnInterval;
     private float currentSpeedMultiplier = 1f;
-    private int iceSpawnChance = 75;
+    [SerializeField] private int iceSpawnChance = 35;
 
     // Global Variables
     private bool powerupCanSpawn = true;
