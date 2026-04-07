@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+//using System.Numerics;
 using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
@@ -10,6 +11,7 @@ public class ObstacleSpawner : MonoBehaviour
     private List<GameObject> obstaclePrefabs;
     [SerializeField] private List<GameObject> coinPrefabs;
     [SerializeField] private List<GameObject> powerupPrefabs;
+    [SerializeField] private List<GameObject> icePrefabs;
     [SerializeField] private float minSpawnInterval = 1f;
     [SerializeField] private float maxSpawnInterval = 5f;
     [SerializeField] private bool spawnOnStart = true;
@@ -46,6 +48,7 @@ public class ObstacleSpawner : MonoBehaviour
     private Dictionary<GameObject, Queue<GameObject>> obstaclePools;
     private Dictionary<GameObject, Queue<GameObject>> coinPools;
     private Dictionary<GameObject, Queue<GameObject>> powerupPools;
+    private Dictionary<GameObject, Queue<GameObject>> icePools;
 
     // Progressive difficulty tracking
     private float gameTime = 0f;
@@ -53,10 +56,12 @@ public class ObstacleSpawner : MonoBehaviour
     private float currentMinSpawnInterval;
     private float currentMaxSpawnInterval;
     private float currentSpeedMultiplier = 1f;
+    private int iceSpawnChance = 75;
 
     // Global Variables
     private bool powerupCanSpawn = true;
     public int disabledLane = -1;
+    private bool spawnedRoadBlock = false;
 
     // Event system to notify obstacles of speed changes
     public System.Action<float> OnSpeedMultiplierChanged;
@@ -196,6 +201,28 @@ public class ObstacleSpawner : MonoBehaviour
                 powerupPools[prefab] = objectQueue;
             }
         }
+
+        if(VehicleManager.instance.stage == 1)
+        {
+            icePools = new Dictionary<GameObject, Queue<GameObject>>();
+
+            foreach (GameObject prefab in icePrefabs)
+            {
+                if (prefab != null)
+                {
+                    Queue<GameObject> objectQueue = new Queue<GameObject>();
+
+                    for (int i = 0; i < poolSize; i++)
+                    {
+                        GameObject ice = CreateObstacleInstance(prefab);
+                        ice.SetActive(false);
+                        objectQueue.Enqueue(ice);
+                    }
+
+                    icePools[prefab] = objectQueue;
+                }
+            }
+        }
     }
 
     private GameObject CreateObstacleInstance(GameObject prefab)
@@ -244,15 +271,11 @@ public class ObstacleSpawner : MonoBehaviour
             }
             yield return new WaitForSeconds(spawnDelay);
             Vector3 obstacleSpawn = SpawnRandomObstacle();
-            Vector3 coinSpawn = Vector3.zero;
-            if (obstacleSpawn != new Vector3(1000, 1000, 1000))
-            {
-                coinSpawn = SpawnRandomCoin(obstacleSpawn);
-            }
-            if(obstacleSpawn != new Vector3(1000,1000,1000) && coinSpawn != Vector3.zero)
-            {
-                SpawnRandomPowerup(obstacleSpawn, coinSpawn);
-            }
+            Vector3 coinSpawn = SpawnRandomCoin(obstacleSpawn);
+            Vector3 powerupSpawn = !spawnedRoadBlock ? SpawnRandomPowerup(obstacleSpawn, coinSpawn) : Vector3.zero;
+            Vector3 iceSpawn = (VehicleManager.instance.stage == 1 && Random.Range(1, 100) <= iceSpawnChance && !spawnedRoadBlock) ? SpawnRandomIce(obstacleSpawn, coinSpawn) : Vector3.zero;
+
+            spawnedRoadBlock = false;
         }
     }
 
@@ -261,7 +284,7 @@ public class ObstacleSpawner : MonoBehaviour
         if (obstaclePrefabs == null || obstaclePrefabs.Count == 0)
         {
             Debug.LogWarning("No obstacle prefabs assigned to the spawner!");
-            return new Vector3(1000, 1000, 1000);
+            return Vector3.zero;
         }
 
         // Get random spawn position from the fixed positions array
@@ -282,14 +305,6 @@ public class ObstacleSpawner : MonoBehaviour
                 {
                     continue;
                 }
-
-                // if (disabledLane != -1)
-                // {
-                //     if (disabledLane != lane-1)
-                //     {
-                //         continue;
-                //     }
-                // }
             }
 
             break;
@@ -298,7 +313,12 @@ public class ObstacleSpawner : MonoBehaviour
         if (obstaclePrefab == null)
         {
             Debug.LogWarning("One of the obstacle prefabs is null!");
-            return new Vector3(1000, 1000, 1000);
+            return Vector3.zero;
+        }
+
+        if(obstaclePrefab.name.Contains("Road Block"))
+        {
+            spawnedRoadBlock = true;
         }
 
         Debug.Log("Spawning obstacle: " + obstaclePrefab.name);
@@ -318,6 +338,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     private Vector3 SpawnRandomCoin(Vector3 obstacleSpawn)
     {
+
         if (coinPrefabs == null || coinPrefabs.Count == 0)
         {
             Debug.LogWarning("No obstacle prefabs assigned to the spawner!");
@@ -333,6 +354,12 @@ public class ObstacleSpawner : MonoBehaviour
             return Vector3.zero;
         }
 
+        if (spawnedRoadBlock)
+        {
+            StartCoroutine(SpawnCoin(coinPrefab, obstacleSpawn));
+            return Vector3.zero;
+        }
+
         // Get random spawn position from the fixed positions array
         Vector3 spawnPosition = GetRandomSpawnPosition();
         while (spawnPosition == obstacleSpawn)
@@ -344,12 +371,12 @@ public class ObstacleSpawner : MonoBehaviour
         return spawnPosition;
     }
 
-    private void SpawnRandomPowerup(Vector3 obstacleSpawn, Vector3 coinSpawn)
+    private Vector3 SpawnRandomPowerup(Vector3 obstacleSpawn, Vector3 coinSpawn)
     {
         if (powerupPrefabs == null || powerupPrefabs.Count == 0)
         {
             Debug.LogWarning("No obstacle prefabs assigned to the spawner!");
-            return;
+            return Vector3.zero;
         }
 
         int randomIndex = Random.Range(0, powerupPrefabs.Count);
@@ -358,7 +385,7 @@ public class ObstacleSpawner : MonoBehaviour
         if (powerupPrefab == null)
         {
             Debug.LogWarning("One of the obstacle prefabs is null!");
-            return;
+            return Vector3.zero;
         }
 
         // Get random spawn position from the fixed positions array
@@ -369,7 +396,35 @@ public class ObstacleSpawner : MonoBehaviour
         }
 
         StartCoroutine(SpawnPowerup(powerupPrefab, spawnPosition));
+        return spawnPosition;
+    }
 
+    private Vector3 SpawnRandomIce(Vector3 obstacleSpawn, Vector3 coinSpawn)
+    {
+        if (icePrefabs == null || icePrefabs.Count == 0)
+        {
+            Debug.LogWarning("No ice prefabs assigned to the spawner!");
+            return Vector3.zero;
+        }
+
+        int randomIndex = Random.Range(0, icePrefabs.Count);
+        GameObject icePrefab = icePrefabs[randomIndex];
+
+        if (icePrefab == null)
+        {
+            Debug.LogWarning("One of the ice prefabs is null!");
+            return Vector3.zero;
+        }
+
+        // Get random spawn position from the fixed positions array
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+        while (spawnPosition == obstacleSpawn || spawnPosition == coinSpawn)
+        {
+            spawnPosition = GetRandomSpawnPosition();
+        }
+
+        SpawnIce(icePrefab, spawnPosition);
+        return spawnPosition;
     }
 
     private Vector3 GetRandomSpawnPosition()
@@ -444,6 +499,50 @@ public class ObstacleSpawner : MonoBehaviour
             {
                 lanes[PositionToLane(position.x)-1].SetTrigger("PlayAnim");
             }
+        }
+
+    }
+
+    private void SpawnIce(GameObject icePrefab, Vector3 position)
+    {
+        GameObject iceInstance;
+
+        if (useObjectPooling && icePools != null && icePools.ContainsKey(icePrefab))
+        {
+            Queue<GameObject> pool = icePools[icePrefab];
+
+            if (pool.Count > 0)
+            {
+                iceInstance = pool.Dequeue();
+            }
+            else
+            {
+                // Create new instance if pool is empty
+                iceInstance = CreateObstacleInstance(icePrefab);
+            }
+
+            iceInstance.transform.position = position;
+            iceInstance.SetActive(true);
+
+            // Initialize the obstacle
+            ObstacleController controller = iceInstance.GetComponent<ObstacleController>();
+            if (controller != null)
+            {
+                controller.Initialize();
+            }
+        }
+        else
+        {
+            // Non-pooled spawning (creates new instance each time)
+            iceInstance = CreateObstacleInstance(icePrefab);
+            iceInstance.transform.position = position;
+            iceInstance.SetActive(true);
+        }
+    
+        // Display obstacle indiactors if speed is high enough
+        if (GameSpeedController.Instance.CurrentSpeed > minSpeedRequired)
+        {
+            lanes[PositionToLane(position.x)-1].SetTrigger("PlayAnim");
         }
 
     }

@@ -2058,7 +2058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5d831b584c9fcc44b2f79d49091d6c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 2
   useRandomSpeed: 0
   minSpeed: 3
   maxSpeed: 8
@@ -5518,7 +5518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5d831b584c9fcc44b2f79d49091d6c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 2
   useRandomSpeed: 0
   minSpeed: 3
   maxSpeed: 8
@@ -7206,9 +7206,6 @@ MonoBehaviour:
   - {fileID: 508232919}
   - {fileID: 1564274621}
   WinterPrefabs:
-  - {fileID: 1055038711}
-  - {fileID: 2062606388}
-  - {fileID: 387710056}
   - {fileID: 869403755}
   - {fileID: 1352343912}
   - {fileID: 1946362023}
@@ -7228,6 +7225,10 @@ MonoBehaviour:
   - {fileID: 390296478}
   - {fileID: 2893212897646858862}
   - {fileID: 1715204182}
+  icePrefabs:
+  - {fileID: 1055038711}
+  - {fileID: 2062606388}
+  - {fileID: 387710056}
   minSpawnInterval: 1
   maxSpawnInterval: 5
   spawnOnStart: 1
@@ -9263,7 +9264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5d831b584c9fcc44b2f79d49091d6c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 2
   useRandomSpeed: 0
   minSpeed: 3
   maxSpeed: 8
