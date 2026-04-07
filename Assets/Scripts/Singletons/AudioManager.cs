@@ -47,6 +47,7 @@ public class AudioManager : MonoBehaviour
     public void PlaySoundFXClip(AudioClip audioClip, Transform spawnTransform, float volume)
     {
         AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
+        DontDestroyOnLoad(audioSource.gameObject); 
         audioSource.clip = audioClip;
         audioSource.volume = volume;
         audioSource.Play();
