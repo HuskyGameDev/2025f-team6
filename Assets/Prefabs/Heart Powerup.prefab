@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7505796985546025877
 Transform:
   m_ObjectHideFlags: 0
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12, y: 4, z: 0.010807624}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 5, y: 5, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -110,6 +110,8 @@ MonoBehaviour:
   hitSoundClip: {fileID: 8300000, guid: 4808e9083c2a0324ba81d388d6a937d7, type: 3}
   speed: 0
   isActive: 0
+  maxSize: 1.25
+  sizeSpeed: 1
 --- !u!61 &5206022215493578765
 BoxCollider2D:
   m_ObjectHideFlags: 0

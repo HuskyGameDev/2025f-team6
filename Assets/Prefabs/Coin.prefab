@@ -107,9 +107,11 @@ MonoBehaviour:
   maxSpeed: 8
   destroyYPosition: -10
   destroyWhenInvisible: 1
-  hitSoundClip: {fileID: 8300000, guid: 4cd9e6f7e4c970d448f54e0e45b9664d, type: 3}
+  hitSoundClip: {fileID: 8300000, guid: d92a5fa3ceba34bf4b05b338d1e210ae, type: 3}
   speed: 0
   isActive: 0
+  maxSize: 1.25
+  sizeSpeed: 1
 --- !u!61 &1741707329108197867
 BoxCollider2D:
   m_ObjectHideFlags: 0
