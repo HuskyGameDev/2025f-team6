@@ -6,6 +6,7 @@ public class DifficultyButtonManager : MonoBehaviour
     public static int difficultyValue = 1;
 
     private Button[] difficultyButtons;
+    [SerializeField] Animator[] buttonAnimations;
     private CanvasGroup[] buttonGroups;
 
     [Range(0f, 1f)]
@@ -56,7 +57,16 @@ public class DifficultyButtonManager : MonoBehaviour
     private void UpdateVisuals()
     {
         for (int i = 0; i < difficultyButtons.Length; i++)
-        {
+        {   
+            if (difficultyValue == i+1)
+            {
+                buttonAnimations[i].SetTrigger("Activate");
+            }
+            else
+            {
+                buttonAnimations[i].Play("Idle");
+            }
+
             string name = difficultyButtons[i].gameObject.name.ToLower();
 
             bool selected =

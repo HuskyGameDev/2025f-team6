@@ -283,13 +283,6 @@ public class ObstacleSpawner : MonoBehaviour
                     continue;
                 }
 
-                // if (disabledLane != -1)
-                // {
-                //     if (disabledLane != lane-1)
-                //     {
-                //         continue;
-                //     }
-                // }
             }
 
             break;

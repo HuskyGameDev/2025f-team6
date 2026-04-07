@@ -124,6 +124,6 @@ public class MainMenuButtonsController : MonoBehaviour
     public void PlayClickSound()
     {
         if (clickSound != null && audioSource != null)
-            audioSource.PlayOneShot(clickSound);
+            AudioManager.instance.PlaySoundFXClip(clickSound, AudioManager.instance.transform, 1.0f);
     }
 }
