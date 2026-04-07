@@ -5,7 +5,9 @@ using UnityEngine;
 public class ObstacleSpawner : MonoBehaviour
 {
     [Header("Spawn Settings")]
-    [SerializeField] private List<GameObject> obstaclePrefabs;
+    [SerializeField] private List<GameObject> SummerPrefabs;
+    [SerializeField] private List<GameObject> WinterPrefabs;
+    private List<GameObject> obstaclePrefabs;
     [SerializeField] private List<GameObject> coinPrefabs;
     [SerializeField] private List<GameObject> powerupPrefabs;
     [SerializeField] private float minSpawnInterval = 1f;
@@ -64,6 +66,14 @@ public class ObstacleSpawner : MonoBehaviour
         // Initialize current spawn intervals
         currentMinSpawnInterval = minSpawnInterval;
         currentMaxSpawnInterval = maxSpawnInterval;
+
+        //Determine which object pool to use
+        if(VehicleManager.instance.stage == 1)
+        {
+            obstaclePrefabs = WinterPrefabs;
+        } else {
+            obstaclePrefabs = SummerPrefabs;
+        }
 
         if (useObjectPooling)
         {
