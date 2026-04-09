@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections;
-using UnityEditor.Rendering;
+//using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameSpeedController : MonoBehaviour
 {
     public static GameSpeedController Instance;
+
     [Header("Base Speeds")]
     public float easyStartSpeed = 3f;
     public float normalStartSpeed = 5f;
@@ -22,19 +23,27 @@ public class GameSpeedController : MonoBehaviour
     public float turboSpeed = 20f;
 
     [Header("SFX")]
-    [SerializeField] private AudioClip turboStart;
-    [SerializeField] private AudioClip turboLoop;
-    [SerializeField] private AudioClip turboEnd;
-    [SerializeField] private AudioClip sirenLoop;
-    [SerializeField] private AudioClip sirenEnd;
+    [SerializeField]
+    private AudioClip turboStart;
 
+    [SerializeField]
+    private AudioClip turboLoop;
+
+    [SerializeField]
+    private AudioClip turboEnd;
+
+    [SerializeField]
+    private AudioClip sirenLoop;
+
+    [SerializeField]
+    private AudioClip sirenEnd;
 
     public float CurrentSpeed { get; private set; }
     private float tempSpeed;
 
     private float speedIncreasePerSecond;
     private float debugTimer;
-    public bool turbo {get; private set;} = false;
+    public bool turbo { get; private set; } = false;
 
     private void Awake()
     {
@@ -79,9 +88,12 @@ public class GameSpeedController : MonoBehaviour
     {
         switch (DifficultyButtonManager.difficultyValue)
         {
-            case 2: return normalStartSpeed;
-            case 3: return hardStartSpeed;
-            default: return easyStartSpeed; // default = easy
+            case 2:
+                return normalStartSpeed;
+            case 3:
+                return hardStartSpeed;
+            default:
+                return easyStartSpeed; // default = easy
         }
     }
 
@@ -89,16 +101,21 @@ public class GameSpeedController : MonoBehaviour
     {
         switch (DifficultyButtonManager.difficultyValue)
         {
-            case 2: return normalIncrease;
-            case 3: return hardIncrease;
-            default: return easyIncrease;
+            case 2:
+                return normalIncrease;
+            case 3:
+                return hardIncrease;
+            default:
+                return easyIncrease;
         }
     }
 
     public void ResetSpeed()
     {
         InitializeSpeed();
-        Debug.Log($"[GameSpeedController] RESET | Difficulty = {DifficultyButtonManager.difficultyValue} | StartSpeed = {CurrentSpeed}");
+        Debug.Log(
+            $"[GameSpeedController] RESET | Difficulty = {DifficultyButtonManager.difficultyValue} | StartSpeed = {CurrentSpeed}"
+        );
     }
 
     private void InitializeSpeed()
@@ -149,7 +166,7 @@ public class GameSpeedController : MonoBehaviour
         tempSpeed = CurrentSpeed;
         CurrentSpeed = turboSpeed;
         Debug.Log("Turbo Start");
-        
+
         //Update Points Per Second to make it feel more like zooming
         scoreScript.UpdatePPS(25);
     }

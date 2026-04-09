@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
-using UnityEditor.Search;
+//using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,22 +9,48 @@ using UnityEngine.UI;
 public class PlayerCollision : MonoBehaviour
 {
     [Header("Collision Effects")]
-    [SerializeField] private ParticleSystem collisionParticle;
-    [SerializeField] private AudioClip collisionSound;
-    [SerializeField] private float shakeDuration = 0.2f;
-    [SerializeField] private float shakeMagnitude = 0.1f;
+    [SerializeField]
+    private ParticleSystem collisionParticle;
+
+    [SerializeField]
+    private AudioClip collisionSound;
+
+    [SerializeField]
+    private float shakeDuration = 0.2f;
+
+    [SerializeField]
+    private float shakeMagnitude = 0.1f;
 
     [Header("Player Effects")]
-    [SerializeField] private SpriteRenderer playerSprite;
-    [SerializeField] private Color damageColor = Color.red;
-    [SerializeField] private float flashDuration = 0.3f;
-    [SerializeField] private float immunityDuration = 2.0f;
-    [SerializeField] private BoxCollider2D pHitbox;
-    [SerializeField] private PlayerControl pc;
-    [SerializeField] private int maxLives = 3;
-    [SerializeField] private int lives = 3;
-    [SerializeField] private string endScene;
-    [SerializeField] private GameObject runner;
+    [SerializeField]
+    private SpriteRenderer playerSprite;
+
+    [SerializeField]
+    private Color damageColor = Color.red;
+
+    [SerializeField]
+    private float flashDuration = 0.3f;
+
+    [SerializeField]
+    private float immunityDuration = 2.0f;
+
+    [SerializeField]
+    private BoxCollider2D pHitbox;
+
+    [SerializeField]
+    private PlayerControl pc;
+
+    [SerializeField]
+    private int maxLives = 3;
+
+    [SerializeField]
+    private int lives = 3;
+
+    [SerializeField]
+    private string endScene;
+
+    [SerializeField]
+    private GameObject runner;
 
     private GameObject heartA; // left-most
     private GameObject heartB;
@@ -65,16 +91,16 @@ public class PlayerCollision : MonoBehaviour
         PlayerControl.coinsCollected = 0;
     }
 
-
     public void HandleCollision(GameObject obstacle)
-    {   
-        if (obstacle.CompareTag("Obstacle") && !immunity) {
+    {
+        if (obstacle.CompareTag("Obstacle") && !immunity)
+        {
             Debug.Log("Hit an obstacle");
             //Reduce Lives by 1
             lives--;
             BoxCollider2D obHitbox = obstacle.GetComponent<BoxCollider2D>();
             obHitbox.enabled = false;
-            if(lives == 0)
+            if (lives == 0)
             {
                 UIController.setFinalScore(UIController.getFinalScore());
                 SceneManager.LoadScene(endScene);
@@ -123,7 +149,7 @@ public class PlayerCollision : MonoBehaviour
             Debug.Log("Hit an obstacle while turboing");
             GameSpeedController.Instance.EndTurbo(this, runner.GetComponent<PointCounter>());
         }
-        else if (obstacle.CompareTag("Coin")) 
+        else if (obstacle.CompareTag("Coin"))
         {
             // Debug.Log("Got a Coin");
             pc.CollectCoin();
@@ -133,7 +159,6 @@ public class PlayerCollision : MonoBehaviour
             // Debug.Log("Collected a Powerup");
             pc.GainPowerup(obstacle);
         }
-        
     }
 
     private IEnumerator ScreenShake()
@@ -184,7 +209,8 @@ public class PlayerCollision : MonoBehaviour
 
     public void incrementLives()
     {
-        if (lives < maxLives) {
+        if (lives < maxLives)
+        {
             lives++;
         }
     }
@@ -202,11 +228,11 @@ public class PlayerCollision : MonoBehaviour
             return;
         }
 
-        GameObject[] hearts = {null, heartA, heartB, heartC};
-        
+        GameObject[] hearts = { null, heartA, heartB, heartC };
+
         if (lose)
         {
-            GameObject heart = hearts[lives+1];
+            GameObject heart = hearts[lives + 1];
             heart.SetActive(false);
         }
         else
@@ -214,7 +240,6 @@ public class PlayerCollision : MonoBehaviour
             GameObject heart = hearts[lives];
             heart.SetActive(true);
         }
-
     }
 
     public void showAllHearts()
@@ -226,15 +251,19 @@ public class PlayerCollision : MonoBehaviour
         }
 
         // Show all hearts
-        if (heartA != null) heartA.SetActive(true);
-        if (heartB != null) heartB.SetActive(true);
-        if (heartC != null) heartC.SetActive(true);
+        if (heartA != null)
+            heartA.SetActive(true);
+        if (heartB != null)
+            heartB.SetActive(true);
+        if (heartC != null)
+            heartC.SetActive(true);
     }
 
     public bool checkImmunity()
     {
         return immunity;
     }
+
     public void setImmunity(bool set)
     {
         if (!GameSpeedController.Instance.TurboActive() && !pc.isShielded)
