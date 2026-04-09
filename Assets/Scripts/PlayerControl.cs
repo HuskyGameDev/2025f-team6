@@ -408,9 +408,9 @@ public class PlayerControl : MonoBehaviour
     private IEnumerator Shielded()
     {
         float elapsedTime = 0f;
-        isShielded = true;
         PlayerCollision playerCollision = gameObject.GetComponent<PlayerCollision>();
         playerCollision.setImmunity(true);
+        isShielded = true;
 
         if(spriteRenderer != null)
         {

@@ -12,11 +12,6 @@ public class CutsceneManager : MonoBehaviour
         }
     }
 
-    // public void SkipCutscene() {
-    //     director.time = director.duration; 
-    //     director.Evaluate(); 
-    // }
-
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);

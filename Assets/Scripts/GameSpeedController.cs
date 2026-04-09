@@ -25,6 +25,8 @@ public class GameSpeedController : MonoBehaviour
     [SerializeField] private AudioClip turboStart;
     [SerializeField] private AudioClip turboLoop;
     [SerializeField] private AudioClip turboEnd;
+    [SerializeField] private AudioClip sirenLoop;
+    [SerializeField] private AudioClip sirenEnd;
 
 
     public float CurrentSpeed { get; private set; }
@@ -131,6 +133,15 @@ public class GameSpeedController : MonoBehaviour
             turboEnd,
             transform,
             2.0f,
+            () => TurboActive()
+        );
+
+        AudioManager.instance.PlayStartLoopStop(
+            sirenLoop,
+            sirenLoop,
+            sirenEnd,
+            transform,
+            1.0f,
             () => TurboActive()
         );
 

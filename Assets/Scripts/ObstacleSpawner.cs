@@ -305,6 +305,14 @@ public class ObstacleSpawner : MonoBehaviour
                 {
                     continue;
                 }
+
+                if (disabledLane != -1 && lane != disabledLane)
+                {
+                    print(obstaclePrefab);
+                    print(disabledLane);
+                    print("Can't spawn road block since lane isnt the disabled one");
+                    continue;
+                }
             }
 
             break;

@@ -92,7 +92,9 @@ public class AudioManager : MonoBehaviour
 
             while (isHolding())
             {
-                if (spawn != null) audioSource.transform.position = spawn.position;
+                if (audioSource != null) {
+                    if (spawn != null) audioSource.transform.position = spawn.position;
+                }
                 yield return null;
             }
         }
@@ -100,11 +102,16 @@ public class AudioManager : MonoBehaviour
         if (audioSource != null)
         {
             // Play end
-            audioSource.loop = false;
-            audioSource.clip = end;
-            audioSource.Play();
-
-            Destroy(audioSource.gameObject, end.length);
+            if (end != null) {
+                audioSource.loop = false;
+                audioSource.clip = end;
+                audioSource.Play();
+                Destroy(audioSource.gameObject, end.length);
+            }
+            else
+            {
+               Destroy(audioSource.gameObject, 0); 
+            }
         }
     }
 }

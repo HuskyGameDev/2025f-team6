@@ -215,27 +215,6 @@ public class PlayerCollision : MonoBehaviour
             heart.SetActive(true);
         }
 
-        // if (lives == 3)
-        // {
-        //     heart
-        // }
-        // // Hide based on remaining lives (called from PlayerCollision)
-        // if (lives == 2) // first hit
-        // {
-        //     heartC.SetActive(!heartC.activeSelf);
-        // }
-        // if (lives == 1) // second hit
-        // {
-        //     heartB.SetActive(!heartB.activeSelf);
-        // }
-        // if (lives <= 0) // perish
-        // {
-        //     heartA.SetActive(!heartA.activeSelf);
-        // }
-
-        //     // Ensure the others are also hidden if lives <= 0
-        //     //if (heartB != null) heartB.SetActive(false);
-        //     //if (heartC != null) heartC.SetActive(false);
     }
 
     public void showAllHearts()
