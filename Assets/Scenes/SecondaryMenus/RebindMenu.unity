@@ -3393,6 +3393,8 @@ MonoBehaviour:
   - OptionsMenu
   - RebindMenu
   - AboutMenu
+  inGameMusic: {fileID: 8300000, guid: de20fced33d3d9e4ca2c0b4d294020a8, type: 3}
+  mainSceneName: Main
 --- !u!4 &1796339869
 Transform:
   m_ObjectHideFlags: 0
