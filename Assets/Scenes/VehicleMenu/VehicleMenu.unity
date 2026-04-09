@@ -1561,16 +1561,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1013705037}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2099144518}
+  m_Father: {fileID: 177332634}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -430, y: -80}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 640, y: 540}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1013705039
@@ -2361,11 +2361,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2099144518}
+  m_Father: {fileID: 8860333749405837854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 370, y: -79.99997}
+  m_AnchoredPosition: {x: 0, y: 0.34420776}
   m_SizeDelta: {x: 640, y: 540}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1385219568
@@ -2657,8 +2657,6 @@ RectTransform:
   m_Children:
   - {fileID: 542246412}
   - {fileID: 344728487}
-  - {fileID: 1013705038}
-  - {fileID: 1385219567}
   - {fileID: 177332634}
   - {fileID: 8860333749405837854}
   - {fileID: 538601365}
@@ -2849,7 +2847,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5908846157032406296, guid: 0d2d88c1c285d164192045f18552aa14, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1385219567}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d2d88c1c285d164192045f18552aa14, type: 3}
 --- !u!1001 &7957132126868012140
@@ -2994,7 +2995,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8860333748957121079, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 1013705038}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
 --- !u!224 &8860333749405837854 stripped

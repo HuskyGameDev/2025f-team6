@@ -10,7 +10,7 @@ public class FunFacts : MonoBehaviour
         "apprehending criminals and fugitives, conducting traffic enforcement to increase traffic safety, " + 
         "and participating in community outreach and prevention services activities.",
         
-        "The Michigan State Police divide the state of Mi into 7 districts; the entire Upper Peninsula is the Eighth District.",
+        "The Michigan State Police divide the state into 7 districts; the entire Upper Peninsula is the Eighth District, and there is no Fourth District!",
         
         "The Michigan State Police (MSP) use a single red \"gumball\" light on their patrol cars primarily for high visibility, instant identification, and tradition.",
         
@@ -26,7 +26,7 @@ public class FunFacts : MonoBehaviour
 
         "A high school diploma is the minimum education requirement to be a Michigan state trooper.  If interested in becoming a trooper, contact your local state police post.",
         
-        "After 10 years of service, troopers are eligible for a competitive salary of $100,500.00. This competitive pay " +
+        "After 10 years of service, troopers are eligible for a competitive salary of $100,500. This competitive pay " +
         "structure is part of the Michigan State Police effort to retain experienced law enforcement officers in the state.",
     };
 
