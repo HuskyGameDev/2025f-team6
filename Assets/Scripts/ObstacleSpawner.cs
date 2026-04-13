@@ -547,11 +547,11 @@ public class ObstacleSpawner : MonoBehaviour
             iceInstance.SetActive(true);
         }
     
-        // Display obstacle indiactors if speed is high enough
-        if (GameSpeedController.Instance.CurrentSpeed > minSpeedRequired)
+        /*/ Display obstacle indiactors if speed is high enough
+        if (GameSpeedController.Instance.CurrentSpeed > minSpeedRequired && )
         {
             lanes[PositionToLane(position.x)-1].SetTrigger("PlayAnim");
-        }
+        } //*/
 
     }
 

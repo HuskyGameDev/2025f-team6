@@ -2129,7 +2129,7 @@ MonoBehaviour:
   maxSpeed: 8
   destroyYPosition: -10
   destroyWhenInvisible: 1
-  hitSoundClip: {fileID: 8300000, guid: 219ee025613260f47951f4b10ec0808f, type: 3}
+  hitSoundClip: {fileID: 8300000, guid: 7f70d996400338642b68bcd266610121, type: 3}
   speed: 0
   isActive: 0
   maxSize: 1.5
@@ -5695,7 +5695,7 @@ MonoBehaviour:
   maxSpeed: 8
   destroyYPosition: -10
   destroyWhenInvisible: 1
-  hitSoundClip: {fileID: 8300000, guid: 219ee025613260f47951f4b10ec0808f, type: 3}
+  hitSoundClip: {fileID: 8300000, guid: 7f70d996400338642b68bcd266610121, type: 3}
   speed: 0
   isActive: 0
   maxSize: 1.5
@@ -14291,7 +14291,7 @@ MonoBehaviour:
   maxSpeed: 8
   destroyYPosition: -10
   destroyWhenInvisible: 1
-  hitSoundClip: {fileID: 8300000, guid: 219ee025613260f47951f4b10ec0808f, type: 3}
+  hitSoundClip: {fileID: 8300000, guid: 7f70d996400338642b68bcd266610121, type: 3}
   speed: 0
   isActive: 0
   maxSize: 1.5
