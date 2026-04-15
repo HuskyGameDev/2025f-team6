@@ -5375,6 +5375,10 @@ PrefabInstance:
       propertyPath: useDonutPowerup
       value: 
       objectReference: {fileID: 8300000, guid: e94297e3aaa312f4885c0af05f97a455, type: 3}
+    - target: {fileID: 998975018121320381, guid: d37843219a18e164d970618c46226d31, type: 3}
+      propertyPath: useShieldPowerup
+      value: 
+      objectReference: {fileID: 8300000, guid: 4cd9e6f7e4c970d448f54e0e45b9664d, type: 3}
     - target: {fileID: 1133778747936902698, guid: d37843219a18e164d970618c46226d31, type: 3}
       propertyPath: runner
       value: 
