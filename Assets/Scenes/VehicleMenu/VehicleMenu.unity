@@ -448,8 +448,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: X
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 812af760d25db8841b097cc10474ea78, type: 2}
+  m_sharedMaterial: {fileID: 7295967080394232927, guid: 812af760d25db8841b097cc10474ea78, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2753,9 +2753,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2099144518}
     m_Modifications:
+    - target: {fileID: 2374110696768363418, guid: 0d2d88c1c285d164192045f18552aa14, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374110696768363418, guid: 0d2d88c1c285d164192045f18552aa14, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374110696768363418, guid: 0d2d88c1c285d164192045f18552aa14, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374110696768363418, guid: 0d2d88c1c285d164192045f18552aa14, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 2374110696768363418, guid: 0d2d88c1c285d164192045f18552aa14, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3032555268809915052, guid: 0d2d88c1c285d164192045f18552aa14, type: 3}
       propertyPath: isStage
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4944481323706214229, guid: 0d2d88c1c285d164192045f18552aa14, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 812af760d25db8841b097cc10474ea78, type: 2}
+    - target: {fileID: 4944481323706214229, guid: 0d2d88c1c285d164192045f18552aa14, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7295967080394232927, guid: 812af760d25db8841b097cc10474ea78, type: 2}
+    - target: {fileID: 4944481323706214229, guid: 0d2d88c1c285d164192045f18552aa14, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5906324825427393420, guid: 0d2d88c1c285d164192045f18552aa14, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 5908846157032406296, guid: 0d2d88c1c285d164192045f18552aa14, type: 3}
       propertyPath: m_Pivot.x
@@ -2877,6 +2913,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: VehicleSelectPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 1370599890789191860, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 812af760d25db8841b097cc10474ea78, type: 2}
+    - target: {fileID: 1370599890789191860, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7295967080394232927, guid: 812af760d25db8841b097cc10474ea78, type: 2}
+    - target: {fileID: 1370599890789191860, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3782415656995224690, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
       propertyPath: 'entries.Array.data[1]'
       value: 
@@ -2912,6 +2960,34 @@ PrefabInstance:
     - target: {fileID: 6262015447715181475, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
       propertyPath: m_Padding.m_Bottom
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7160114036119065808, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7160114036119065808, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7160114036119065808, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7160114036119065808, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7160114036119065808, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7160114036119065808, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8178240078446291937, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 8860333748957121079, guid: c2a24910f70c3f94ca6ed2c1cc36900e, type: 3}
       propertyPath: m_Pivot.x

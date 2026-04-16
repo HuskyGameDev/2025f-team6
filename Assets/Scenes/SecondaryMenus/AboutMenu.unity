@@ -153,7 +153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 54.818, y: -252.82}
+  m_AnchoredPosition: {x: 135, y: -252.82}
   m_SizeDelta: {x: 82.287, y: 82.287}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &36024320
@@ -380,7 +380,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 325.3223}
+  m_AnchoredPosition: {x: 0, y: 374}
   m_SizeDelta: {x: 1226.5945, y: 89.50537}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &204445954
@@ -494,8 +494,8 @@ MonoBehaviour:
   m_text: <link="https://huskygames.com/about/">Learn more about Husky Game Dev at
     our website!</link>
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 973a063e0e8f2af46b4133c6ae7a420b, type: 2}
-  m_sharedMaterial: {fileID: -3639410998252427554, guid: 973a063e0e8f2af46b4133c6ae7a420b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 812af760d25db8841b097cc10474ea78, type: 2}
+  m_sharedMaterial: {fileID: 7295967080394232927, guid: 812af760d25db8841b097cc10474ea78, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -767,8 +767,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: X
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 812af760d25db8841b097cc10474ea78, type: 2}
+  m_sharedMaterial: {fileID: 7295967080394232927, guid: 812af760d25db8841b097cc10474ea78, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -903,8 +903,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Description:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 973a063e0e8f2af46b4133c6ae7a420b, type: 2}
-  m_sharedMaterial: {fileID: -3639410998252427554, guid: 973a063e0e8f2af46b4133c6ae7a420b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 812af760d25db8841b097cc10474ea78, type: 2}
+  m_sharedMaterial: {fileID: 7295967080394232927, guid: 812af760d25db8841b097cc10474ea78, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -928,8 +928,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 64
+  m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1163,8 +1163,8 @@ MonoBehaviour:
   m_text: "J.P. King\nDylan Wheeler\nTyler Gingras\nColeton Wilczynski\nElliot Lappenga\nPenn
     Roberts\nIan Washington\nNickolas Trocea\r"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 973a063e0e8f2af46b4133c6ae7a420b, type: 2}
-  m_sharedMaterial: {fileID: -3639410998252427554, guid: 973a063e0e8f2af46b4133c6ae7a420b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 812af760d25db8841b097cc10474ea78, type: 2}
+  m_sharedMaterial: {fileID: 7295967080394232927, guid: 812af760d25db8841b097cc10474ea78, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1274,7 +1274,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 7}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &771678216
@@ -1299,8 +1299,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Credits:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 973a063e0e8f2af46b4133c6ae7a420b, type: 2}
-  m_sharedMaterial: {fileID: -3639410998252427554, guid: 973a063e0e8f2af46b4133c6ae7a420b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 812af760d25db8841b097cc10474ea78, type: 2}
+  m_sharedMaterial: {fileID: 7295967080394232927, guid: 812af760d25db8841b097cc10474ea78, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1324,8 +1324,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 64
+  m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1623,8 +1623,8 @@ MonoBehaviour:
     at Michigan Technological University, in collaboration with the Michigan State
     Police.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 973a063e0e8f2af46b4133c6ae7a420b, type: 2}
-  m_sharedMaterial: {fileID: -3639410998252427554, guid: 973a063e0e8f2af46b4133c6ae7a420b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 812af760d25db8841b097cc10474ea78, type: 2}
+  m_sharedMaterial: {fileID: 7295967080394232927, guid: 812af760d25db8841b097cc10474ea78, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1813,8 +1813,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: About
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 621544faaa3860243afcb5c77870f3ea, type: 2}
-  m_sharedMaterial: {fileID: 2465878136652212801, guid: 621544faaa3860243afcb5c77870f3ea, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 812af760d25db8841b097cc10474ea78, type: 2}
+  m_sharedMaterial: {fileID: 7295967080394232927, guid: 812af760d25db8841b097cc10474ea78, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1838,8 +1838,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1925,7 +1925,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -336.92844}
+  m_AnchoredPosition: {x: 0, y: -309}
   m_SizeDelta: {x: 1226.5945, y: 356.3599}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1275473228
@@ -2076,7 +2076,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -114}
+  m_AnchoredPosition: {x: 0, y: -82}
   m_SizeDelta: {x: 1226.5945, y: 89.50537}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1796592006
@@ -2441,7 +2441,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 173.42473}
+  m_AnchoredPosition: {x: 0, y: 213}
   m_SizeDelta: {x: 1226.5945, y: 214.2828}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2124873387
