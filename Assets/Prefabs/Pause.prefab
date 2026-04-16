@@ -670,6 +670,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 6191280531197419418}
+  buttonImage: {fileID: 0}
+  frame0: {fileID: 0}
+  frame1: {fileID: 0}
 --- !u!1 &5666506373159213178
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,7 +815,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Paused
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 621544faaa3860243afcb5c77870f3ea, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 812af760d25db8841b097cc10474ea78, type: 2}
   m_sharedMaterial: {fileID: 2465878136652212801, guid: 621544faaa3860243afcb5c77870f3ea, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
